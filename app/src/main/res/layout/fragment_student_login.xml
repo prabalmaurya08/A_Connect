@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".login.AluminiLogin">
+    <TextView
+        android:id="@+id/studentLoginTv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Email Address"/>
+    <EditText
+        android:id="@+id/studentLoginEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/studentLoginTv1"
+        android:background="@drawable/ic_input_bg"
+        android:hint="Enter Email Address"/>
+    <TextView
+        android:id="@+id/studentLoginTv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/studentLoginEmailAddress"
+        android:text="Graduation Year"/>
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/studentLoginGraduationYear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_spinner_bg"
+        app:layout_constraintTop_toBottomOf="@id/studentLoginTv2"/>
+    <TextView
+        android:id="@+id/studentLoginTv3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/studentLoginGraduationYear"
+        android:text="College Name"/>
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/studentLoginCollegeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_spinner_bg"
+        app:layout_constraintTop_toBottomOf="@id/studentLoginTv3"/>
+    <TextView
+        android:id="@+id/studentLoginAsAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login as Admin"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/studentLoginCollegeName"
+        android:gravity="center"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/studentLoginAsAdmin"
+        android:text="Submit"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
