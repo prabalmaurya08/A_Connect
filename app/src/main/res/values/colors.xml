@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+
     //Alumini colour pattern
     <color name="blue1">#246BFD</color>
     <color name="blue2">#5089FD</color>
@@ -42,5 +43,9 @@
 
 
 
+
+
+    <color name="blue">#673AB7</color>
+    <color name="green">#008000</color>
 
 </resources>
