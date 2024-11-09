@@ -18,8 +18,8 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/mainLoginTabLayout"
-        android:layout_width="410dp"
-        android:layout_height="46dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:tabIndicatorHeight="5dp"
 
 
@@ -29,6 +29,7 @@
         app:tabIndicatorColor="#673AB7"
         app:tabIndicatorFullWidth="true"
         app:tabMode="fixed"
+        app:tabGravity="fill"
         app:tabRippleColor="@null">
 
         <com.google.android.material.tabs.TabItem
