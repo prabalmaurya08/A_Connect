@@ -4,12 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="10dp"
     tools:context=".login.AluminiLogin">
     <TextView
         android:id="@+id/aluminiLoginTv1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
+        android:paddingVertical="10dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
         android:text="Email Address"/>
     <EditText
         android:id="@+id/aluminiLoginEmailAddress"
@@ -23,18 +28,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/aluminiLoginEmailAddress"
+        android:paddingVertical="10dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
         android:text="Graduation Year"/>
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/aluminiLoginGraduationYear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/ic_spinner_bg"
+
         app:layout_constraintTop_toBottomOf="@id/aluminiLoginTv2"/>
     <TextView
         android:id="@+id/aluminiLoginTv3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/aluminiLoginGraduationYear"
+        android:paddingVertical="8dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
         android:text="College Name"/>
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/aluminiLoginCollegeName"
@@ -47,13 +59,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login as Admin"
+
         android:textStyle="bold"
+        android:paddingTop="10dp"
+        android:textColor="@color/green1"
         app:layout_constraintTop_toBottomOf="@id/aluminiLoginCollegeName"
         android:gravity="center"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/aluminiLoginAsAdmin"
+        android:layout_marginVertical="20dp"
+        android:backgroundTint="@color/blue1"
         android:text="Submit"/>
 
 
