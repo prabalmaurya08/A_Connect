@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/g1">
+        <item android:id="@+id/profile"
+            android:icon="@drawable/profile_icon"
+            android:title="@string/profile"/>
+    </group>
+    <group android:id="@+id/g2">
+        <item android:id="@+id/events"
+            android:icon="@drawable/profile_icon"
+            android:title="@string/events"/>
+    </group>
+    <group android:id="@+id/g3">
+        <item android:id="@+id/news_and_announcements"
+            android:icon="@drawable/profile_icon"
+            android:title="@string/news_and_announcements"/>
+    </group>
+    <group android:id="@+id/g4">
+        <item android:id="@+id/explore"
+            android:icon="@drawable/profile_icon"
+            android:title="@string/explore"/>
+    </group>
+    <group android:id="@+id/g5">
+        <item android:id="@+id/community"
+            android:icon="@drawable/profile_icon"
+            android:title="@string/community"/>
+    </group>
+
+    <group android:id="@+id/g6">
+        <item android:id="@+id/saved_jobs"
+            android:icon="@drawable/profile_icon"
+            android:title="@string/saved_jobs"/>
+    </group>
+
+    <group android:id="@+id/g7">
+        <item android:id="@+id/donation"
+            android:icon="@drawable/profile_icon"
+            android:title="@string/donation"/>
+    </group>
+
+    <group android:id="@+id/g8">
+        <item android:id="@+id/logout"
+            android:icon="@drawable/profile_icon"
+            android:title="@string/logout"/>
+    </group>
+
+    <group android:id="@+id/g9">
+        <item android:id="@+id/report"
+            android:icon="@drawable/profile_icon"
+            android:title="@string/report"/>
+    </group>
+
+    <group android:id="@+id/g10">
+        <item android:id="@+id/feedback"
+            android:icon="@drawable/profile_icon"
+            android:title="@string/feedback"/>
+    </group>
+    <group android:id="@+id/g11">
+        <item android:id="@+id/about_us"
+            android:icon="@drawable/profile_icon"
+            android:title="@string/about_us"/>
+    </group>
+
+
+
+</menu>
