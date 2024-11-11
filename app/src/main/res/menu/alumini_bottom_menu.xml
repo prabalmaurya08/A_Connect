@@ -16,7 +16,7 @@
         android:title="@string/job"
         android:icon="@drawable/jobpost_icon"/>
 
-    <item android:id="@+id/profile"
+    <item android:id="@+id/bottom_nav_profile"
         android:title="@string/profile"
         android:icon="@drawable/profile_icon"/>
 

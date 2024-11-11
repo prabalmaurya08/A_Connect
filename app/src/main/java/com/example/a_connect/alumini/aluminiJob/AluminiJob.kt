@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.a_connect.R
+import com.example.a_connect.databinding.FragmentAluminiJobBinding
 
 
 class AluminiJob : Fragment() {
+    private lateinit var binding: FragmentAluminiJobBinding
 
 
     override fun onCreateView(
