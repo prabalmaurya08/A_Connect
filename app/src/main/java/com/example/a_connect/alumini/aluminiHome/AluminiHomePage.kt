@@ -5,56 +5,48 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.a_connect.R
+import android.widget.ImageButton
+import androidx.drawerlayout.widget.DrawerLayout
+import com.example.a_connect.databinding.FragmentAluminiHomePageBinding
+import com.google.android.material.navigation.NavigationView
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AluminiHomePage.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AluminiHomePage : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentAluminiHomePageBinding
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navView: NavigationView
+    private lateinit var toolbar: androidx.appcompat.widget.Toolbar
+    private lateinit var drawerButton: ImageButton
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_alumini_home_page, container, false)
+        binding = FragmentAluminiHomePageBinding.inflate(layoutInflater)
+
+        drawerSetUp()
+
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AluminiHomePage.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AluminiHomePage().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+    private fun drawerSetUp() {
+        // Set up Navigation Drawer
+        drawerLayout = binding.aluminiHomeDrawerLayout
+        navView = binding.aluminiHomeNavigationView
+
+        // Set up the toolbar and drawer Button
+        toolbar = binding.aluminiHomeToolbar
+        drawerButton = binding.aluminiHomePageDrawer
+
+
+        drawerButton.setOnClickListener {
+            drawerLayout.open()
+        }
+}
 }

@@ -15,9 +15,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class MainLogin : Fragment() {
     private lateinit var binding: FragmentMainLoginBinding
-    private val tabTitles = arrayOf("Patient", "Doctor")
-//    private lateinit var imageView: ImageView
-//    private lateinit var loginTab: TabLayout
+
+
 
 
     override fun onCreateView(

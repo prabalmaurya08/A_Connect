@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainLogin">
+    app:startDestination="@id/aluminiMainPage">
 
     <fragment
         android:id="@+id/mainLogin"
@@ -19,4 +19,9 @@
         android:id="@+id/studentLogin"
         android:name="com.example.a_connect.login.StudentLogin"
         android:label="StudentLogin" />
+    <fragment
+        android:id="@+id/aluminiMainPage"
+        android:name="com.example.a_connect.alumini.aluminiMainPage.AluminiMainPage"
+        android:label="fragment_alumini_main_page"
+        tools:layout="@layout/fragment_alumini_main_page" />
 </navigation>

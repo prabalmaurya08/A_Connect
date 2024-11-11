@@ -17,7 +17,7 @@
         android:title="@string/job"
         android:icon="@drawable/jobpost_icon"/>
 
-    <item android:id="@+id/college"
+    <item android:id="@+id/bottom_nav_college"
         android:title="@string/college"
         android:icon="@drawable/collage_icon"/>
 
