@@ -1,5 +1,6 @@
 package com.example.a_connect.alumini.aluminiHome
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,8 +19,27 @@ class AluminiHomePage : Fragment() {
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
     private lateinit var drawerButton: ImageButton
 
+    private var listener: OnItemClickedInsideViewPager? = null
 
 
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        when (context) {
+
+            is OnItemClickedInsideViewPager -> {
+                listener=context
+
+
+            }
+
+
+
+            else -> {
+                throw ClassCastException("$context must implement OnSignupClickListener")
+            }
+        }
+    }
 
 
     override fun onCreateView(
@@ -30,9 +50,14 @@ class AluminiHomePage : Fragment() {
         binding = FragmentAluminiHomePageBinding.inflate(layoutInflater)
 
         drawerSetUp()
+        goToChatScreen()
 
 
         return binding.root
+    }
+    private fun goToChatScreen() {
+       // findNavController().navigate(R.id.action_aluminiMainPage_to_aluminiChat)
+
     }
 
     private fun drawerSetUp() {
@@ -45,8 +70,29 @@ class AluminiHomePage : Fragment() {
         drawerButton = binding.aluminiHomePageDrawer
 
 
+        binding.aluminiHomePageChat.setOnClickListener {
+            listener?.onChatButtonClicked()
+        }
+        binding.aluminiHomePageNotification.setOnClickListener {
+            listener?.onNotificationButtonClicked()
+        }
+
+
         drawerButton.setOnClickListener {
             drawerLayout.open()
         }
 }
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+    }
+    interface OnItemClickedInsideViewPager {
+        fun onChatButtonClicked()
+        fun onNotificationButtonClicked()
+
+
+
+
+    }
+
 }

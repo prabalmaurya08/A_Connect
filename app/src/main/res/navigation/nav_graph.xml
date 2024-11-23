@@ -23,5 +23,23 @@
         android:id="@+id/aluminiMainPage"
         android:name="com.example.a_connect.alumini.aluminiMainPage.AluminiMainPage"
         android:label="fragment_alumini_main_page"
-        tools:layout="@layout/fragment_alumini_main_page" />
+        tools:layout="@layout/fragment_alumini_main_page" >
+        <action
+            android:id="@+id/action_aluminiMainPage_to_aluminiChat"
+            app:destination="@id/aluminiChat" />
+    </fragment>
+    <fragment
+        android:id="@+id/aluminiChat"
+        android:name="com.example.a_connect.alumini.aluminiChat.AluminiChat"
+        android:label="fragment_alumini_chat"
+        tools:layout="@layout/fragment_alumini_chat" />
+    <fragment
+        android:id="@+id/aluminiHomePage"
+        android:name="com.example.a_connect.alumini.aluminiHome.AluminiHomePage"
+        android:label="fragment_alumini_home_page"
+        tools:layout="@layout/fragment_alumini_home_page" >
+        <action
+            android:id="@+id/action_aluminiHomePage_to_aluminiChat"
+            app:destination="@id/aluminiChat" />
+    </fragment>
 </navigation>
