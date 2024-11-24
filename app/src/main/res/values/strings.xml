@@ -19,4 +19,17 @@
     <string name="job_events"><![CDATA[Job & Events]]></string>
     <string name="announcement">Announcement</string>
     <string name="college">College</string>
+    <string name="college_image">College Image</string>
+    <string name="add_image">Add Image</string>
+    <string name="delete_image">Delete Image</string>
+    <string name="add_shart_tag_line">Add Shart Tag Line</string>
+    <string name="tagline">Tagline</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="twitter">Twitter</string>
+    <string name="instagram">Instagram</string>
+    <string name="gmail">Gmail</string>
+    <string name="import_excel_data">Import Excel Data</string>
+    <string name="millestones">Millestones</string>
+    <string name="posts">Posts</string>
+    <string name="add_millestone">Add Millestone</string>
 </resources>
