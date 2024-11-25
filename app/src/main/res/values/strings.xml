@@ -32,4 +32,16 @@
     <string name="millestones">Millestones</string>
     <string name="posts">Posts</string>
     <string name="add_millestone">Add Millestone</string>
+    <string name="grid_item_1">Grid Item 1</string>
+    <string name="grid_item_2">Grid Item 2</string>
+    <string name="grid_item_3">Grid Item 3</string>
+    <string name="grid_item_4">Grid Item 4</string>
+    <string name="grid_item_5">Grid Item 5</string>
+    <string name="grid_item_6">Grid Item 6</string>
+    <string name="grid_item_7">Grid Item 7</string>
+    <string name="grid_item_8">Grid Item 8</string>
+    <string name="grid_item_9">Grid Item 9</string>
+    <string name="grid_item_10">Grid Item 10</string>
+    <string name="grid_item_11">Grid Item 11</string>
+    <string name="grid_item_12">Grid Item 12</string>
 </resources>
