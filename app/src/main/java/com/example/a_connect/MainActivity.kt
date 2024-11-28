@@ -11,8 +11,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.a_connect.alumini.aluminiHome.AluminiHomePage
 import com.example.a_connect.databinding.ActivityMainBinding
+import com.example.a_connect.login.AlumniLogin
 
-class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideViewPager{
+class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideViewPager, AlumniLogin.OnAlumniScreenClicked {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -41,5 +42,13 @@ class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideVi
 
     override fun onNotificationButtonClicked() {
 
+    }
+
+    override fun onAlumniSubmitClicked() {
+       findNavController(R.id.fragment).navigate(R.id.action_mainLogin_to_aluminiMainPage)
+    }
+
+    override fun onAlumniAdminClicked() {
+        findNavController(R.id.fragment).navigate(R.id.action_mainLogin_to_adminLogin)
     }
 }

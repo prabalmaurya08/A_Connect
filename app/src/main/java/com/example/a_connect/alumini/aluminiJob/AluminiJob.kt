@@ -21,6 +21,7 @@ class AluminiJob : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding=FragmentAluminiJobBinding.inflate(layoutInflater)
+        setupCard()
         return binding.root
     }
     private fun setupCard(){
