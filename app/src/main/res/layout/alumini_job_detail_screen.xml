@@ -86,7 +86,7 @@
 
             <TextView
                 android:id="@+id/time_postedAt"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:gravity="center"
@@ -104,7 +104,7 @@
 
             <TextView
                 android:id="@+id/date_postedAt"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="January,5 2025"
@@ -165,6 +165,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
             android:text="dd/mm/yyyy till 5 p.m. "
             android:textSize="16sp" />
 
@@ -183,6 +184,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
             android:text="B.tech(CS/IT/EC)"
             android:textSize="16sp" />
 
@@ -200,6 +202,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
             android:layout_marginBottom="5dp"
             android:text="2025 Pass outs"
             android:textSize="16sp" />
@@ -218,6 +221,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
             android:layout_marginBottom="5dp"
             android:text="bla bla bla
 bla bla bla
@@ -240,6 +244,7 @@ bla bla bla"
             android:id="@+id/requirement_job"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:text="bla bla bla
@@ -252,6 +257,7 @@ bla bla bla"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
             android:text="Selection Process"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -262,6 +268,7 @@ bla bla bla"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
             android:text="Three Round of Interview"
             android:textSize="16sp" />
 
@@ -271,6 +278,7 @@ bla bla bla"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:text="Campus Interview"
+
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -280,6 +288,7 @@ bla bla bla"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
             android:text="will be informed"
             android:textSize="16sp" />
 
@@ -298,6 +307,7 @@ bla bla bla"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
             android:text="will be informed"
             android:textSize="16sp" />
 
@@ -315,6 +325,7 @@ bla bla bla"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
             android:layout_marginBottom="5dp"
             android:text="N/A"
             android:textSize="16sp" />
