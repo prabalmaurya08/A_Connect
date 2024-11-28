@@ -3,22 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/aluminiMainPage">
+    app:startDestination="@id/mainLogin">
 
     <fragment
         android:id="@+id/mainLogin"
         android:name="com.example.a_connect.login.MainLogin"
         android:label="fragment_main_login"
-        tools:layout="@layout/fragment_main_login" />
+        tools:layout="@layout/fragment_main_login" >
+        <action
+            android:id="@+id/action_mainLogin_to_aluminiMainPage"
+            app:destination="@id/aluminiMainPage" />
+        <action
+            android:id="@+id/action_mainLogin_to_adminLogin"
+            app:destination="@id/adminLogin" />
+    </fragment>
     <fragment
         android:id="@+id/aluminiLogin"
-        android:name="com.example.a_connect.login.AluminiLogin"
+        android:name="com.example.a_connect.login.AlumniLogin"
         android:label="fragment_student_login"
         tools:layout="@layout/fragment_student_login" />
-    <fragment
-        android:id="@+id/studentLogin"
-        android:name="com.example.a_connect.login.StudentLogin"
-        android:label="StudentLogin" />
     <fragment
         android:id="@+id/aluminiMainPage"
         android:name="com.example.a_connect.alumini.aluminiMainPage.AluminiMainPage"
@@ -41,5 +44,19 @@
         <action
             android:id="@+id/action_aluminiHomePage_to_aluminiChat"
             app:destination="@id/aluminiChat" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentLogin"
+        android:name="com.example.a_connect.login.StudentLogin"
+        android:label="fragment_student_login"
+        tools:layout="@layout/fragment_student_login" />
+    <fragment
+        android:id="@+id/adminLogin"
+        android:name="com.example.a_connect.login.AdminLogin"
+        android:label="fragment_admin_login"
+        tools:layout="@layout/fragment_admin_login" >
+        <action
+            android:id="@+id/action_adminLogin_to_mainLogin"
+            app:destination="@id/mainLogin" />
     </fragment>
 </navigation>
