@@ -15,9 +15,7 @@ class alumniJobAdapterClass(private val datalist: List<alumniJobDataitem>): Recy
             binding.Date.text=data.date
             binding.alumniCompanyLogo.setImageResource(data.image)
         }
-
-
-    }
+  }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding=AlumniJobCardBinding.inflate(LayoutInflater.from(parent.context),parent,false)
