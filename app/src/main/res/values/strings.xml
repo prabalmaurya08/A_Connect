@@ -44,4 +44,18 @@
     <string name="grid_item_10">Grid Item 10</string>
     <string name="grid_item_11">Grid Item 11</string>
     <string name="grid_item_12">Grid Item 12</string>
+    <string name="university_name">University Name</string>
+    <string name="bio">Bio</string>
+    <string name="insert_your_link_here">insert your link here</string>
+    <string name="thread_icon">Thread Icon</string>
+    <string name="gmail_icon">gmail Icon</string>
+    <string name="gmail_icon1">Gmail Icon</string>
+    <string name="instagram_icon">Instagram Icon</string>
+    <string name="linkedin_icon">LinkedIn Icon</string>
+    <string name="college_email_address">College Email Address</string>
+    <string name="write_something_about_yourself">Write Something about yourself</string>
+    <string name="write_something_about_yourself1">Write Something about yourself</string>
+    <string name="submit">Submit</string>
+    <string name="universityemailaddress_gmail_com">universityemailaddress@gmail.com</string>
+    <string name="social_links">Social links</string>
 </resources>
