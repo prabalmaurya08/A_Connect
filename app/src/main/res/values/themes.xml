@@ -6,4 +6,39 @@
     </style>
 
     <style name="Theme.A_Connect" parent="Base.Theme.A_Connect" />
+
+
+
+    <!--    THis is for Alumni Job page Button style-->
+    <style name="alumni_jobDetailButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/white</item>
+
+        <item name="shapeAppearanceOverlay">@style/CustomButtonShape1</item>
+
+    </style>
+
+    <style name="CustomButtonShape1" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+        <item name="height">
+            48dp
+        </item>
+
+    </style>
+
+    <!--    THis is for Alumni Job page Button style-->
+    <style name="alumni_applyButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/blue</item>
+
+        <item name="shapeAppearanceOverlay">@style/CustomButtonShape2</item>
+
+    </style>
+
+    <style name="CustomButtonShape2" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+
+    </style>
+
+
 </resources>

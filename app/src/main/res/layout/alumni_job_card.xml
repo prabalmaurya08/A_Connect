@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="10dp"
     app:cardCornerRadius="25dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+  >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -96,31 +100,43 @@
             app:layout_constraintStart_toEndOf="@id/calender"/>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/Card1"
+            android:id="@+id/job_detail_button"
+            android:focusable="true"
             app:cardCornerRadius="12dp"
             app:elevation="8dp"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginEnd="5dp"
+            style="@style/alumni_jobDetailButtonStyle"
+            android:clickable="true"
+
             app:layout_constraintTop_toBottomOf="@id/alumini_time"
-            app:layout_constraintEnd_toStartOf="@id/Card2"
+            app:layout_constraintEnd_toStartOf="@id/apply_button"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="10dp">
-            <Button
-                android:id="@+id/Job_Detail"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:layout_height="48dp">
 
-                android:layout_height="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Job Details"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textStyle="bold"
+                    android:textColor="@color/blue1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                android:text="Job Details"
-                android:textColor="#246BFD"
-                android:backgroundTint="@color/white" />
 
         </com.google.android.material.card.MaterialCardView>
 
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/Card2"
+            android:id="@+id/apply_button"
             app:cardCornerRadius="12dp"
             app:elevation="8dp"
             android:layout_width="0dp"
@@ -128,19 +144,27 @@
             app:layout_constraintTop_toBottomOf="@id/alumini_time"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="5dp"
-            android:background="@drawable/alumini_job_button_bg"
-            app:layout_constraintStart_toEndOf="@+id/Card1"
+
+            android:backgroundTint="@color/blue1"
+            app:layout_constraintStart_toEndOf="@+id/job_detail_button"
             android:layout_marginTop="10dp">
-            <Button
-                android:id="@+id/Apply"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
 
-                android:layout_height="48dp"
+                android:layout_height="48dp">
 
-                android:text="Apply"
-                android:textColor="@color/white"
-                android:background="@drawable/alumini_job_button_bg"
-                 />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apply"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
