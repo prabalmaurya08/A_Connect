@@ -12,7 +12,7 @@
         android:layout_marginHorizontal="16dp">
 
         <!-- Top LinearLayout containing the Image -->
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,17 +27,12 @@
                 android:layout_height="289dp"
                 android:contentDescription="@string/college_image"
                 android:scaleType="fitXY"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 android:src="@drawable/college_image" />
 
             <!-- Buttons over Image -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="-65dp"
-                android:layout_marginHorizontal="16dp"
-                android:paddingHorizontal="5dp"
-                android:weightSum="2">
+
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/addimage"
@@ -48,6 +43,10 @@
                     android:backgroundTint="@color/green1"
                     android:textAllCaps="false"
                     app:cornerRadius="12dp"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/deleteimage"
                     android:padding="15dp"
                     android:text="@string/add_image" />
 
@@ -61,10 +60,13 @@
                     android:textColor="@color/green1"
                     android:padding="15dp"
                     app:cornerRadius="12dp"
+                    app:layout_constraintStart_toEndOf="@id/addimage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:textAllCaps="false"
                     android:text="@string/delete_image" />
-            </LinearLayout>
-        </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Content Section -->
         <androidx.constraintlayout.widget.ConstraintLayout
