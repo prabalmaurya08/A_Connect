@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -12,99 +11,129 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-
-
-
         <!-- Grid Layout -->
         <androidx.gridlayout.widget.GridLayout
             android:id="@+id/milestonesGrid"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="16dp"
             app:columnCount="3"
-            app:rowCount="3"
+            app:rowCount="4"
             app:useDefaultMargins="true"
-            android:contentDescription="Milestones Grid"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
+
             <!-- Grid Items -->
             <View
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/green3"
-                app:layout_rowWeight="1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/green5"
                 app:layout_columnWeight="1"
-                android:contentDescription="Grid Item 1" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/green3"
+                app:layout_gravity="fill"
                 app:layout_rowWeight="1"
-                app:layout_columnWeight="1"
-                android:contentDescription="Grid Item 2" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/green3"
-                app:layout_rowWeight="1"
-                app:layout_columnWeight="1"
-                android:contentDescription="Grid Item 3" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/green3"
-                app:layout_rowWeight="1"
-                app:layout_columnWeight="1"
-                android:contentDescription="Grid Item 4" />
+                android:contentDescription="@string/grid_item_1" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@color/green3"
-                app:layout_rowWeight="1"
+                android:background="@color/green5"
                 app:layout_columnWeight="1"
-                android:contentDescription="Grid Item 5" />
+                app:layout_gravity="fill"
+                app:layout_rowWeight="1"
+                android:contentDescription="@string/grid_item_2" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@color/green3"
-                app:layout_rowWeight="1"
+                android:background="@color/green5"
                 app:layout_columnWeight="1"
-                android:contentDescription="Grid Item 6" />
+                app:layout_gravity="fill"
+                app:layout_rowWeight="1"
+                android:contentDescription="@string/grid_item_3" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@color/green3"
-                app:layout_rowWeight="1"
+                android:background="@color/green5"
                 app:layout_columnWeight="1"
-                android:contentDescription="Grid Item 7" />
+                app:layout_gravity="fill"
+                app:layout_rowWeight="1"
+                android:contentDescription="@string/grid_item_4" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@color/green3"
-                app:layout_rowWeight="1"
+                android:background="@color/green5"
                 app:layout_columnWeight="1"
-                android:contentDescription="Grid Item 8" />
+                app:layout_gravity="fill"
+                app:layout_rowWeight="1"
+                android:contentDescription="@string/grid_item_5" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@color/green3"
-                app:layout_rowWeight="1"
+                android:background="@color/green5"
                 app:layout_columnWeight="1"
-                android:contentDescription="Grid Item 9" />
+                app:layout_gravity="fill"
+                app:layout_rowWeight="1"
+                android:contentDescription="@string/grid_item_6" />
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/green5"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill"
+                app:layout_rowWeight="1"
+                android:contentDescription="@string/grid_item_7" />
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/green5"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill"
+                app:layout_rowWeight="1"
+                android:contentDescription="@string/grid_item_8" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/green5"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill"
+                app:layout_rowWeight="1"
+                android:contentDescription="@string/grid_item_9" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/green5"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill"
+                app:layout_rowWeight="1"
+                android:contentDescription="@string/grid_item_10" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/green5"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill"
+                app:layout_rowWeight="1"
+                android:contentDescription="@string/grid_item_11" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/green5"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill"
+                app:layout_rowWeight="1"
+                android:contentDescription="@string/grid_item_12" />
         </androidx.gridlayout.widget.GridLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
