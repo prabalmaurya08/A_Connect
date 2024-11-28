@@ -1,9 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
     android:fillViewport="true">
 
     <RelativeLayout
@@ -12,7 +16,7 @@
         android:layout_marginHorizontal="16dp">
 
         <!-- Top LinearLayout containing the Image -->
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ll1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,18 +31,12 @@
                 android:layout_height="289dp"
                 android:contentDescription="@string/college_image"
                 android:scaleType="centerCrop"
-                android:src="@drawable/college_image"
-                />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/college_image" />
 
             <!-- Buttons over Image -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="-65dp"
-                android:layout_marginHorizontal="16dp"
-                android:paddingHorizontal="5dp"
-                android:weightSum="2">
+
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/addimage"
@@ -48,7 +46,9 @@
                     android:layout_marginEnd="10dp"
                     android:backgroundTint="@color/green1"
                     android:textAllCaps="false"
+                    android:layout_marginBottom="12dp"
                     app:cornerRadius="12dp"
+
                     android:padding="11dp"
                     android:text="@string/add_image"
                     android:textStyle="bold"
@@ -56,22 +56,34 @@
                     android:elevation="13dp"
                     app:elevation="13dp"/>
 
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/deleteimage"
+                    android:padding="15dp"
+                    android:text="@string/add_image" />
+
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/deleteimage"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="12dp"
+                   android:layout_marginHorizontal="16dp"
                     android:backgroundTint="@color/white"
                     android:textColor="@color/green1"
                     android:padding="11dp"
                     android:textStyle="bold"
                     android:fontFamily="@font/sf_pro_display"
                     app:cornerRadius="12dp"
+                    app:layout_constraintStart_toEndOf="@id/addimage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:textAllCaps="false"
                     android:text="@string/delete_image" />
-            </LinearLayout>
-        </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!-- Content Section -->
         <androidx.constraintlayout.widget.ConstraintLayout
