@@ -58,4 +58,27 @@
     <string name="submit">Submit</string>
     <string name="universityemailaddress_gmail_com">universityemailaddress@gmail.com</string>
     <string name="social_links">Social links</string>
+
+
+    <string name="_1_234_nposts">1,234\nPosts</string>
+    <string name="_5_678_nstudents">5,678\nStudents</string>
+    <string name="_9_101_nalumni">9,101\nAlumni</string>
+    <string name="get_your_unique_id_txt">✨ Get your Unique ID ✨</string>
+    <string name="edit_profile_txt">Edit Profile</string>
+    <string name="share_profile_txt">Share Profile</string>
+    <string name="alumni_edit_profile_name">Name</string>
+    <string name="alumni_profile_date_of_birth_txt">Date Of Birth</string>
+    <string name="alumni_edit_profile_dateofbirth">dd/mm/yy</string>
+    <string name="male_txt">Male</string>
+    <string name="female_txt">Female</string>
+    <string name="others__txt">Others</string>
+    <string name="alumni_editprofile_hint_txt">existingpersonal@gmail.com</string>
+    <string name="phone_number_txt">Phone Number</string>
+    <string name="alumni_phone_no_hint">9876543210</string>
+    <string name="alumni_collage_name_txt">Collage Name</string>
+    <string name="alumni_collage_name_hint">Collage</string>
+    <string name="alumni_graduation_year_txt">Graduation Year</string>
+    <string name="alumni_editprofile_year_hint_txt">year</string>
+    <string name="alumni_edit_degree_hint_txt">Degree(specialisation)</string>
+    <string name="degree_obtained_txt">Degree Obtained</string>
 </resources>
