@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             app:title="Job Description"
             app:titleCentered="true"
+
             app:navigationIcon="@drawable/back_button_icon"
             >
 
