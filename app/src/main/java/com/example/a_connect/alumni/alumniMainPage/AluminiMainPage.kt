@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
 import com.example.a_connect.R
-import com.example.a_connect.databinding.FragmentAluminiMainPageBinding
+
+import com.example.a_connect.databinding.FragmentAlumniMainPageBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class AluminiMainPage : Fragment() {
-    private lateinit var binding: FragmentAluminiMainPageBinding
+    private lateinit var binding: FragmentAlumniMainPageBinding
     private lateinit var viewPager: ViewPager2
     private lateinit var bottomNavigationView: BottomNavigationView
 
@@ -24,7 +25,7 @@ class AluminiMainPage : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding=FragmentAluminiMainPageBinding.inflate(layoutInflater)
+        binding=FragmentAlumniMainPageBinding.inflate(layoutInflater)
 
 
         viewPager = binding.aluminiMainPageViewPager

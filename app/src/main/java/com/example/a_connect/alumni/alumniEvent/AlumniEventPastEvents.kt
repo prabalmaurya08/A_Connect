@@ -7,13 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a_connect.R
-import com.example.a_connect.databinding.FragmentUpcommingEventsBinding
+import com.example.a_connect.databinding.FragmentAlumniEventPastEventBinding
 
 
 class AlumniEventPastEvents : Fragment() {
 
-    private var _binding: Fragment? = null
+    private var _binding: FragmentAlumniEventPastEventBinding? = null
     private val binding get() = _binding!!
+
+
     private lateinit var eventadaptor: AlumniEventRecyclerAdaptor
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +27,7 @@ class AlumniEventPastEvents : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentUpcommingEventsBinding.inflate(inflater, container, false)
+        _binding = FragmentAlumniEventPastEventBinding.inflate(inflater, container, false)
         setuprecyclerview()
         return binding.root
     }

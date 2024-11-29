@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a_connect.R
-import com.example.a_connect.databinding.FragmentAluminiJobBinding
+import com.example.a_connect.databinding.FragmentAlumniJobBinding
 
 
 class AlumniJob : Fragment() {
-    private lateinit var binding: FragmentAluminiJobBinding
+    private lateinit var binding: FragmentAlumniJobBinding
     private lateinit var adapterClass: alumniJobAdapterClass
 
     override fun onCreateView(
@@ -19,7 +19,7 @@ class AlumniJob : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding=FragmentAluminiJobBinding.inflate(layoutInflater)
+        binding=FragmentAlumniJobBinding.inflate(layoutInflater)
         setupCard()
         return binding.root
     }

@@ -8,12 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.drawerlayout.widget.DrawerLayout
-import com.example.a_connect.databinding.FragmentAluminiHomePageBinding
+import com.example.a_connect.databinding.FragmentAlumniHomePageBinding
 import com.google.android.material.navigation.NavigationView
 
 
 class AluminiHomePage : Fragment() {
-    private lateinit var binding: FragmentAluminiHomePageBinding
+    private lateinit var binding: FragmentAlumniHomePageBinding
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navView: NavigationView
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
@@ -47,7 +47,7 @@ class AluminiHomePage : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentAluminiHomePageBinding.inflate(layoutInflater)
+        binding = FragmentAlumniHomePageBinding.inflate(layoutInflater)
 
         drawerSetUp()
         goToChatScreen()
