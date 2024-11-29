@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.a_connect.R
 import com.example.a_connect.databinding.FragmentAluminiMainPageBinding
@@ -39,6 +41,7 @@ class AluminiMainPage : Fragment() {
         setupViewPagerWithBottomNavigation()
         return binding.root
     }
+
 
     private fun setupViewPagerWithBottomNavigation() {
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {

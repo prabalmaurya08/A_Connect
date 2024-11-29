@@ -47,12 +47,13 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.gridlayout)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.imageslideshow)
-    implementation(libs.androidx.viewpager2)
 
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 
 
 }

@@ -9,7 +9,7 @@ class MainLoginViewPagerAdapter(fragment: Fragment): FragmentStateAdapter(fragme
     override fun createFragment(position: Int): Fragment {
 
         return when(position){
-            0-> AluminiLogin()
+            0-> AlumniLogin()
             else-> StudentLogin()
 
         }
