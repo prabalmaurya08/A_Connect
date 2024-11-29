@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:paddingVertical="10dp"
         android:textSize="16dp"
+
         android:textStyle="bold"
         android:text="Email Address"/>
     <EditText
@@ -34,9 +35,12 @@
         android:textSize="16dp"
         android:textStyle="bold"
         android:text="Graduation Year"/>
+
+
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/aluminiLoginGraduationYear"
         android:layout_width="match_parent"
+        android:padding="15dp"
         android:layout_height="wrap_content"
         android:background="@drawable/ic_spinner_bg"
 
@@ -54,6 +58,7 @@
         android:id="@+id/aluminiLoginCollegeName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="15dp"
         android:background="@drawable/ic_spinner_bg"
         app:layout_constraintTop_toBottomOf="@id/aluminiLoginTv3"/>
     <TextView

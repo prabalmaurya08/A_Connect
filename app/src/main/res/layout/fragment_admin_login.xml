@@ -4,9 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".login.AdminLogin">
 
+
+    <ImageView
+        android:id="@+id/adminLoginBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_back_icon"
+        android:layout_marginTop="20dp"
+
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <ImageView
         android:id="@+id/adminLoginAppLogo"
         android:layout_width="wrap_content"
@@ -18,10 +30,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
+        android:id="@+id/adminLoginTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="fixed"
         app:tabRippleColor="@null"
+
+        app:tabIndicatorColor="@color/green1"
+        app:layout_constraintTop_toBottomOf="@id/adminLoginAppLogo"
         app:tabIndicatorFullWidth="true">
         <com.google.android.material.tabs.TabItem
             android:layout_width="match_parent"
@@ -31,6 +47,52 @@
             />
     </com.google.android.material.tabs.TabLayout>
 
+    <TextView
+        android:id="@+id/adminLoginTv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Email Address"
+        app:layout_constraintTop_toBottomOf="@id/adminLoginTabLayout"
+
+        android:paddingVertical="10dp"
+        android:textSize="16dp"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/studentLoginEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/adminLoginTv1"
+        android:background="@drawable/ic_input_bg"
+        android:hint="Enter Email Address"/>
+
+    <TextView
+        android:id="@+id/adminPasswordTv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Password"
+        app:layout_constraintTop_toBottomOf="@id/studentLoginEmailAddress"
+
+        android:paddingVertical="10dp"
+        android:textSize="16dp"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/studentLoginPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/adminPasswordTv1"
+        android:background="@drawable/ic_input_bg"
+        android:hint="Enter Email Address"/>
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/studentLoginPassword"
+        android:layout_marginVertical="20dp"
+        android:backgroundTint="@color/green1"
+        android:text="Submit"/>
 
 
 
