@@ -4,9 +4,9 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.a_connect.alumini.aluminiCommunity.AluminiCommunityPage
 import com.example.a_connect.alumini.aluminiHome.AluminiHomePage
-import com.example.a_connect.alumini.aluminiJob.AluminiJob
+import com.example.a_connect.alumini.aluminiJob.AlumniJob
 import com.example.a_connect.alumini.aluminiPost.AluminiPost
-import com.example.a_connect.alumini.aluminiProfile.AluminiProfile
+import com.example.a_connect.alumini.aluminiProfile.AlumniProfile
 
 
 class AluminiMainPageViewPagerAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
@@ -18,8 +18,8 @@ class AluminiMainPageViewPagerAdapter(fragment: Fragment): FragmentStateAdapter(
             0-> AluminiHomePage()
             1->AluminiCommunityPage()
             2->AluminiPost()
-            3->AluminiJob()
-            else-> AluminiProfile()
+            3->AlumniJob()
+            else-> AlumniProfile()
 
         }
     }
