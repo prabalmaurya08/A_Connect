@@ -21,7 +21,7 @@ class UpcommingEvents : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentUpcommingEventsBinding.inflate(inflater, container, false)
-
+setuprecyclerview()
         return binding.root
     }
     private fun setuprecyclerview(){
