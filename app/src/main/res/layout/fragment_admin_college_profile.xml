@@ -54,14 +54,10 @@
                     android:textStyle="bold"
                     android:fontFamily="@font/sf_pro_display"
                     android:elevation="13dp"
+
                     app:elevation="13dp"/>
 
-                    android:layout_marginStart="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/deleteimage"
-                    android:padding="15dp"
-                    android:text="@string/add_image" />
+              
 
 
                 <com.google.android.material.button.MaterialButton
