@@ -9,6 +9,25 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="Event Detail"
+                app:titleCentered="true"
+
+                app:navigationIcon="@drawable/back_button_icon"
+                >
+
+            </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <!--    image of event-->
         <ImageView
@@ -16,10 +35,15 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:src="@drawable/event_image"
-            app:layout_constraintRight_toRightOf="parent"
+
+
+            android:scaleType="centerCrop"
+            app:layout_constraintTop_toBottomOf="@id/appbar"
+
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints"  />
+           
+            />
 
 
         <!--Event name-->
@@ -83,7 +107,7 @@
 
         <!--Event schedule-->
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/event_schedule"
             android:layout_marginTop="16sp"
@@ -99,12 +123,14 @@
                 android:id="@+id/calendar_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginStart="32sp"
-                android:layout_marginEnd="16sp"
+
+
                 android:src="@drawable/calendericon"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                app:layout_constraintEnd_toStartOf="@+id/event_date"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/event_date"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <!--Event date-->
             <TextView
@@ -116,7 +142,7 @@
                 android:textSize="16sp"
                 android:text="14 December,2024"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/about_event_description"
+
                 app:layout_constraintStart_toEndOf="@+id/calendar_icon"
                 />
 
@@ -137,7 +163,7 @@
 
         <!--Event Location section-->
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/event_location"
             android:layout_marginTop="16sp"
@@ -151,8 +177,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginStart="32sp"
-            android:layout_marginEnd="16sp"
+
+
             android:src="@drawable/event_location"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/event_schedule"
@@ -190,17 +216,19 @@
 
         <!--organiser card-->
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="48dp"
             android:layout_marginTop="10dp"
-            app:layout_constraintTop_toBottomOf="@+id/event_location"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/event_location">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
+                android:padding="16dp"
+                >
 
                 <!--organizer image -->
                 <ImageView
@@ -216,45 +244,48 @@
 
                 <!--organizer name -->
                 <TextView
+                    android:id="@+id/event_organizer_name"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/event_organizer_name"
                     android:layout_marginStart="16sp"
-                    android:textSize="16sp"
                     android:text="Shristi Gupta"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/event_location"
                     app:layout_constraintStart_toEndOf="@id/organizer_image"
+                    app:layout_constraintTop_toBottomOf="@id/event_location"
                     tools:ignore="NotSibling" />
 
                 <!--organizer post-->
                 <TextView
+                    android:id="@+id/organizer_post"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:id="@+id/organizer_post"
                     android:layout_marginStart="16sp"
-                    android:textSize="12sp"
                     android:text="Organizer"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@+id/organizer_image"
-                    app:layout_constraintTop_toBottomOf="@+id/event_organizer_name"
-                    />
+                    app:layout_constraintTop_toBottomOf="@+id/event_organizer_name" />
 
                 <!--contact button-->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="10.5dp"
-                    app:layout_constraintStart_toEndOf="@id/event_organizer_name"
-                    app:layout_constraintEnd_toEndOf="parent">
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginHorizontal="10dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/event_organizer_name">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
+                        android:padding="10dp"
+
                         android:text="Contact"
+                        android:textColor="#246bfd"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#246bfd" />
+                        android:textStyle="bold" />
 
 
                 </com.google.android.material.card.MaterialCardView>
@@ -263,6 +294,14 @@
 
 
         </com.google.android.material.card.MaterialCardView>
+        
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintTop_toBottomOf="@id/cardview"
+            android:layout_marginTop="10dp"
+            android:text="Join Now"/>
 
 
 
