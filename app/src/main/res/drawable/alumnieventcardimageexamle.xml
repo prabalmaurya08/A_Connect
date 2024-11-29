@@ -8,7 +8,7 @@
       android:fillColor="#F49392"/>
   <path
       android:pathData="M44,40m-38,0a38,38 0,1 1,76 0a38,38 0,1 1,-76 0"
-      android:fillColor="url(#pattern0_449_765)"/>
+      android:fillColor="#ffc"/>
   <path
       android:pathData="M44,40m-38,0a38,38 0,1 1,76 0a38,38 0,1 1,-76 0"
       android:strokeWidth="4"

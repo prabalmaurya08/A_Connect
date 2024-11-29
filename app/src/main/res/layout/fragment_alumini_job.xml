@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".alumini.aluminiJob.AluminiJob">
+    tools:context=".alumini.aluminiJob.AlumniJob">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"

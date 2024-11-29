@@ -5,13 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a_connect.R
 import com.example.a_connect.databinding.FragmentAluminiJobBinding
 
 
-class AluminiJob : Fragment() {
+class AlumniJob : Fragment() {
     private lateinit var binding: FragmentAluminiJobBinding
     private lateinit var adapterClass: alumniJobAdapterClass
 
