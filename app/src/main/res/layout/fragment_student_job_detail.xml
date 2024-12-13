@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    >
+    tools:context=".student.studentJob.StudentJobDetail">
+
+
 
 
     <LinearLayout
@@ -59,6 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginEnd="5dp"
                 android:layout_marginStart="5dp"
                 android:src="@drawable/location" />
 
@@ -81,8 +84,10 @@
             <ImageView
                 android:id="@+id/clock_icon"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_marginEnd="3dp"
+                android:padding="4dp"
                 android:src="@drawable/clock" />
 
             <TextView
@@ -101,6 +106,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:paddingTop="4dp"
                 android:src="@drawable/calender" />
 
             <TextView
@@ -118,7 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
-            android:backgroundTint="#246BFD"
+            android:backgroundTint="@color/orange1"
             android:text="Apply" />
 
         <TextView
@@ -148,7 +155,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:text="Company Website"
-            android:textColor="@color/blue1" />
+            android:textColor="@color/orange1" />
 
         <TextView
             android:id="@+id/Deadline_job_registration"
@@ -166,6 +173,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
             android:text="dd/mm/yyyy till 5 p.m. "
             android:textSize="16sp" />
 
@@ -184,6 +192,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
             android:text="B.tech(CS/IT/EC)"
             android:textSize="16sp" />
 
@@ -201,6 +210,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
             android:layout_marginBottom="5dp"
             android:text="2025 Pass outs"
             android:textSize="16sp" />
@@ -219,6 +229,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
             android:layout_marginBottom="5dp"
             android:text="bla bla bla
 bla bla bla
@@ -241,6 +252,7 @@ bla bla bla"
             android:id="@+id/requirement_job"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:text="bla bla bla
@@ -253,6 +265,7 @@ bla bla bla"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
             android:text="Selection Process"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -263,6 +276,7 @@ bla bla bla"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
             android:text="Three Round of Interview"
             android:textSize="16sp" />
 
@@ -272,6 +286,7 @@ bla bla bla"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
             android:text="Campus Interview"
+
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -281,6 +296,7 @@ bla bla bla"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
             android:text="will be informed"
             android:textSize="16sp" />
 
@@ -299,6 +315,7 @@ bla bla bla"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
             android:text="will be informed"
             android:textSize="16sp" />
 
@@ -316,6 +333,7 @@ bla bla bla"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
             android:layout_marginBottom="5dp"
             android:text="N/A"
             android:textSize="16sp" />
