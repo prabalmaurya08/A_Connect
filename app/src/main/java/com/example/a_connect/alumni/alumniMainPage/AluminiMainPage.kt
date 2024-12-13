@@ -28,7 +28,7 @@ class AluminiMainPage : Fragment() {
         binding=FragmentAlumniMainPageBinding.inflate(layoutInflater)
 
 
-        viewPager = binding.aluminiMainPageViewPager
+        viewPager = binding.alumniMainPageViewPager
         bottomNavigationView = binding.aluminiMainPageBottomNav
 
         // Set up ViewPager with FragmentStateAdapter

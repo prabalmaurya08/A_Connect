@@ -13,7 +13,7 @@ class AlumniEventRecyclerAdaptor(private val cardList: List<AlumniEventDataItem>
             binding.eventcardimage.setImageResource(card.imageResId)
             binding.eventcardtext.text=card.eventTitle
             binding.eventcarddate.text=card.eventDate
-            binding.eventcardtime.text=card.eventTime
+            binding.eventcardtime.text=card.eventtime
             binding.eventcardbookmark.setImageResource(card.bookmark)
         }
     }
