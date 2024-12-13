@@ -36,10 +36,7 @@
                 app:layout_constraintEnd_toStartOf="@id/aluminiHomePageNotification"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-
                 android:id="@+id/aluminiHomePageSearchBar"
-
-
                 />
 
             <ImageView
