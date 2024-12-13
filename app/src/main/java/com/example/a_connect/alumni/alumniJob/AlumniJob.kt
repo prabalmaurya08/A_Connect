@@ -1,0 +1,49 @@
+package com.example.a_connect.alumni.alumniJob
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.a_connect.R
+import com.example.a_connect.databinding.FragmentAlumniJobBinding
+
+
+class AlumniJob : Fragment() {
+    private lateinit var binding: FragmentAlumniJobBinding
+    private lateinit var adapterClass: alumniJobAdapterClass
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        binding=FragmentAlumniJobBinding.inflate(layoutInflater)
+        setupCard()
+        return binding.root
+    }
+    private fun setupCard(){
+        val cardItem= listOf(
+            alumniJobDataitem(R.drawable.google,"Software Developer 2","Google","lucknow,U.P","4 days Ago","06 february 2025"),
+            alumniJobDataitem(R.drawable.google,"Software Developer 2","Google","lucknow,U.P","4 days Ago","06 february 2025"),
+            alumniJobDataitem(R.drawable.google,"Software Developer 2","Google","lucknow,U.P","4 days Ago","06 february 2025"),
+            alumniJobDataitem(R.drawable.google,"Software Developer 2","Google","lucknow,U.P","4 days Ago","06 february 2025"),
+            alumniJobDataitem(R.drawable.google,"Software Developer 2","Google","lucknow,U.P","4 days Ago","06 february 2025"),
+            alumniJobDataitem(R.drawable.google,"Software Developer 2","Google","lucknow,U.P","4 days Ago","06 february 2025"),
+            alumniJobDataitem(R.drawable.google,"Software Developer 2","Google","lucknow,U.P","4 days Ago","06 february 2025"),
+            alumniJobDataitem(R.drawable.google,"Software Developer 2","Google","lucknow,U.P","4 days Ago","06 february 2025"),
+            alumniJobDataitem(R.drawable.google,"Software Developer 2","Google","lucknow,U.P","4 days Ago","06 february 2025"),
+            alumniJobDataitem(R.drawable.google,"Software Developer 2","Google","lucknow,U.P","4 days Ago","06 february 2025"),
+            alumniJobDataitem(R.drawable.google,"Software Developer 2","Google","lucknow,U.P","4 days Ago","06 february 2025")
+
+        )
+        adapterClass=alumniJobAdapterClass(cardItem)
+        binding.alumniJobRecyclerview.apply {
+            layoutManager=LinearLayoutManager(context)
+            adapter=adapterClass
+        }
+    }
+
+
+}
