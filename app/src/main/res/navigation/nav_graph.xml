@@ -24,23 +24,23 @@
         tools:layout="@layout/fragment_student_login" />
     <fragment
         android:id="@+id/aluminiMainPage"
-        android:name="com.example.a_connect.alumini.aluminiMainPage.AluminiMainPage"
+        android:name="com.example.a_connect.alumni.alumniMainPage.AluminiMainPage"
         android:label="fragment_alumini_main_page"
-        tools:layout="@layout/fragment_alumini_main_page" >
+        tools:layout="@layout/fragment_alumni_main_page" >
         <action
             android:id="@+id/action_aluminiMainPage_to_aluminiChat"
             app:destination="@id/aluminiChat" />
     </fragment>
     <fragment
         android:id="@+id/aluminiChat"
-        android:name="com.example.a_connect.alumini.aluminiChat.AluminiChat"
+        android:name="com.example.a_connect.alumni.alumniChat.AluminiChat"
         android:label="fragment_alumini_chat"
-        tools:layout="@layout/fragment_alumini_chat" />
+        tools:layout="@layout/fragment_alumni_chat" />
     <fragment
         android:id="@+id/aluminiHomePage"
-        android:name="com.example.a_connect.alumini.aluminiHome.AluminiHomePage"
+        android:name="com.example.a_connect.alumni.alumniHome.AluminiHomePage"
         android:label="fragment_alumini_home_page"
-        tools:layout="@layout/fragment_alumini_home_page" >
+        tools:layout="@layout/fragment_alumni_home_page" >
         <action
             android:id="@+id/action_aluminiHomePage_to_aluminiChat"
             app:destination="@id/aluminiChat" />

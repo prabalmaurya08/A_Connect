@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a_connect.R
-import com.example.a_connect.databinding.FragmentPastEventsBinding
+
+import com.example.a_connect.databinding.FragmentStudentEventPastEventsBinding
 
 
 class StudentEventPastEvents : Fragment() {
 
-    private var _binding: FragmentPastEventsBinding? = null
+    private var _binding: FragmentStudentEventPastEventsBinding? = null
     private val binding get() = _binding!!
     private lateinit var eventadaptor: StudentEventRecyclerAdaptor
 
@@ -25,7 +26,7 @@ class StudentEventPastEvents : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentPastEventsBinding.inflate(inflater, container, false)
+        _binding =  FragmentStudentEventPastEventsBinding.inflate(inflater, container, false)
         setuprecyclerview()
         return binding.root
     }

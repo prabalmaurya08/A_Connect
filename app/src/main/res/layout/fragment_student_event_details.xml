@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".alumni.alumniEvent.AlumniEventDetails">
+    tools:context=".student.studentEvent.StudentEventDetails">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-           
+
             />
 
 
@@ -171,46 +171,46 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Event Location icon-->
-        <ImageView
-            android:id="@+id/location_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            <!-- Event Location icon-->
+            <ImageView
+                android:id="@+id/location_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
 
 
-            android:src="@drawable/event_location"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/event_schedule"
-            app:layout_constraintEnd_toStartOf="@+id/event_location_name"
-            tools:ignore="NotSibling" />
+                android:src="@drawable/event_location"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/event_schedule"
+                app:layout_constraintEnd_toStartOf="@+id/event_location_name"
+                tools:ignore="NotSibling" />
 
-        <!--Event location name -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/event_location_name"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16sp"
-            android:textSize="16sp"
-            android:text="Munshipulia"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/location_icon"
-            app:layout_constraintTop_toBottomOf="@id/event_day_time"
-            tools:ignore="NotSibling" />
+            <!--Event location name -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/event_location_name"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16sp"
+                android:textSize="16sp"
+                android:text="Munshipulia"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/location_icon"
+                app:layout_constraintTop_toBottomOf="@id/event_day_time"
+                tools:ignore="NotSibling" />
 
             <!--Event location Address -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/loctaion_Address"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="16sp"
-            android:textSize="16sp"
-            android:text="C Block, Indiranagar colony"
-            app:layout_constraintStart_toEndOf="@+id/location_icon"
-            app:layout_constraintTop_toBottomOf="@+id/event_location_name"
-            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/loctaion_Address"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="16sp"
+                android:textSize="16sp"
+                android:text="C Block, Indiranagar colony"
+                app:layout_constraintStart_toEndOf="@+id/location_icon"
+                app:layout_constraintTop_toBottomOf="@+id/event_location_name"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -294,7 +294,7 @@
 
 
         </com.google.android.material.card.MaterialCardView>
-        
+
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
