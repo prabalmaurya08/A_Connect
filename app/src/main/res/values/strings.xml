@@ -81,4 +81,17 @@
     <string name="alumni_editprofile_year_hint_txt">year</string>
     <string name="alumni_edit_degree_hint_txt">Degree(specialisation)</string>
     <string name="degree_obtained_txt">Degree Obtained</string>
+    <string name="student_edit_profile_name">Name</string>
+    <string name="edit_student_name_txt">Name</string>
+    <string name="student_date_of_birth">Date Of Birth</string>
+    <string name="student_edit_DOB">dd/mm/yy</string>
+    <string name="alumini_gender">Gender</string>
+    <string name="student_gender">Gender</string>
+    <string name="student_collage_name">Collage</string>
+    <string name="student_edit_email_hint">existingpersonal@gmail.com</string>
+    <string name="student_edit_year">year</string>
+    <string name="student_edit_graduation_year">year</string>
+    <string name="student_degree_specialisation_txt">Degree(specialisation)</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="phone_numbertxt">987653210</string>
 </resources>
