@@ -121,12 +121,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Job Details"
+                    android:text="Show Details"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:textStyle="bold"
-                    android:textColor="@color/blue1"
+                    android:textColor="@color/orange1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -145,7 +145,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="5dp"
 
-            android:backgroundTint="@color/blue1"
+            android:backgroundTint="@color/orange1"
             app:layout_constraintStart_toEndOf="@+id/job_detail_button"
             android:layout_marginTop="10dp">
             <androidx.constraintlayout.widget.ConstraintLayout

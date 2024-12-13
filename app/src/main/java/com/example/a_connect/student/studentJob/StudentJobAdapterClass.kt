@@ -1,13 +1,13 @@
-package com.example.a_connect.alumni.alumniJob
+package com.example.a_connect.student.studentJob
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.a_connect.databinding.AlumniJobCardBinding
-
-class alumniJobAdapterClass(private val datalist: List<alumniJobDataitem>): RecyclerView.Adapter<alumniJobAdapterClass.ViewHolder>(){
-    class ViewHolder(private val binding:AlumniJobCardBinding):RecyclerView.ViewHolder(binding.root) {
-        fun bind(data:alumniJobDataitem){
+import com.example.a_connect.student.studentJob.studentJobDataitem
+import com.example.a_connect.databinding.StudentJobCardBinding
+class StudentJobAdapterClass (private val datalist: List<studentJobDataitem>): RecyclerView.Adapter<StudentJobAdapterClass.ViewHolder>(){
+    class ViewHolder(private val binding:StudentJobCardBinding):RecyclerView.ViewHolder(binding.root) {
+        fun bind(data: studentJobDataitem){
             binding.jobRole.text=data.jobRole
             binding.companyName.text=data.companyName
             binding.companyLocation.text=data.jobLocation
@@ -15,10 +15,10 @@ class alumniJobAdapterClass(private val datalist: List<alumniJobDataitem>): Recy
             binding.Date.text=data.date
             binding.companyLogo.setImageResource(data.image)
         }
-  }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding=AlumniJobCardBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding=StudentJobCardBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder(binding)
 
     }
