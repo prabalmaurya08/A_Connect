@@ -9,7 +9,7 @@ import com.example.a_connect.alumni.alumniProfile.AlumniProfile
 import com.example.a_connect.alumni.alumniEvent.AluminiEvent
 
 
-class AluminiMainPageViewPagerAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
+class AlumniMainPageViewPagerAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int = 5
 
     override fun createFragment(position: Int): Fragment {
