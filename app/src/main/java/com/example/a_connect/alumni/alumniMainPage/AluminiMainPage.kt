@@ -17,7 +17,7 @@ class AluminiMainPage : Fragment() {
     private lateinit var viewPager: ViewPager2
     private lateinit var bottomNavigationView: BottomNavigationView
 
-    private lateinit var aluminiMainPageViewPagerAdapter: AluminiMainPageViewPagerAdapter
+    private lateinit var alumniMainPageViewPagerAdapter: AlumniMainPageViewPagerAdapter
 
 
     override fun onCreateView(
@@ -32,8 +32,8 @@ class AluminiMainPage : Fragment() {
         bottomNavigationView = binding.aluminiMainPageBottomNav
 
         // Set up ViewPager with FragmentStateAdapter
-        aluminiMainPageViewPagerAdapter = AluminiMainPageViewPagerAdapter(this)
-        viewPager.adapter = aluminiMainPageViewPagerAdapter
+        alumniMainPageViewPagerAdapter = AlumniMainPageViewPagerAdapter(this)
+        viewPager.adapter = alumniMainPageViewPagerAdapter
         
         setupViewPagerWithBottomNavigation()
         return binding.root

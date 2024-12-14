@@ -1,4 +1,4 @@
-package com.example.a_connect.admin.adminMainPage
+package com.example.a_connect.student.studentMainPage
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,31 +8,30 @@ import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
 import com.example.a_connect.R
 import com.example.a_connect.alumni.alumniMainPage.AlumniMainPageViewPagerAdapter
-import com.example.a_connect.databinding.FragmentAdminMainpageBinding
-import com.example.a_connect.databinding.FragmentAlumniMainPageBinding
+import com.example.a_connect.databinding.FragmentStudentMainPageBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
-class AdminMainPage : Fragment() {
-    private lateinit var binding: FragmentAdminMainpageBinding
+class StudentMainPage : Fragment() {
+    private lateinit var binding: FragmentStudentMainPageBinding
     private lateinit var viewPager: ViewPager2
     private lateinit var bottomNavigationView: BottomNavigationView
 
-    private lateinit var alumniMainPageViewPagerAdapter: AdminMainPageViewPagerAdapter
-
+    private lateinit var studentMainPageViewPagerAdapter:StudentMainPageViewPagerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding=FragmentAdminMainpageBinding.inflate(layoutInflater)
+        binding=FragmentStudentMainPageBinding.inflate(layoutInflater)
+
         viewPager = binding.viewPager
         bottomNavigationView = binding.bottomNav
 
         // Set up ViewPager with FragmentStateAdapter
-        alumniMainPageViewPagerAdapter = AdminMainPageViewPagerAdapter(this)
-        viewPager.adapter = alumniMainPageViewPagerAdapter
+       studentMainPageViewPagerAdapter = StudentMainPageViewPagerAdapter(this)
+        viewPager.adapter = studentMainPageViewPagerAdapter
 
         setupViewPagerWithBottomNavigation()
         return binding.root
@@ -47,14 +46,16 @@ class AdminMainPage : Fragment() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.bottom_nav_home-> viewPager.currentItem = 0
-                R.id.bottom_nav_announcement -> viewPager.currentItem = 1
-                R.id.bottom_nav_events -> viewPager.currentItem = 2
-                R.id.bottom_nav_job-> viewPager.currentItem = 3
-                R.id.bottom_nav_college-> viewPager.currentItem = 4
+                R.id.bottom_nav_community -> viewPager.currentItem = 1
+                R.id.bottom_nav_explore -> viewPager.currentItem = 2
+                R.id.bottom_nav_job -> viewPager.currentItem = 3
+                R.id.bottom_nav_profile -> viewPager.currentItem = 4
             }
             true
         }
     }
+
+
 
 
 }
