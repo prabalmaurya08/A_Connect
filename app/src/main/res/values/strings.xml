@@ -94,4 +94,5 @@
     <string name="student_degree_specialisation_txt">Degree(specialisation)</string>
     <string name="phone_number">Phone Number</string>
     <string name="phone_numbertxt">987653210</string>
+    <string name="image_buttons">Image Buttons</string>
 </resources>
