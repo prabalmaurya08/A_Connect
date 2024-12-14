@@ -1,12 +1,10 @@
 package com.example.a_connect.admin.adminCollegeProfile
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.a_connect.R
-
 
 class AdminCollegeProfile : Fragment() {
 
@@ -18,6 +16,5 @@ class AdminCollegeProfile : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_admin_college_profile, container, false)
     }
-
 
 }
