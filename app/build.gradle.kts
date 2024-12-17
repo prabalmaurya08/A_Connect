@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.google.gms.google.services)
 
 
+
 }
 
 android {
@@ -12,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.a_connect"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -39,6 +40,9 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    dataBinding {
+        enable = true
+    }
 }
 
 dependencies {
@@ -57,10 +61,18 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.imageslideshow)
 
-    implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
-    implementation("com.google.firebase:firebase-analytics")
 
-    implementation("de.hdodenhof:circleimageview:3.1.0")
+    //Firebase
 
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+
+    //For Circular Image
+    implementation(libs.circleimageview)
+
+
+// Apache POI for reading Excel files
+    implementation(libs.poi)
+    implementation (libs.poi.ooxml)
 
 }
