@@ -1,19 +1,22 @@
 package com.example.a_connect.admin.adminMainPage
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.a_connect.R
+import com.example.a_connect.admin.adminCollegeProfile.AdminCollegeProfile
 import com.example.a_connect.alumni.alumniMainPage.AlumniMainPageViewPagerAdapter
 import com.example.a_connect.databinding.FragmentAdminMainpageBinding
 import com.example.a_connect.databinding.FragmentAlumniMainPageBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
-class AdminMainPage : Fragment() {
+class AdminMainPage : Fragment(),AdminCollegeProfile.OnAdminEditProfileClickListener {
     private lateinit var binding: FragmentAdminMainpageBinding
     private lateinit var viewPager: ViewPager2
     private lateinit var bottomNavigationView: BottomNavigationView
@@ -53,6 +56,16 @@ class AdminMainPage : Fragment() {
                 R.id.bottom_nav_college-> viewPager.currentItem = 4
             }
             true
+        }
+    }
+
+    override fun onAdminEditProfileClicked() {
+        try {
+
+
+            findNavController().navigate(R.id.action_adminMainPage_to_adminEditProfile)
+        } catch (e: Exception) {
+            Log.e("AdminMainScreen", "Navigation failed: ${e.message}")
         }
     }
 
