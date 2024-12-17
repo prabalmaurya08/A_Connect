@@ -35,7 +35,7 @@ class AlumniJobDetails : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_alumni_job_details, container, false)
+        return inflater.inflate(R.layout.fragment_alumni_job_detail, container, false)
     }
 
     companion object {
