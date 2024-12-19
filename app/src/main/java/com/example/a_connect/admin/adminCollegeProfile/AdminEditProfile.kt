@@ -1,15 +1,18 @@
 package com.example.a_connect.admin.adminCollegeProfile
 
+
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.ScrollView
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.a_connect.R
-import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeEditProfileViewModel
 import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileRepository
+import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileViewModel
 import com.example.a_connect.admin.adminCollegeProfile.mvvm.EditProfileViewModelFactory
 import com.example.a_connect.databinding.FragmentAdminEditProfileBinding
 
@@ -18,10 +21,11 @@ class AdminEditProfile : Fragment() {
     private lateinit var binding: FragmentAdminEditProfileBinding
 
     private val repository = CollegeProfileRepository()
-    private val viewModel: CollegeEditProfileViewModel by viewModels {
+    private val viewModel: CollegeProfileViewModel by viewModels {
         EditProfileViewModelFactory(repository)
     }
-
+    private var scrollView: ScrollView? = null
+    private var gmailInput: EditText? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +50,9 @@ class AdminEditProfile : Fragment() {
                 // Handle failure
             }
         }
+
+
+
 
         return binding.root
     }

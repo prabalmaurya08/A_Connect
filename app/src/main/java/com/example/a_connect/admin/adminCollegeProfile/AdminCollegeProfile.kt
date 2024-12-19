@@ -1,5 +1,7 @@
 package com.example.a_connect.admin.adminCollegeProfile
+
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -8,69 +10,175 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.a_connect.R
+import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileRepository
+import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileViewModel
+import com.example.a_connect.admin.adminCollegeProfile.mvvm.EditProfileViewModelFactory
 import com.example.a_connect.databinding.FragmentAdminCollegeProfileBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import org.apache.poi.xssf.usermodel.XSSFWorkbook
+import java.io.File
 import java.io.InputStream
 
-
 class AdminCollegeProfile : Fragment() {
-    private lateinit var binding: FragmentAdminCollegeProfileBinding
 
-    companion object {
-        private const val PICK_FILE_REQUEST_CODE_ALUMNI = 1001
-        private const val PICK_FILE_REQUEST_CODE_STUDENT = 1002
+    private lateinit var binding: FragmentAdminCollegeProfileBinding
+    private val IMAGE_PICK_REQUEST = 1003
+    private var imageUri: Uri? = null
+    private var loadingDialog: Dialog? = null
+    private var pb:ProgressBar?=null
+    private val collegeId = "collegeId123" // Replace with dynamic ID if necessary
+    private var isProfileLoaded = false
+    private val repository = CollegeProfileRepository()
+    private val viewModel: CollegeProfileViewModel by viewModels {
+        EditProfileViewModelFactory(repository)
     }
 
-    private lateinit var firestore: FirebaseFirestore
+    private var listener: OnGoToEditProfileClickListener? = null
 
-
-
-    private var listener: OnAdminEditProfileClickListener? = null
-
-    interface OnAdminEditProfileClickListener {
-        fun onAdminEditProfileClicked()
+    interface OnGoToEditProfileClickListener {
+        fun onGoToEditProfileClicked()
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (parentFragment is OnAdminEditProfileClickListener) {
-            listener = parentFragment as OnAdminEditProfileClickListener
+
+
+        if (parentFragment is OnGoToEditProfileClickListener) {
+            listener = parentFragment as OnGoToEditProfileClickListener
         } else {
-            throw RuntimeException("Parent fragment must implement OnClassClickListener")
+            throw RuntimeException("$context must implement OnViewPdfButtonClickListener")
         }
     }
+
+
+
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding=FragmentAdminCollegeProfileBinding.inflate(inflater,container,false)
+    ): View {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_college_profile, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
 
-        firestore = FirebaseFirestore.getInstance()
+        // Load College Profile Data
+        viewModel.loadProfileData(collegeId)
 
-        binding.importAlumniExcelData.setOnClickListener { selectFile(PICK_FILE_REQUEST_CODE_ALUMNI) }
-       binding.importStudentExcelData.setOnClickListener { selectFile(PICK_FILE_REQUEST_CODE_STUDENT) }
-
-
-        //for testing i am using add button to open edit profie
-        binding.addimage.setOnClickListener {
-
-            listener?.onAdminEditProfileClicked()
-        }
-
-
+        setupUI()
+        setupObservers()
+        observeImageLoadingStatus()
         return binding.root
     }
-    private fun selectFile(requestCode: Int) {
+
+    private fun setupUI() {
+        // Add Image
+        binding.addimage.setOnClickListener {
+            openImagePicker()
+        }
+
+        // Delete Image
+        binding.deleteimage.setOnClickListener {
+            viewModel.deleteImage(collegeId)
+            Toast.makeText(requireContext(), "Image deleted successfully", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.goToEditProfile.setOnClickListener {
+            listener?.onGoToEditProfileClicked()
+        }
+
+        // Import Excel Buttons
+        binding.importAlumniExcelData.setOnClickListener {
+            selectExcelFile(PICK_FILE_REQUEST_CODE_ALUMNI)
+        }
+
+        binding.importStudentExcelData.setOnClickListener {
+            selectExcelFile(PICK_FILE_REQUEST_CODE_STUDENT)
+        }
+
+        setupLoadingDialog()
+        setupClickableLinks()
+    }
+
+    // Observe the image loading status to skip loading when already done
+    private fun observeImageLoadingStatus() {
+        viewModel.isImageLoaded.observe(viewLifecycleOwner, Observer { isLoaded ->
+            if (isLoaded && !isProfileLoaded) {
+                // If the image is already loaded, do not show loading dialog again
+                isProfileLoaded = true
+                // Optionally, hide loading indicator here
+            } else {
+                // Show loading dialog if the image is not yet loaded
+                if (!isProfileLoaded) {
+                    // Show loading dialog or indicator
+                }
+            }
+        })
+    }
+
+    private fun setupLoadingDialog() {
+        loadingDialog = Dialog(requireContext()).apply {
+            setContentView(R.layout.progress_bar_dialogbox) // Replace with your custom dialog layout
+            setCancelable(false) // Prevent dialog dismissal by back button
+            window?.setBackgroundDrawableResource(android.R.color.transparent) // Transparent background
+        }
+    }
+
+    private fun showLoadingDialog(message: String = "Loading...") {
+        loadingDialog?.findViewById<TextView>(R.id.loadingMessage)?.text = message
+        loadingDialog?.show()
+        pb=loadingDialog?.findViewById<ProgressBar>(R.id.progressBar)
+    }
+
+    private fun dismissLoadingDialog() {
+        loadingDialog?.dismiss()
+    }
+
+    private fun setupObservers() {
+        // Observe loading state to show/hide dialog
+        viewModel.loadingState.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading) {
+                showLoadingDialog("Loading your image...")
+            } else {
+                dismissLoadingDialog()
+            }
+        }
+
+        // Observe image URL to update UI when the upload is complete
+        viewModel.imageUrl.observe(viewLifecycleOwner) { imageUrl ->
+            if (!imageUrl.isNullOrEmpty()) {
+                // Load image using Glide
+                Glide.with(this)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.alumni_job_detail_bg) // Placeholder image
+                    .error(R.drawable.alumni_job_detail_bg)       // Error fallback image
+                    .into(binding.backgroundImage)
+            } else {
+                // Set default image if no URL is found
+                binding.backgroundImage.setImageResource(R.drawable.alumni_job_detail_bg)
+            }
+        }
+    }
+
+    private fun openImagePicker() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, IMAGE_PICK_REQUEST)
+    }
+
+    private fun selectExcelFile(requestCode: Int) {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" // Excel files only
+        intent.type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         startActivityForResult(Intent.createChooser(intent, "Select Excel File"), requestCode)
     }
 
@@ -78,108 +186,51 @@ class AdminCollegeProfile : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if ((requestCode == PICK_FILE_REQUEST_CODE_ALUMNI || requestCode == PICK_FILE_REQUEST_CODE_STUDENT)
-            && resultCode == Activity.RESULT_OK
-            && data != null
-        ) {
-            val fileUri = data.data
-            if (fileUri != null) {
-                processExcelFile(fileUri, requestCode == PICK_FILE_REQUEST_CODE_ALUMNI)
-            } else {
-                Toast.makeText(context, "File selection failed", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    private fun processExcelFile(fileUri: Uri, isAlumni: Boolean) {
-        try {
-            val inputStream: InputStream? = context?.contentResolver?.openInputStream(fileUri)
-            val workbook = XSSFWorkbook(inputStream)
-            val sheet = workbook.getSheetAt(0)
-
-            for (row in sheet) {
-                try {
-                    if (row.rowNum == 0) {
-                        // Skip header row
-                        continue
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                IMAGE_PICK_REQUEST -> {
+                    imageUri = data?.data
+                    imageUri?.let { uri ->
+                        viewModel.uploadImage(collegeId, uri)
+                        Toast.makeText(requireContext(), "Image uploading...", Toast.LENGTH_SHORT).show()
                     }
-
-                    val email = getCellValue(row.getCell(0))
-                    val name = getCellValue(row.getCell(1))
-                    val yearStr = getCellValue(row.getCell(2))
-                    val collegeName = getCellValue(row.getCell(3))
-
-                    // Validate year
-                    val year = yearStr.toIntOrNull()
-                    if (year == null) {
-                        Log.e("Invalid Data", "Year is not a number for row ${row.rowNum}: $yearStr")
-                        continue // Skip this row
-                    }
-
-                    // Prepare data to upload
-                    val user = hashMapOf(
-                        "email" to email,
-                        "name" to name,
-                        (if (isAlumni) "graduationYear" else "enrollmentYear") to year,
-                        "collegeName" to collegeName,
-                        "bio" to "",
-                        "profilePictureUrl" to "",
-                        "connections" to hashMapOf<String, Any>()
-                    )
-
-                    if (isAlumni) {
-                        user["milestones"] = hashMapOf<String, Any>()
-                    }
-
-                    // Upload to Firestore
-                    val collection = if (isAlumni) "Alumni" else "Students"
-                    firestore.collection("Users")
-                        .document(collection)
-                        .collection(email)
-                        .document(email)
-                        .set(user)
-                        .addOnSuccessListener {
-                            Log.d("FireStore", "Uploaded: $email successfully")
-                            Toast.makeText(requireContext(), "Data uploaded successfully!", Toast.LENGTH_SHORT).show()
-                        }
-                        .addOnFailureListener { e ->
-                            Log.e("Firestore", "Error uploading $email: ${e.message}", e)
-                            Toast.makeText(requireContext(), "Data uploaded Failed", Toast.LENGTH_SHORT).show()
-                        }
-                } catch (e: Exception) {
-                    Log.e("Excel Row Error", "Error processing row ${row.rowNum}", e)
-                    Toast.makeText(requireContext(), "Data uploaded Failed", Toast.LENGTH_SHORT).show()
-
                 }
             }
-
-            workbook.close()
-          //  Toast.makeText(requireContext(), "Data uploaded successfully!", Toast.LENGTH_SHORT).show()
-        } catch (e: Exception) {
-            Log.e("Excel Processing Error", "Error processing Excel file", e)
-            Toast.makeText(requireContext(), "Error processing file", Toast.LENGTH_SHORT).show()
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        dismissLoadingDialog() // Ensure dialog is dismissed when fragment is destroyed
+    }
 
-    /**
-     * Safely retrieves the cell value as a string, regardless of the cell type.
-     */
-    private fun getCellValue(cell: org.apache.poi.ss.usermodel.Cell?): String {
-        return when (cell?.cellType) {
-            org.apache.poi.ss.usermodel.CellType.STRING -> cell.stringCellValue.trim()
-            org.apache.poi.ss.usermodel.CellType.NUMERIC -> {
-                if (org.apache.poi.ss.usermodel.DateUtil.isCellDateFormatted(cell)) {
-                    cell.dateCellValue.toString()
-                } else {
-                    cell.numericCellValue.toLong().toString() // Convert numeric to long to avoid scientific notation
-                }
-            }
-            org.apache.poi.ss.usermodel.CellType.BOOLEAN -> cell.booleanCellValue.toString()
-            org.apache.poi.ss.usermodel.CellType.FORMULA -> cell.cellFormula
-            else -> ""
+    private fun setupClickableLinks() {
+        binding.linkedinConstraint.setOnClickListener {
+            openLink(viewModel.linkedinUrl.value)
+        }
+
+        binding.gmailConstraint.setOnClickListener {
+            openLink("mailto:${viewModel.gmailUrl.value}")
+        }
+
+        binding.instaConstraint.setOnClickListener {
+            openLink(viewModel.instagramUrl.value)
+        }
+
+        binding.threadConstraint.setOnClickListener {
+            openLink(viewModel.threadsUrl.value)
         }
     }
 
+    private fun openLink(url: String?) {
+        url?.let {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(it))
+            startActivity(intent)
+        } ?: Toast.makeText(requireContext(), "Invalid URL", Toast.LENGTH_SHORT).show()
+    }
+
+    companion object {
+        private const val PICK_FILE_REQUEST_CODE_ALUMNI = 1001
+        private const val PICK_FILE_REQUEST_CODE_STUDENT = 1002
+    }
 }
-
