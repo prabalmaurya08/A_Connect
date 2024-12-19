@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".alumini.alumniEvent.AlumniEventDetails">
+    tools:context=".alumni.alumniEvent.AlumniEventDetails">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/event_name"
-            android:text="Shristi's Summer camp"
+            android:text="Shristi's jada Camp"
             tools:ignore="MissingConstraints"
             android:gravity="center"
             android:textStyle="bold"

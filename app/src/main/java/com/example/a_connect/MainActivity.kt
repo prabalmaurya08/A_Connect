@@ -9,7 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import com.example.a_connect.alumini.aluminiHome.AluminiHomePage
+import com.example.a_connect.alumni.alumniHome.AluminiHomePage
 import com.example.a_connect.databinding.ActivityMainBinding
 import com.example.a_connect.login.AlumniLogin
 

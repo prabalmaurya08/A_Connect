@@ -13,7 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="Email Address"/>
+        android:text="Email Address"
+
+        android:paddingVertical="10dp"
+        android:textSize="16dp"
+        android:textStyle="bold"/>
     <EditText
         android:id="@+id/studentLoginEmailAddress"
         android:layout_width="match_parent"
@@ -25,6 +29,10 @@
         android:id="@+id/studentLoginTv2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:paddingVertical="10dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/studentLoginEmailAddress"
         android:text="Graduation Year"/>
     <androidx.appcompat.widget.AppCompatSpinner
@@ -37,6 +45,9 @@
         android:id="@+id/studentLoginTv3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:textSize="16dp"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/studentLoginGraduationYear"
         android:text="College Name"/>
     <androidx.appcompat.widget.AppCompatSpinner
@@ -51,11 +62,15 @@
         android:layout_height="wrap_content"
         android:text="Login as Admin"
         android:textStyle="bold"
+        android:paddingTop="10dp"
+
+        android:textColor="@color/green1"
         app:layout_constraintTop_toBottomOf="@id/studentLoginCollegeName"
         android:gravity="center"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         app:layout_constraintTop_toBottomOf="@id/studentLoginAsAdmin"
         android:text="Submit"/>
 

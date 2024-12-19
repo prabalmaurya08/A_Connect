@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "592469617238",
+    "project_id": "aconnect-fe762",
+    "storage_bucket": "aconnect-fe762.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592469617238:android:cb5e1a78d3a0d3445229f7",
+        "android_client_info": {
+          "package_name": "com.example.a_connect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMVgjIXv3wGisX-lGwvpUuD2f4QVkRbSg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

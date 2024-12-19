@@ -1,272 +1,321 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".admin.adminCollegeProfile.AdminEditProfile">
-
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeEditProfileViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="24dp">
 
-        <!-- University Name -->
-        <TextView
-            android:id="@+id/university_name"
-            android:layout_width="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        tools:context=".admin.adminCollegeProfile.AdminEditProfile">
+
+
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
-            android:text="@string/university_name"
-            android:textSize="16sp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/sf_pro_display"
-            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <EditText
-            android:id="@+id/edit_university_name"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/edit_area_box"
-            android:hint="@string/university_name"
-            android:fontFamily="@font/sf_pro_display"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:padding="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/university_name"
-            tools:ignore="DuplicateSpeakableTextCheck" />
-
-        <!-- Bio -->
-        <TextView
-            android:id="@+id/bio"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/bio"
-            android:textSize="16sp"
-            android:fontFamily="@font/sf_pro_display"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/edit_university_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <EditText
-            android:id="@+id/edit_bio"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/edit_area_box"
-            android:hint="@string/write_something_about_yourself1"
-            android:importantForAutofill="no"
-            android:inputType="text"
-            android:padding="16dp"
-            android:fontFamily="@font/sf_pro_display"
-            app:layout_constraintTop_toBottomOf="@id/bio"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <!-- College Email -->
-        <TextView
-            android:id="@+id/collage_mail_address"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/college_email_address"
-            android:layout_marginTop="10dp"
-            android:textSize="16sp"
-            android:fontFamily="@font/sf_pro_display"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/edit_bio"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <EditText
-            android:id="@+id/edit_collage_mail_address"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/edit_area_box"
-            android:importantForAutofill="no"
-            android:inputType="textEmailAddress"
-            android:fontFamily="@font/sf_pro_display"
-            android:padding="10dp"
-            android:hint="@string/universityemailaddress_gmail_com"
-            app:layout_constraintTop_toBottomOf="@id/collage_mail_address"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <!-- Social Links -->
-        <TextView
-            android:id="@+id/social_links"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/social_links"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/sf_pro_display"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            app:layout_constraintTop_toBottomOf="@id/edit_collage_mail_address"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <!-- LinkedIn -->
-        <LinearLayout
-            android:id="@+id/ll1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@drawable/edit_area_box"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            app:layout_constraintTop_toBottomOf="@id/social_links">
-
-            <ImageView
-                android:id="@+id/linkedin_icon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/social_icon_linkdin"
-                android:contentDescription="@string/linkedin_icon"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp" />
-
-            <EditText
-                android:id="@+id/linkedin_input"
-                android:layout_width="0dp"
+            app:layout_constraintEnd_toEndOf="parent">
+            <com.google.android.material.appbar.MaterialToolbar
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:hint="@string/insert_your_link_here"
-                android:importantForAutofill="no"
-                android:inputType="textUri"
-                android:fontFamily="@font/sf_pro_display"
-                android:textColor="#000000"
-                android:textColorHint="#A6A6A6"
-                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
-        </LinearLayout>
+                app:title="Edit Profile"
+                app:titleCentered="true"
+                app:navigationIcon="@drawable/back_button_icon"
+                >
 
-        <!-- Instagram -->
-        <LinearLayout
-            android:id="@+id/ll2"
+            </com.google.android.material.appbar.MaterialToolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@drawable/edit_area_box"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            app:layout_constraintTop_toBottomOf="@id/ll1">
+            app:layout_constraintTop_toBottomOf="@id/appbar">
 
-            <ImageView
-                android:id="@+id/instagram_icon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/social_icon_instagram"
-                android:contentDescription="@string/instagram_icon"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp" />
 
-            <EditText
-                android:id="@+id/instagram_input"
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:hint="@string/insert_your_link_here"
-                android:importantForAutofill="no"
-                android:inputType="textUri"
-                android:textColor="#000000"
-                android:fontFamily="@font/sf_pro_display"
-                android:textColorHint="#A6A6A6"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
+                android:layout_marginHorizontal="16dp">
 
-        <!-- Gmail -->
-        <LinearLayout
-            android:id="@+id/ll3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@drawable/edit_area_box"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            app:layout_constraintTop_toBottomOf="@id/ll2">
+                <!-- University Name -->
+                <TextView
+                    android:id="@+id/university_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/university_name"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-            <ImageView
-                android:id="@+id/gmail_icon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/social_icon_gmail"
-                android:contentDescription="@string/gmail_icon1"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="8dp" />
+                <EditText
 
-            <EditText
-                android:id="@+id/gmail_input"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:hint="@string/insert_your_link_here"
-                android:fontFamily="@font/sf_pro_display"
-                android:importantForAutofill="no"
-                android:inputType="textUri"
-                android:textColor="#000000"
-                android:textColorHint="#A6A6A6"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
+                    android:text="@={viewModel.universityName}"
 
-        <!-- Threads -->
-        <LinearLayout
-            android:id="@+id/ll4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@drawable/edit_area_box"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            app:layout_constraintTop_toBottomOf="@id/ll3">
+                    android:id="@+id/edit_university_name"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_area_box"
+                    android:hint="@string/university_name"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/university_name"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
 
-            <ImageView
-                android:id="@+id/treads_icon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/social_icon_thread"
-                android:layout_marginTop="4dp"
-                android:contentDescription="@string/thread_icon"
-                android:layout_marginEnd="8dp" />
+                <!-- Bio -->
+                <TextView
+                    android:id="@+id/bio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bio"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/edit_university_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-            <EditText
-                android:id="@+id/threads_input"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:hint="@string/insert_your_link_here"
-                android:fontFamily="@font/sf_pro_display"
-                android:importantForAutofill="no"
-                android:inputType="textUri"
-                android:textColor="#000000"
-                android:textColorHint="#A6A6A6"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/edit_bio"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_area_box"
+                    android:hint="@string/write_something_about_yourself1"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:padding="16dp"
+                    android:text="@={viewModel.bio}"
+                    android:fontFamily="@font/sf_pro_display"
+                    app:layout_constraintTop_toBottomOf="@id/bio"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/import_excel_data"
-            app:layout_constraintTop_toBottomOf="@id/ll4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/green1"
-            android:layout_marginTop="10dp"
-            app:cornerRadius="12dp"
-            android:padding="10dp"
-            android:fontFamily="@font/sf_pro_display"
-            android:text="@string/submit" />
+                <!-- College Email -->
+                <TextView
+                    android:id="@+id/collage_mail_address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/college_email_address"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/edit_bio"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <EditText
+                    android:id="@+id/edit_collage_mail_address"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_area_box"
+                    android:importantForAutofill="no"
+                    android:inputType="textEmailAddress"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:padding="10dp"
+                    android:text="@={viewModel.collegeEmail}"
+                    android:hint="@string/universityemailaddress_gmail_com"
+                    app:layout_constraintTop_toBottomOf="@id/collage_mail_address"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!-- Social Links -->
+                <TextView
+                    android:id="@+id/social_links"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/social_links"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toBottomOf="@id/edit_collage_mail_address"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!-- LinkedIn -->
+                <LinearLayout
+                    android:id="@+id/ll1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/edit_area_box"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/social_links">
+
+                    <ImageView
+                        android:id="@+id/linkedin_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/social_icon_linkdin"
+                        android:contentDescription="@string/linkedin_icon"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <EditText
+
+                        android:text="@={viewModel.linkedinUrl}"
+                        android:id="@+id/linkedin_input"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/insert_your_link_here"
+                        android:importantForAutofill="no"
+                        android:inputType="textUri"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:textColor="#000000"
+                        android:textColorHint="#A6A6A6"
+                        tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+                </LinearLayout>
+
+                <!-- Instagram -->
+                <LinearLayout
+                    android:id="@+id/ll2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/edit_area_box"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/ll1">
+
+                    <ImageView
+                        android:id="@+id/instagram_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/social_icon_instagram"
+                        android:contentDescription="@string/instagram_icon"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <EditText
+                        android:text="@={viewModel.instagramUrl}"
+                        android:id="@+id/instagram_input"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/insert_your_link_here"
+                        android:importantForAutofill="no"
+                        android:inputType="textUri"
+                        android:textColor="#000000"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:textColorHint="#A6A6A6"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </LinearLayout>
+
+                <!-- Gmail -->
+                <LinearLayout
+                    android:id="@+id/ll3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/edit_area_box"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/ll2">
+
+                    <ImageView
+                        android:id="@+id/gmail_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/social_icon_gmail"
+                        android:contentDescription="@string/gmail_icon1"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <EditText
+                        android:text="@={viewModel.gmailUrl}"
+                        android:id="@+id/gmail_input"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/insert_your_link_here"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:importantForAutofill="no"
+                        android:inputType="textUri"
+                        android:textColor="#000000"
+                        android:textColorHint="#A6A6A6"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </LinearLayout>
+
+                <!-- Threads -->
+                <LinearLayout
+                    android:id="@+id/ll4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/edit_area_box"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/ll3">
+
+                    <ImageView
+                        android:id="@+id/treads_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/social_icon_thread"
+                        android:layout_marginTop="4dp"
+                        android:contentDescription="@string/thread_icon"
+                        android:layout_marginEnd="8dp" />
+
+                    <EditText
+                        android:text="@={viewModel.threadsUrl}"
+                        android:id="@+id/threads_input"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/insert_your_link_here"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:importantForAutofill="no"
+                        android:inputType="textUri"
+                        android:textColor="#000000"
+                        android:textColorHint="#A6A6A6"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/save_profile"
+                    app:layout_constraintTop_toBottomOf="@id/ll4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/green1"
+                    android:layout_marginTop="10dp"
+                    app:cornerRadius="12dp"
+                    android:padding="10dp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="@string/submit" />
 
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</ScrollView>
+</layout>

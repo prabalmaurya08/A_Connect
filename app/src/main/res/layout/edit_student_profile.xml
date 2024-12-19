@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+        <!-- Profile image and statistics -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/student_edit_profile_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/student_shape_card"
+            android:elevation="10dp"
+            android:padding="16dp">
+            <!-- Circle ImageView -->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/_student_edit_profile_circleImageView"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/alumni_profile_photo"
+                app:civ_border_color="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ImageContrastCheck" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Student Name -->
+        <TextView
+            android:id="@+id/student_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/sf_pro_display"
+            android:text="@string/student_edit_profile_name"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_student_name"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_area_box"
+            android:fontFamily="@font/sf_pro_display"
+            android:hint="@string/edit_student_name_txt"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+
+        <!-- Bio -->
+        <TextView
+            android:id="@+id/student_bio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/sf_pro_display"
+            android:text="@string/bio"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_student_name" />
+
+        <EditText
+            android:id="@+id/edit_student_bio"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_area_box"
+            android:fontFamily="@font/sf_pro_display"
+            android:hint="@string/write_something_about_yourself1"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bio" />
+
+        <!-- Date of Birth -->
+
+        <TextView
+            android:id="@+id/student_dateOfBirth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/sf_pro_display"
+            android:text="@string/student_date_of_birth"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_bio" />
+
+        <EditText
+            android:id="@+id/student_edit_date_of_birth"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_area_box"
+            android:fontFamily="@font/sf_pro_display"
+            android:hint="@string/student_edit_DOB"
+            android:importantForAutofill="no"
+            android:inputType="date"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="TextFields" />
+
+
+        <!-- Gender Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Label -->
+            <TextView
+                android:id="@+id/student_gender_lable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/sf_pro_display"
+                android:text="@string/student_gender"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/student_edit_date_of_birth" />
+
+            <!-- Gender Selection -->
+            <RadioGroup
+                android:id="@+id/genderRadioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!-- Male Option -->
+                <RadioButton
+                    android:id="@+id/rbMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="7dp"
+                    android:background="@drawable/edit_area_box"
+                    android:button="@null"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:gravity="center"
+                    android:paddingHorizontal="35dp"
+                    android:paddingVertical="8dp"
+                    android:text="@string/male_txt"
+                    android:textColor="@color/black1"
+                    android:textSize="14sp" />
+
+                <!-- Female Option -->
+                <RadioButton
+                    android:id="@+id/rbFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="7dp"
+                    android:background="@drawable/edit_area_box"
+                    android:button="@null"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:gravity="center"
+                    android:paddingHorizontal="35dp"
+                    android:paddingVertical="8dp"
+                    android:text="@string/female_txt"
+                    android:textColor="@color/black1"
+                    android:textSize="14sp" />
+
+                <!-- Others Option -->
+                <RadioButton
+                    android:id="@+id/rbOthers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="7dp"
+                    android:background="@drawable/edit_area_box"
+                    android:button="@null"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:gravity="center"
+                    android:paddingHorizontal="35dp"
+                    android:paddingVertical="8dp"
+                    android:text="@string/others__txt"
+                    android:textColor="@color/black1"
+                    android:textSize="14sp" />
+            </RadioGroup>
+        </LinearLayout>
+
+
+        <!-- College Email -->
+        <TextView
+            android:id="@+id/student_collage_mail_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/sf_pro_display"
+            android:text="@string/college_email_address"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_bio" />
+
+        <EditText
+            android:id="@+id/student_edit_collage_mail_address"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_area_box"
+            android:fontFamily="@font/sf_pro_display"
+            android:hint="@string/student_edit_email_hint"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/collage_mail_address" />
+
+
+        <!-- Phone Number -->
+        <TextView
+            android:id="@+id/student_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/sf_pro_display"
+            android:text="@string/phone_number"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_bio" />
+
+        <EditText
+            android:id="@+id/student_edit_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_area_box"
+            android:fontFamily="@font/sf_pro_display"
+            android:hint="@string/phone_numbertxt"
+            android:importantForAutofill="no"
+            android:inputType="phone"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/collage_mail_address" />
+
+
+        <!--Collage Name-->
+
+        <TextView
+            android:id="@+id/student_collage_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/sf_pro_display"
+            android:text="@string/student_collage_name"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_collage_mail_address" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/student_collage_name">
+
+            <AutoCompleteTextView
+                android:id="@+id/studentautoCompleteTextViewCollageName"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/edit_area_box"
+                android:fontFamily="@font/sf_pro_display"
+                android:hint="@string/student_collage_name"
+                android:inputType="none"
+                android:padding="10dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--Graduation Year-->
+
+        <TextView
+            android:id="@+id/student_graduation_year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/sf_pro_display"
+            android:text="@string/student_edit_year"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/studentautoCompleteTextViewCollageName" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/student_graduation_year">
+
+            <AutoCompleteTextView
+                android:id="@+id/studentautoCompleteTextViewGraduationYear"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/edit_area_box"
+                android:fontFamily="@font/sf_pro_display"
+                android:hint="@string/student_edit_graduation_year"
+                android:inputType="none"
+                android:padding="10dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!--Degree Obtained-->
+
+        <TextView
+            android:id="@+id/student_degree_obtained"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/sf_pro_display"
+            android:text="@string/degree_obtained_txt"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/studentautoCompleteTextViewCollageName" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/student_degree_obtain_input"
+            style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/student_graduation_year">
+
+            <AutoCompleteTextView
+                android:id="@+id/studentautoCompleteTextViewDegreeObtained"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/edit_area_box"
+                android:fontFamily="@font/sf_pro_display"
+                android:hint="@string/student_degree_specialisation_txt"
+                android:inputType="none"
+                android:padding="10dp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!-- Social Links -->
+        <TextView
+            android:id="@+id/social_links"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/sf_pro_display"
+            android:text="@string/social_links"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/studentautoCompleteTextViewDegreeObtained" />
+
+        <!-- LinkedIn -->
+        <LinearLayout
+            android:id="@+id/ll1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_area_box"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintTop_toBottomOf="@id/social_links">
+
+            <ImageView
+                android:id="@+id/linkedin_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/linkedin_icon"
+                android:src="@drawable/social_icon_linkdin" />
+
+            <EditText
+                android:id="@+id/linkedin_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/sf_pro_display"
+                android:hint="@string/insert_your_link_here"
+                android:importantForAutofill="no"
+                android:inputType="textUri"
+                android:textColor="#000000"
+                android:textColorHint="#A6A6A6"
+                tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <!-- Instagram -->
+        <LinearLayout
+            android:id="@+id/ll2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_area_box"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintTop_toBottomOf="@id/ll1">
+
+            <ImageView
+                android:id="@+id/instagram_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/instagram_icon"
+                android:src="@drawable/social_icon_instagram" />
+
+            <EditText
+                android:id="@+id/instagram_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/sf_pro_display"
+                android:hint="@string/insert_your_link_here"
+                android:importantForAutofill="no"
+                android:inputType="textUri"
+                android:textColor="#000000"
+                android:textColorHint="#A6A6A6"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <!-- Gmail -->
+        <LinearLayout
+            android:id="@+id/ll3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_area_box"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintTop_toBottomOf="@id/ll2">
+
+            <ImageView
+                android:id="@+id/gmail_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/gmail_icon1"
+                android:src="@drawable/social_icon_gmail" />
+
+            <EditText
+                android:id="@+id/gmail_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/sf_pro_display"
+                android:hint="@string/insert_your_link_here"
+                android:importantForAutofill="no"
+                android:inputType="textUri"
+                android:textColor="#000000"
+                android:textColorHint="#A6A6A6"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <!-- Threads -->
+        <LinearLayout
+            android:id="@+id/ll4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_area_box"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintTop_toBottomOf="@id/ll3">
+
+            <ImageView
+                android:id="@+id/treads_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/thread_icon"
+                android:src="@drawable/social_icon_thread" />
+
+            <EditText
+                android:id="@+id/threads_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/sf_pro_display"
+                android:hint="@string/insert_your_link_here"
+                android:importantForAutofill="no"
+                android:inputType="textUri"
+                android:textColor="#000000"
+                android:textColorHint="#A6A6A6"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/import_excel_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/orange1"
+            android:fontFamily="@font/sf_pro_display"
+            android:padding="10dp"
+            android:text="@string/submit"
+            app:cornerRadius="12dp"
+            app:layout_constraintTop_toBottomOf="@id/ll4" />
+
+
+    </LinearLayout>
+</ScrollView>

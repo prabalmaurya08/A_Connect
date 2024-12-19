@@ -3,6 +3,7 @@ package com.example.a_connect.student.studentEvent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.a_connect.databinding.StudentEventCardBinding
 
 
 class StudentEventRecyclerAdaptor(private val cardList: List<StudentEventDataItem>) : RecyclerView.Adapter<StudentEventRecyclerAdaptor.CardViewHolder>() {
