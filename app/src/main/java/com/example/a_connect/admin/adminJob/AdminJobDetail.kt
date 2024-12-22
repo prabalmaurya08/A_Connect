@@ -43,27 +43,25 @@ class AdminJobDetail : Fragment() {
         viewModel.fetchJobDetails(jobId)
         return binding.root
     }
-    //        viewModel.logoUrl.observe(viewLifecycleOwner) { url ->
-//            if (!url.isNullOrEmpty()) {
-//                Glide.with(this)
-//                    .load(url)
-//                    .placeholder(android.R.drawable.progress_indeterminate_horizontal) // Placeholder while loading
-//                    .error(android.R.drawable.ic_menu_report_image) // Fallback for errors
-//                    .into(binding.CompanyIcon)
-//            } else {
-//                binding.CompanyIcon.setImageResource(android.R.drawable.ic_menu_report_image)
-//            }
-//        }
+
 
     private fun setupObservers() {
         viewModel.jobDetails.observe(viewLifecycleOwner, Observer { job ->
+            Log.d("AdminJobDetails", "Job details received: ${viewModel.logoUrl}")
             if (job != null) {
-                Log.d("AdminJobDetail", "Job details received: $job") // Log job details when received
+                Glide.with(this)
+                    .load(job.logo)
+                    .placeholder(android.R.drawable.progress_indeterminate_horizontal) // Placeholder while loading
+                    .error(android.R.drawable.ic_menu_report_image) // Fallback for errors
+                    .into(binding.CompanyIcon)
+                Log.d("AdminJobDetails", "Job details received: ${job.logo}") // Log job details when received
                 // Populate the UI with job details here
             } else {
+                binding.CompanyIcon.setImageResource(android.R.drawable.ic_menu_report_image)
                 Log.d("AdminJobDetail", "No job details received") // Log if no job details are received
             }
         })
+
 
         viewModel.loading.observe(viewLifecycleOwner, Observer { isLoading ->
             Log.d("AdminJobDetail", "Loading state: $isLoading") // Log the loading state
