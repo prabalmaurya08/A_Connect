@@ -1,60 +1,98 @@
 package com.example.a_connect.admin.adminJob
 
+import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.a_connect.R
+import com.example.a_connect.admin.adminJob.mvvm.AdminJobViewModel
+import com.example.a_connect.databinding.FragmentAdminJobDetailBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AdminJobDetail.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AdminJobDetail : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentAdminJobDetailBinding
+    private lateinit var jobId: String
+    private val viewModel: AdminJobViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    private var progressDialog: Dialog? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_job_detail, container, false)
+        // Inflate the layout using Data Binding
+        binding = FragmentAdminJobDetailBinding.inflate(inflater, container, false).apply {
+            this.viewModel = this@AdminJobDetail.viewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
+        // Retrieve jobId passed from AdminJobFragment
+        arguments?.let {
+            jobId = AdminJobDetailArgs.fromBundle(it).jobId // Retrieve jobId from Safe Args
+        }
+        Log.d("AdminJobDetail", "Fetching job with ID: $jobId")
+
+        setupObservers()
+        viewModel.fetchJobDetails(jobId)
+        return binding.root
+    }
+    //        viewModel.logoUrl.observe(viewLifecycleOwner) { url ->
+//            if (!url.isNullOrEmpty()) {
+//                Glide.with(this)
+//                    .load(url)
+//                    .placeholder(android.R.drawable.progress_indeterminate_horizontal) // Placeholder while loading
+//                    .error(android.R.drawable.ic_menu_report_image) // Fallback for errors
+//                    .into(binding.CompanyIcon)
+//            } else {
+//                binding.CompanyIcon.setImageResource(android.R.drawable.ic_menu_report_image)
+//            }
+//        }
+
+    private fun setupObservers() {
+        viewModel.jobDetails.observe(viewLifecycleOwner, Observer { job ->
+            if (job != null) {
+                Log.d("AdminJobDetail", "Job details received: $job") // Log job details when received
+                // Populate the UI with job details here
+            } else {
+                Log.d("AdminJobDetail", "No job details received") // Log if no job details are received
+            }
+        })
+
+        viewModel.loading.observe(viewLifecycleOwner, Observer { isLoading ->
+            Log.d("AdminJobDetail", "Loading state: $isLoading") // Log the loading state
+            // Show or hide the progress bar based on the loading state
+        })
+
+        viewModel.error.observe(viewLifecycleOwner, Observer { errorMessage ->
+            if (errorMessage != null) {
+                Log.e("AdminJobDetail", "Error: $errorMessage") // Log error messages
+                Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+            }
+        })
+
+    }
+    private fun showLoadingDialog() {
+        if (progressDialog == null) {
+            progressDialog = Dialog(requireContext()).apply {
+                setContentView(R.layout.progress_bar_dialogbox)
+                setCancelable(false)
+                window?.setBackgroundDrawableResource(android.R.color.transparent)
+            }
+        }
+        progressDialog?.show()
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AdminJobDetail.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AdminJobDetail().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun hideLoadingDialog() {
+        progressDialog?.dismiss()
     }
+
+
+
 }

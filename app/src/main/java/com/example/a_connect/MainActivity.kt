@@ -9,11 +9,17 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import com.example.a_connect.admin.adminJob.AdminJobDirections
+import com.example.a_connect.admin.adminJob.ExpiredJob
+import com.example.a_connect.admin.adminJob.OngoingJob
+import com.example.a_connect.admin.adminMainPage.AdminMainPageDirections
 import com.example.a_connect.alumni.alumniHome.AluminiHomePage
 import com.example.a_connect.databinding.ActivityMainBinding
 import com.example.a_connect.login.AlumniLogin
 
-class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideViewPager, AlumniLogin.OnAlumniScreenClicked {
+class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideViewPager, AlumniLogin.OnAlumniScreenClicked,OngoingJob.OnJobClickListener
+,ExpiredJob.OnJobClickListener{
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -50,5 +56,10 @@ class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideVi
 
     override fun onAlumniAdminClicked() {
         findNavController(R.id.fragment).navigate(R.id.action_mainLogin_to_adminLogin)
+    }
+    override fun onJobClicked(jobId: String) {
+        // Use Safe Args to navigate to the JobDetailsFragment and pass the jobId
+        val action = AdminMainPageDirections.actionAdminMainPageToAdminJobDetail(jobId)
+        findNavController(R.id.fragment).navigate(action)
     }
 }

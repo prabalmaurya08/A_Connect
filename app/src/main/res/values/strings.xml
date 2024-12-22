@@ -95,4 +95,13 @@
     <string name="phone_number">Phone Number</string>
     <string name="phone_numbertxt">987653210</string>
     <string name="image_buttons">Image Buttons</string>
+
+
+    <string-array name="gender_array">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
+
 </resources>
