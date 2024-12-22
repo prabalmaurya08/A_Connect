@@ -132,6 +132,16 @@
         <action
             android:id="@+id/action_adminMainPage_to_adminEditProfile"
             app:destination="@id/adminEditProfile" />
+        <action
+            android:id="@+id/action_adminMainPage_to_adminAddJob"
+            app:destination="@id/adminAddJob" />
+        <action
+            android:id="@+id/action_adminMainPage_to_adminJobDetail"
+            app:destination="@id/adminJobDetail" >
+            <argument
+                android:name="jobId"
+                app:argType="string" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/adminCollegeProfile"
@@ -156,7 +166,11 @@
         android:id="@+id/adminJob"
         android:name="com.example.a_connect.admin.adminJob.AdminJob"
         android:label="fragment_admin_job"
-        tools:layout="@layout/fragment_admin_job" />
+        tools:layout="@layout/fragment_admin_job" >
+        <action
+            android:id="@+id/action_adminJob_to_adminJobDetail"
+            app:destination="@id/adminJobDetail" />
+    </fragment>
     <fragment
         android:id="@+id/alumniEditProfile"
         android:name="com.example.a_connect.alumni.alumniProfile.AlumniEditProfile"
@@ -172,4 +186,13 @@
         android:name="com.example.a_connect.admin.adminJob.AdminAddJob"
         android:label="fragment_admin_add_job"
         tools:layout="@layout/fragment_admin_add_job" />
+    <fragment
+        android:id="@+id/adminJobDetail"
+        android:name="com.example.a_connect.admin.adminJob.AdminJobDetail"
+        android:label="fragment_admin_job_detail"
+        tools:layout="@layout/fragment_admin_job_detail" >
+        <argument
+            android:name="jobId"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -12,7 +12,10 @@ import com.example.a_connect.R
 import com.example.a_connect.admin.adminCollegeProfile.AdminCollegeProfile
 import com.example.a_connect.admin.adminEvent.AdminEvent
 import com.example.a_connect.admin.adminHome.AdminHome
+import com.example.a_connect.admin.adminJob.AdminAddJob
 import com.example.a_connect.admin.adminJob.AdminJob
+import com.example.a_connect.admin.adminJob.AdminJobDirections
+import com.example.a_connect.admin.adminJob.OngoingJob
 import com.example.a_connect.admin.adminNews.AdminNewsAnnouncement
 import com.example.a_connect.alumni.alumniMainPage.AlumniMainPageViewPagerAdapter
 import com.example.a_connect.databinding.FragmentAdminMainpageBinding
@@ -20,7 +23,7 @@ import com.example.a_connect.databinding.FragmentAlumniMainPageBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
-class AdminMainPage : Fragment() ,AdminCollegeProfile.OnGoToEditProfileClickListener{
+class AdminMainPage : Fragment() ,AdminCollegeProfile.OnGoToEditProfileClickListener,AdminJob.OnGoToCreateJobClickListener{
     private lateinit var binding: FragmentAdminMainpageBinding
     private lateinit var viewPager: ViewPager2
     private lateinit var bottomNavigationView: BottomNavigationView
@@ -118,6 +121,16 @@ class AdminMainPage : Fragment() ,AdminCollegeProfile.OnGoToEditProfileClickList
 
 
     }
+
+    override fun onGoToCreateJobClicked() {
+        try{
+            findNavController().navigate(R.id.action_adminMainPage_to_adminAddJob)
+        }
+        catch (e:Exception){
+            Log.d("Exception",e.toString())
+        }
+    }
+
 
 
 }
