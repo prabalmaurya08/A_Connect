@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -30,13 +31,14 @@ class AdminJobAdapter(
         val time: TextView = itemView.findViewById(R.id.time)
         val date: TextView = itemView.findViewById(R.id.Date)
         val jobDetailButton: MaterialCardView = itemView.findViewById(R.id.job_detail_button)
-        val deleteButton: MaterialCardView = itemView.findViewById(R.id.apply_button)
+        val deleteButton: CardView = itemView.findViewById(R.id.delete_button)
 
         fun bind(job: AdminJobDataClass) {
             Log.e("AdminJobAdapter", "Binding job: ${job.companyName}")
             companyName.text = job.companyName
             jobRole.text = job.designation
             companyLocation.text = job.location
+
             time.text = job.startDate?.let { formatTimeAgo(it) } ?: "N/A"
             date.text = job.endDate?.let { formatDate(it) } ?: "N/A"
 

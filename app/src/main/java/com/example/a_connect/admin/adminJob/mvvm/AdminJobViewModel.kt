@@ -175,7 +175,7 @@ class AdminJobViewModel : ViewModel() {
     // Function to populate fields with job details for two-way binding
     private fun populateJobFields(job: AdminJobDataClass) {
         companyName.value = job.companyName
-      //  logoUrl.value = job.logo
+        logoUrl.value = job.logo
         endDate.value = formatDate(job.endDate)
         startDate.value = formatDate(job.startDate)
         description.value = job.description
