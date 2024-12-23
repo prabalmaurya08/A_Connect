@@ -17,8 +17,9 @@ import com.example.a_connect.admin.adminMainPage.AdminMainPageDirections
 import com.example.a_connect.alumni.alumniHome.AluminiHomePage
 import com.example.a_connect.databinding.ActivityMainBinding
 import com.example.a_connect.login.AlumniLogin
+import com.example.a_connect.login.StudentLogin
 
-class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideViewPager, AlumniLogin.OnAlumniScreenClicked,OngoingJob.OnJobClickListener
+class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideViewPager, AlumniLogin.OnAlumniScreenClicked,StudentLogin.OnStudentScreenClicked,OngoingJob.OnJobClickListener
 ,ExpiredJob.OnJobClickListener{
 
     private lateinit var binding: ActivityMainBinding
@@ -61,5 +62,13 @@ class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideVi
         // Use Safe Args to navigate to the JobDetailsFragment and pass the jobId
         val action = AdminMainPageDirections.actionAdminMainPageToAdminJobDetail(jobId)
         findNavController(R.id.fragment).navigate(action)
+    }
+
+    override fun onStudentSubmitClicked() {
+        findNavController(R.id.fragment).navigate(R.id.action_mainLogin_to_studentMainPage)
+    }
+
+    override fun onStudentAdminClicked() {
+        findNavController(R.id.fragment).navigate(R.id.action_mainLogin_to_adminLogin)
     }
 }

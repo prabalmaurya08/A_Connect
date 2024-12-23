@@ -1,14 +1,10 @@
 package com.example.a_connect.admin.adminCollegeProfile.mvvm
 
 import android.net.Uri
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
-import com.example.a_connect.R
 
 class CollegeProfileViewModel(private val repository: CollegeProfileRepository) : ViewModel() {
 
@@ -22,6 +18,12 @@ class CollegeProfileViewModel(private val repository: CollegeProfileRepository) 
     val gmailUrl = MutableLiveData<String>()
     val threadsUrl = MutableLiveData<String>()
     val imageUrl = MutableLiveData<String?>()
+
+    val graduationYears = MutableLiveData<List<String>>()
+    val collegeNames = MutableLiveData<List<String>>()
+    // String representation for data binding
+    val graduationYearsString = MutableLiveData<String>()
+    val collegeNamesString = MutableLiveData<String>()
 
     // Profile update state
     private val _isProfileUpdated = MutableLiveData<Boolean>()
@@ -52,6 +54,10 @@ class CollegeProfileViewModel(private val repository: CollegeProfileRepository) 
                 gmailUrl.value = it.gmailUrl
                 threadsUrl.value = it.threadsUrl
                 imageUrl.value = it.imageUrl
+//                graduationYears.value = it.graduationYears ?: emptyList()
+//                collegeNames.value = it.collegeNames ?: emptyList()
+
+                fetchGraduationYearsAndCollegeNames(collegeId)
                 _loadingState.value = false
 
                 // Mark the image as loaded when profile data is fetched successfully
@@ -76,7 +82,9 @@ class CollegeProfileViewModel(private val repository: CollegeProfileRepository) 
             instagramUrl = instagramUrl.value ?: "",
             gmailUrl = gmailUrl.value ?: "",
             threadsUrl = threadsUrl.value ?: "",
-            imageUrl = imageUrl.value ?: ""
+            imageUrl = imageUrl.value ?: "",
+            graduationYears = graduationYears.value ?: emptyList(),
+            collegeNames = collegeNames.value ?: emptyList()
         )
         repository.updateProfileData(
             collegeId, profileData,
@@ -118,6 +126,49 @@ class CollegeProfileViewModel(private val repository: CollegeProfileRepository) 
             onFailureListener = {
                 _loadingState.value = false
                 // Handle failure (e.g., show an error message in the UI)
+            }
+        )
+    }
+    // Save Graduation Years and College Names
+    fun saveGraduationYearsAndCollegeNames(collegeId: String) {
+        _loadingState.value = true
+
+        // Convert String values to List<String>
+        graduationYears.value = graduationYearsString.value?.split(",")?.map { it.trim() }
+        collegeNames.value = collegeNamesString.value?.split(",")?.map { it.trim() }
+
+        val graduationYearsList = graduationYears.value ?: emptyList()
+        val collegeNamesList = collegeNames.value ?: emptyList()
+
+        repository.saveGraduationYearsAndCollegeNames(
+            collegeId,
+            graduationYearsList,
+            collegeNamesList,
+            callback = { success ->
+                _loadingState.value = false
+                if (success) {
+                    // Successfully saved
+                } else {
+                    _errorState.value = "Failed to save graduation years and college names"
+                }
+            }
+        )
+    }
+
+    // Fetch Graduation Years and College Names
+    private fun fetchGraduationYearsAndCollegeNames(collegeId: String) {
+        _loadingState.value = true
+        repository.fetchGraduationYearsAndCollegeNames(
+            collegeId,
+            callback = { graduationYearsList, collegeNamesList ->
+                graduationYears.value = graduationYearsList
+                collegeNames.value = collegeNamesList
+
+                // Convert List<String> back to String representation for binding
+                graduationYearsString.value = graduationYearsList.joinToString(", ")
+                collegeNamesString.value = collegeNamesList.joinToString(", ")
+
+                _loadingState.value = false
             }
         )
     }

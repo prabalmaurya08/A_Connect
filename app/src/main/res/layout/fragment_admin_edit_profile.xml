@@ -82,7 +82,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/university_name"
-                    tools:ignore="DuplicateSpeakableTextCheck" />
+                  />
   <!-- University Name -->
                 <TextView
                     android:id="@+id/university_tagline"
@@ -176,6 +176,79 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
+
+
+
+
+
+
+                <!-- University Name -->
+                <TextView
+                    android:id="@+id/tv1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Graduation Years"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:textStyle="bold"
+                   app:layout_constraintTop_toBottomOf="@id/edit_collage_mail_address"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <EditText
+
+                    android:text="@={viewModel.graduationYearsString}"
+
+                    android:id="@+id/graduationYear"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_area_box"
+                    android:hint="Enter Graduation Years (comma-separated)"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv1"
+                    />
+
+
+                <!-- University Name -->
+                <TextView
+                    android:id="@+id/tv2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="College Names"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/graduationYear"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <EditText
+
+                    android:text="@={viewModel.collegeNamesString}"
+
+                    android:id="@+id/collegeName"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_area_box"
+                    android:hint="Enter College Names (comma-separated)"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:padding="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv2"
+                    />
+
                 <!-- Social Links -->
                 <TextView
                     android:id="@+id/social_links"
@@ -186,7 +259,7 @@
                     android:fontFamily="@font/sf_pro_display"
                     android:textStyle="bold"
                     android:textSize="16sp"
-                    app:layout_constraintTop_toBottomOf="@id/edit_collage_mail_address"
+                    app:layout_constraintTop_toBottomOf="@id/collegeName"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
@@ -343,10 +416,11 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/save_profile"
-                    app:layout_constraintTop_toBottomOf="@id/ll4"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/green1"
+                    app:layout_constraintTop_toBottomOf="@id/social_links"
                     android:layout_marginTop="10dp"
                     app:cornerRadius="12dp"
                     android:padding="10dp"
