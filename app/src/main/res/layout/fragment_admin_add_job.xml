@@ -181,7 +181,7 @@
             android:id="@+id/registration_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="registration date"
+            android:text="Registration date"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/edit_apply_link"
@@ -233,7 +233,7 @@
             android:id="@+id/cut_off"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="cut_off"
+            android:text="Cut_off"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/eligible_course"
@@ -339,14 +339,17 @@
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/edit_graduation_year"
             android:layout_margin="10dp" />
+
         <EditText
             android:id="@+id/edit_roles_responsibilities"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginTop="116dp"
+            android:background="@drawable/ic_input_bg"
             android:hint="Write Something about role in company"
             app:layout_constraintTop_toBottomOf="@id/roles_responsibilities"
-            android:layout_margin="10dp"
-            android:background="@drawable/ic_input_bg" />
+            tools:layout_editor_absoluteX="-13dp" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/add_more_fields"
@@ -358,6 +361,7 @@
             app:layout_constraintTop_toBottomOf="@id/edit_roles_responsibilities"
             app:layout_constraintBottom_toTopOf="@id/create_job_button">
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/add_fields"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -397,7 +401,8 @@
             android:text="Create Job Opening"
             android:backgroundTint="@color/green1"
             android:layout_margin="10dp"
-            app:layout_constraintTop_toBottomOf="@id/add_more_fields"/>
+            app:layout_constraintTop_toBottomOf="@+id/add_more_fields"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 
