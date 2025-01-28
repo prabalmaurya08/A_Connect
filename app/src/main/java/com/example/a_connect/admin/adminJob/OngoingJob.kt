@@ -23,19 +23,19 @@ class OngoingJob : Fragment() {
     private lateinit var adapter: AdminJobAdapter
     private var progressDialog: Dialog? = null
 
-    private lateinit var listener: OnJobClickListener
+    private lateinit var listener: OnAdminJobClickListener
 
     // Define a listener interface
-    interface OnJobClickListener {
-        fun onJobClicked(jobId: String)
+    interface OnAdminJobClickListener {
+        fun onAdminJobClicked(jobId: String)
     }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is OnJobClickListener) {
+        if (context is OnAdminJobClickListener) {
             listener = context // Assign the listener
         } else {
-            throw ClassCastException("$context must implement OnJobClickListener")
+            throw ClassCastException("$context must implement OnAdminJobClickListener")
         }
     }
 
@@ -53,7 +53,7 @@ class OngoingJob : Fragment() {
         adapter = AdminJobAdapter(
             onJobClick = {jobId ->
 
-                listener.onJobClicked(jobId.jobId)
+                listener.onAdminJobClicked(jobId.jobId)
             /* Handle click */ },
             onJobDelete = { /* Handle delete */
                 viewModel.deleteJob(jobId = it.jobId) }
@@ -98,11 +98,7 @@ class OngoingJob : Fragment() {
 
         return binding.root
     }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
-
-    }
     // Function to show the custom loading dialog
     private fun showLoadingDialog() {
         if (progressDialog == null) {

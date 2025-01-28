@@ -7,6 +7,7 @@ import com.example.a_connect.alumni.alumniHome.AluminiHomePage
 import com.example.a_connect.alumni.alumniJob.AlumniJob
 import com.example.a_connect.alumni.alumniProfile.AlumniProfile
 import com.example.a_connect.alumni.alumniEvent.AluminiEvent
+import com.example.a_connect.alumni.alumniPost.AlumniPost
 
 
 class AlumniMainPageViewPagerAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
@@ -17,7 +18,7 @@ class AlumniMainPageViewPagerAdapter(fragment: Fragment): FragmentStateAdapter(f
         return when(position){
             0-> AluminiHomePage()
             1->AluminiCommunityPage()
-            2->AluminiEvent()
+            2->AlumniPost()
             3->AlumniJob()
             else-> AlumniProfile()
 
