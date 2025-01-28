@@ -65,7 +65,7 @@ class AdminJob : Fragment() {
             }
         }.attach()
     }
-    // Implement the OnJobClickListener method
+    // Implement the OnAdminJobClickListener method
 
 
 }

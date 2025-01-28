@@ -118,7 +118,7 @@ class AdminJobViewModel : ViewModel() {
         )
     }
 
-    // Helper method to calculate how long ago a job was posted
+//    // Helper method to calculate how long ago a job was posted
     fun calculateTimeAgo(startDate: Timestamp?): String {
         startDate?.toDate()?.let { start ->
             val diffInMillis = System.currentTimeMillis() - start.time

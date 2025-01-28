@@ -34,7 +34,7 @@ class ExpiredJob : Fragment() {
         if (context is OnJobClickListener) {
             listener = context // Assign the listener
         } else {
-            throw ClassCastException("$context must implement OnJobClickListener")
+            throw ClassCastException("$context must implement OnAdminJobClickListener")
         }
     }
 
