@@ -1,5 +1,6 @@
 package com.example.a_connect
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -36,9 +37,19 @@ class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideVi
             insets
         }
 
+
+
+        SharedPreferencesHelper.init(applicationContext)
+
+
+
+
+
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragment) as NavHostFragment
         navController = navHostFragment.navController
+
+
 
 
     }

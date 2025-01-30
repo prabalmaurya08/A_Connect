@@ -10,6 +10,10 @@ import com.example.a_connect.alumni.alumniEvent.AluminiEvent
 import com.example.a_connect.alumni.alumniPost.AlumniPost
 
 
+
+
+
+
 class AlumniMainPageViewPagerAdapter(fragment: Fragment): FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int = 5
 
