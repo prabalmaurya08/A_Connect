@@ -1,8 +1,8 @@
 package com.example.a_connect.alumni.alumniJob
 
-import android.annotation.SuppressLint
+
 import android.content.Context
-import android.content.Intent
+
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +17,9 @@ import com.example.a_connect.alumni.alumniJob.mvvm.AlumniJobAdapter
 import com.example.a_connect.alumni.alumniJob.mvvm.AlumniJobViewModel
 import com.example.a_connect.databinding.FragmentAlumniJobBinding
 import java.util.Date
+
+
+
 
 
 class AlumniJob : Fragment() {
