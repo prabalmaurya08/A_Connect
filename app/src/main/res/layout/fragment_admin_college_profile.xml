@@ -309,7 +309,7 @@
 
                     <!-- Tab Layout -->
                     <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/mainLoginTabLayout"
+                        android:id="@+id/alumni_profile_TabLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:tabIndicatorHeight="5dp"
@@ -338,7 +338,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/mainLoginTabLayout" />
+                        app:layout_constraintTop_toBottomOf="@+id/alumni_profile_TabLayout" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
                 <com.google.android.material.floatingactionbutton.FloatingActionButton

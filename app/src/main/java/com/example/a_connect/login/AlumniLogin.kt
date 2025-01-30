@@ -1,5 +1,6 @@
 package com.example.a_connect.login
 
+
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -12,11 +13,13 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+
 import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileRepository
 import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileViewModel
 import com.example.a_connect.admin.adminCollegeProfile.mvvm.EditProfileViewModelFactory
 import com.example.a_connect.databinding.FragmentAlumniLoginBinding
 import com.example.a_connect.login.mvvm.LoginViewModel
+
 
 class AlumniLogin : Fragment() {
     private lateinit var binding: FragmentAlumniLoginBinding
@@ -127,4 +130,6 @@ class AlumniLogin : Fragment() {
         fun onAlumniSubmitClicked()
         fun onAlumniAdminClicked()
     }
+
+
 }

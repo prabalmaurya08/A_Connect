@@ -1,6 +1,10 @@
 package com.example.a_connect.login.mvvm
 
+
+import com.example.a_connect.SharedPreferencesHelper
 import com.google.firebase.firestore.FirebaseFirestore
+
+
 
 class LoginRepository {
     private val db = FirebaseFirestore.getInstance()
@@ -27,7 +31,12 @@ class LoginRepository {
                     val dbGraduationYear = document.getLong("graduationYear")?.toInt()
                     val dbCollegeName = document.getString("collegeName")?.toLowerCase() // Convert stored college name to lowercase
 
-                    if (dbGraduationYear == graduationYear && dbCollegeName == collegeName.toLowerCase()) { // Convert input to lowercase
+                    if (dbGraduationYear == graduationYear && dbCollegeName == collegeName.toLowerCase()) {
+
+                        // Convert input to lowercase
+
+                        // Save current user's email to SharedPreferences after successful login
+                        SharedPreferencesHelper.saveCurrentUserEmail(email)
                         callback(true, null) // Authentication successful
                     } else {
                         callback(false, "Graduation Year or College Name does not match.")
@@ -76,6 +85,11 @@ class LoginRepository {
             .addOnFailureListener { exception ->
                 callback(false, exception.message)
             }
+    }
+
+    // Logout function (clear SharedPreferences data)
+    fun logout() {
+        SharedPreferencesHelper.clearUserData()
     }
 
 }

@@ -41,7 +41,7 @@ class AlumniJob : Fragment() {
     }
 
 
-    @SuppressLint("QueryPermissionsNeeded")
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -58,18 +58,18 @@ class AlumniJob : Fragment() {
 
             },
             onApply = {
-                Log.d("Fragment", "Apply clicked: ${it.jobId}")
-                Log.d("Fragment", "Apply clicked: ${it.applyLink}")
-                val url = "https://www.naukri.com/"
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                val resolveInfoList = requireContext().packageManager.queryIntentActivities(intent, 0)
-
-                if (resolveInfoList.isNotEmpty()) {
-                    startActivity(intent)
-                } else {
-                    Log.e("Fragment", "No app found to handle the URL")
-                    Toast.makeText(requireContext(), "No app found to open the URL", Toast.LENGTH_SHORT).show()
-                }
+//                Log.d("Fragment", "Apply clicked: ${it.jobId}")
+//                Log.d("Fragment", "Apply clicked: ${it.applyLink}")
+//                val url = "https://www.naukri.com/"
+//                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+//                val resolveInfoList = requireContext().packageManager.queryIntentActivities(intent, 0)
+//
+//                if (resolveInfoList.isNotEmpty()) {
+//                    startActivity(intent)
+//                } else {
+//                    Log.e("Fragment", "No app found to handle the URL")
+//                    Toast.makeText(requireContext(), "No app found to open the URL", Toast.LENGTH_SHORT).show()
+//                }
             }
 
 
@@ -89,6 +89,8 @@ class AlumniJob : Fragment() {
             }
             adapter.submitList(ongoingJobs)
         }
+
+
 
         // Fetch jobs if not already fetched
         if (viewmodel.jobList.value.isNullOrEmpty()) {
