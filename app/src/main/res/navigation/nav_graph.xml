@@ -43,6 +43,12 @@
                 android:name="jobId"
                 app:argType="string" />
         </action>
+        <action
+            android:id="@+id/action_aluminiMainPage_to_alumniSearchScreen"
+            app:destination="@id/alumniSearchScreen" />
+        <action
+            android:id="@+id/action_aluminiMainPage_to_alumniEditProfile"
+            app:destination="@id/alumniEditProfile" />
     </fragment>
     <fragment
         android:id="@+id/aluminiChat"
@@ -57,6 +63,9 @@
         <action
             android:id="@+id/action_aluminiHomePage_to_aluminiChat"
             app:destination="@id/aluminiChat" />
+        <action
+            android:id="@+id/action_aluminiHomePage_to_alumniSearchScreen"
+            app:destination="@id/alumniSearchScreen" />
     </fragment>
     <fragment
         android:id="@+id/studentLogin"
@@ -224,4 +233,9 @@
             android:name="jobId"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/alumniSearchScreen"
+        android:name="com.example.a_connect.alumni.alumniHome.search.AlumniSearchScreen"
+        android:label="fragment_alumni_search_screen"
+        tools:layout="@layout/fragment_alumni_search_screen" />
 </navigation>

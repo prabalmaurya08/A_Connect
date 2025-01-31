@@ -2,6 +2,7 @@ package com.example.a_connect
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -17,12 +18,13 @@ import com.example.a_connect.alumni.alumniHome.AluminiHomePage
 import com.example.a_connect.alumni.alumniJob.AlumniJob
 import com.example.a_connect.alumni.alumniJob.AlumniJobDirections
 import com.example.a_connect.alumni.alumniMainPage.AluminiMainPageDirections
+import com.example.a_connect.alumni.alumniProfile.AlumniProfile
 import com.example.a_connect.databinding.ActivityMainBinding
 import com.example.a_connect.login.AlumniLogin
 import com.example.a_connect.login.StudentLogin
 
 class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideViewPager, AlumniLogin.OnAlumniScreenClicked,StudentLogin.OnStudentScreenClicked,OngoingJob.OnAdminJobClickListener
-,ExpiredJob.OnJobClickListener, AlumniJob.OnAlumniJobClickListener{
+,ExpiredJob.OnJobClickListener, AlumniJob.OnAlumniJobClickListener,AlumniProfile.OnAlumniProfileItemClicked{
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -63,6 +65,10 @@ class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideVi
 
     }
 
+    override fun onSearchClicked() {
+        findNavController(R.id.fragment).navigate(R.id.action_aluminiMainPage_to_alumniSearchScreen)
+    }
+
     override fun onAlumniSubmitClicked() {
        findNavController(R.id.fragment).navigate(R.id.action_mainLogin_to_aluminiMainPage)
     }
@@ -78,6 +84,7 @@ class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideVi
 
     override fun onStudentSubmitClicked() {
         findNavController(R.id.fragment).navigate(R.id.action_mainLogin_to_studentMainPage)
+
     }
 
     override fun onStudentAdminClicked() {
@@ -90,6 +97,18 @@ class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideVi
     }
 
     override fun onJobClicked(jobId: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onEditProfileClicked() {
+        findNavController(R.id.fragment).navigate(R.id.action_aluminiMainPage_to_alumniEditProfile)
+    }
+
+    override fun onUniqueIdClicked() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onShareProfileClicked() {
         TODO("Not yet implemented")
     }
 }

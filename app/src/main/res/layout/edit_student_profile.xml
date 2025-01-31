@@ -279,7 +279,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edit_collage_mail_address" />
+            app:layout_constraintTop_toBottomOf="@id/alumni_Headline" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.Material3.TextInputLayout.FilledBox.ExposedDropdownMenu"

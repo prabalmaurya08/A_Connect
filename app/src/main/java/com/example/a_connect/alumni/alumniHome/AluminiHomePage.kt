@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.fragment.findNavController
+import com.example.a_connect.R
 import com.example.a_connect.databinding.FragmentAlumniHomePageBinding
 import com.google.android.material.navigation.NavigationView
 
@@ -51,6 +53,9 @@ class AluminiHomePage : Fragment() {
 
         drawerSetUp()
         goToChatScreen()
+        binding.aluminiHomePageSearchBar.setOnClickListener {
+           listener?.onSearchClicked()
+        }
 
 
         return binding.root
@@ -89,6 +94,7 @@ class AluminiHomePage : Fragment() {
     interface OnItemClickedInsideViewPager {
         fun onChatButtonClicked()
         fun onNotificationButtonClicked()
+        fun onSearchClicked()
 
 
 

@@ -1,15 +1,18 @@
 package com.example.a_connect.alumni.alumniJob.mvvm
 
+
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+
+
 import com.example.a_connect.R
 import com.google.android.material.card.MaterialCardView
 import com.google.firebase.Timestamp
@@ -17,11 +20,10 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 
+
 class AlumniJobAdapter  ( private val onJobClick: (AlumniJobDataClass) -> Unit,
 private val onApply: (AlumniJobDataClass) -> Unit
 ) : ListAdapter<AlumniJobDataClass,AlumniJobAdapter.JobViewHolder>(AlumniJobAdapter.JobDiffCallback()) {
-
-
 
     inner class JobViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -33,12 +35,19 @@ private val onApply: (AlumniJobDataClass) -> Unit
         val date: TextView = itemView.findViewById(R.id.Date)
         val jobDetailButton: MaterialCardView = itemView.findViewById(R.id.job_detail_button)
         val applyButton: MaterialCardView = itemView.findViewById(R.id.Apply_button)
+
+      // Assuming job.logo is a URL string
+
+
         fun bind(job: AlumniJobDataClass) {
             jobRole.text = job.designation
             companyLocation.text = job.location
 
             time.text = job.startDate?.let { formatTimeAgo(it) } ?: "N/A"
             date.text = job.endDate?.let { formatDate(it) } ?: "N/A"
+
+
+
 
             // Load company logo using Glide
             Glide.with(companyLogo.context)
@@ -65,6 +74,7 @@ private val onApply: (AlumniJobDataClass) -> Unit
             }
         }
 
+
         // Format the date (start date or end date) as "MMMM dd, yyyy"
         private fun formatDate(timestamp: Timestamp): String {
             val date = timestamp.toDate()
@@ -79,6 +89,9 @@ private val onApply: (AlumniJobDataClass) -> Unit
         val view = LayoutInflater.from(parent.context).inflate(R.layout.alumni_job_card, parent, false)
         return JobViewHolder(view)
     }
+
+
+
 
     // Bind data to the ViewHolder
     override fun onBindViewHolder(holder: AlumniJobAdapter.JobViewHolder, position: Int) {
