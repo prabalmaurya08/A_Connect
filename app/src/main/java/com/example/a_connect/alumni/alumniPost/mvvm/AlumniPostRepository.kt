@@ -68,34 +68,7 @@ class AlumniPostRepository {
     }
 
 
-    fun getUserPosts(userEmail: String, callback: (List<AlumniPostDataClass>) -> Unit) {
-        firestore.collection("Post")
-            .whereEqualTo("createdBy", userEmail)
-            .orderBy("createdAt", Query.Direction.DESCENDING)
-            .get()
-            .addOnSuccessListener { querySnapshot ->
-                if (querySnapshot.isEmpty) {
-                    Log.d("PostFirestore", "No posts found for user: $userEmail")
-                } else {
-                    Log.d("PostFirestore", "Fetched ${querySnapshot.size()} posts for user: $userEmail")
-                }
 
-                val posts = querySnapshot.documents.mapNotNull {
-                    try {
-                        it.toObject(AlumniPostDataClass::class.java)
-                    } catch (e: Exception) {
-                        Log.e("FirestoreError", "Error parsing post: ${it.id}", e)
-                        null // Skip invalid documents
-                    }
-                }
-
-                callback(posts)
-            }
-            .addOnFailureListener { e ->
-                Log.e("FirestoreError", "Error fetching posts", e)
-                callback(emptyList())
-            }
-    }
 
 
 

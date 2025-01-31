@@ -88,7 +88,7 @@ class AlumniLogin : Fragment() {
             val email = binding.aluminiLoginEmailAddress.text.toString()
             val graduationYear = graduationYearsSpinner.selectedItem.toString().toInt()
             val collegeName = collegeNamesSpinner.selectedItem.toString()
-            Log.d("StudentLogin", "Email: $email, Graduation Year: $graduationYear, College Name: $collegeName")
+            Log.d("AlumniLogin", "Email: $email, Graduation Year: $graduationYear, College Name: $collegeName")
 
             // Show progress bar while authenticating
             progressBar.visibility = View.VISIBLE

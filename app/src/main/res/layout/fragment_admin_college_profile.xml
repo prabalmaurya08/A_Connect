@@ -29,36 +29,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar"
-            android:layout_width="match_parent"
-
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <com.google.android.material.appbar.MaterialToolbar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:title="Profile"
-                app:titleCentered="true"
-
-                app:navigationIcon="@drawable/hamburger_menu"
-                >
-
-            </com.google.android.material.appbar.MaterialToolbar>
-        </com.google.android.material.appbar.AppBarLayout>
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginHorizontal="16dp"
-            app:layout_constraintTop_toBottomOf="@id/appbar">
+            app:layout_constraintBottom_toBottomOf="parent"
+
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
+                android:layout_height="wrap_content">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/ll1"
@@ -70,9 +55,9 @@
                         android:id="@+id/imageFrame"
                         android:layout_width="match_parent"
                         android:layout_height="289dp"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent">
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <!-- Background Image -->
                         <ImageView
@@ -83,7 +68,7 @@
                             android:contentDescription="@string/college_image"
                             android:scaleType="centerCrop"
 
-                             />
+                            />
 
 
                     </FrameLayout>
@@ -93,43 +78,42 @@
                     android:id="@+id/imageButtons"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_below="@id/ll1"
                     android:layout_gravity="bottom"
                     android:contentDescription="@string/image_buttons"
 
 
-                    android:layout_below="@id/ll1">
+                    android:orientation="horizontal">
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/addimage"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginEnd="8dp"
+                        android:layout_weight="1"
                         android:backgroundTint="@color/green1"
-                        android:textAllCaps="false"
+                        android:fontFamily="@font/sf_pro_display_heavy"
                         android:padding="11dp"
                         android:text="@string/add_image"
+                        android:textAllCaps="false"
                         android:textStyle="bold"
-                        android:fontFamily="@font/sf_pro_display_heavy"
                         app:cornerRadius="12dp" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/deleteimage"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_marginStart="8dp"
+                        android:layout_weight="1"
                         android:backgroundTint="@color/green1"
-                        android:textColor="@color/white"
-                        android:padding="11dp"
-                        android:textStyle="bold"
                         android:fontFamily="@font/sf_pro_display_heavy"
-                        app:cornerRadius="12dp"
+                        android:padding="11dp"
+                        android:text="@string/delete_image"
                         android:textAllCaps="false"
-                        android:text="@string/delete_image" />
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        app:cornerRadius="12dp" />
                 </LinearLayout>
-
 
 
                 <!-- Content Section -->
@@ -144,64 +128,64 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
+                        android:fontFamily="@font/sf_pro_display_semibold"
                         android:paddingVertical="5dp"
                         android:text="@string/tagline"
-                        android:fontFamily="@font/sf_pro_display_semibold"
                         android:textColor="@color/black1"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:text="@={viewModel.tagline}"
                         android:id="@+id/edittagline"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/edit_area_box"
+                        android:elevation="10dp"
+                        android:fontFamily="@font/sf_pro_display"
                         android:hint="No Tagline"
                         android:padding="12dp"
-                        android:fontFamily="@font/sf_pro_display"
-                        app:layout_constraintTop_toBottomOf="@id/tagline"
-                        android:elevation="10dp"/>
+                        android:text="@={viewModel.tagline}"
+                        app:layout_constraintTop_toBottomOf="@id/tagline" />
 
                     <!-- Social Icons -->
                     <LinearLayout
                         android:id="@+id/socialIcons"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:gravity="center"
                         android:layout_marginTop="16dp"
-                        app:layout_constraintTop_toBottomOf="@id/edittagline"
-                        app:layout_constraintStart_toStartOf="parent"
+                        android:elevation="13dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:elevation="13dp">
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/edittagline">
 
                         <!-- LinkedIn Icon -->
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/linkedinConstraint"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="5dp"
                             android:background="@drawable/edit_area_box"
-                            android:paddingVertical="5dp"
-                            android:id="@+id/linkedinConstraint"
-                            android:paddingHorizontal="15dp"
                             android:clickable="true"
-                            android:layout_marginHorizontal="5dp">
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="5dp">
+
                             <ImageButton
                                 android:id="@+id/linkedinIcon"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                android:src="@drawable/social_icon_linkdin"
-                                android:contentDescription="@string/linkedin"
                                 android:background="@null"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
+                                android:contentDescription="@string/linkedin"
+                                android:src="@drawable/social_icon_linkdin"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent" />
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <!-- Gmail Icon -->
@@ -209,22 +193,23 @@
                             android:id="@+id/gmailConstraint"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="5dp"
                             android:background="@drawable/edit_area_box"
-                            android:paddingVertical="5dp"
-                            android:paddingHorizontal="15dp"
                             android:clickable="true"
-                            android:layout_marginHorizontal="5dp">
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="5dp">
+
                             <ImageButton
                                 android:id="@+id/gmailIcon"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                android:src="@drawable/social_icon_gmail"
-                                android:contentDescription="@string/gmail"
                                 android:background="@null"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
+                                android:contentDescription="@string/gmail"
+                                android:src="@drawable/social_icon_gmail"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent" />
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <!-- Instagram Icon -->
@@ -233,22 +218,23 @@
                             android:id="@+id/instaConstraint"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="5dp"
                             android:background="@drawable/edit_area_box"
-                            android:paddingVertical="5dp"
-                            android:paddingHorizontal="15dp"
                             android:clickable="true"
-                            android:layout_marginHorizontal="5dp">
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="5dp">
+
                             <ImageButton
                                 android:id="@+id/instagramIcon"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                android:src="@drawable/social_icon_instagram"
-                                android:contentDescription="@string/instagram"
                                 android:background="@null"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
+                                android:contentDescription="@string/instagram"
+                                android:src="@drawable/social_icon_instagram"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent" />
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <!-- Twitter Icon -->
@@ -256,47 +242,48 @@
                             android:id="@+id/threadConstraint"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="5dp"
                             android:background="@drawable/edit_area_box"
-                            android:paddingVertical="5dp"
-                            android:paddingHorizontal="15dp"
                             android:clickable="true"
-                            android:layout_marginHorizontal="5dp">
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="5dp">
+
                             <ImageButton
                                 android:id="@+id/twitterIcon"
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
-                                android:src="@drawable/social_icon_thread"
-                                android:contentDescription="@string/twitter"
                                 android:background="@null"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
+                                android:contentDescription="@string/twitter"
+                                android:src="@drawable/social_icon_thread"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent" />
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
                     <!-- Import Excel Data Button -->
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/importAlumniExcelData"
-                        app:layout_constraintTop_toBottomOf="@id/socialIcons"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/green1"
                         android:layout_marginTop="10dp"
-                        app:cornerRadius="12dp"
-                        android:padding="12dp"
                         android:layout_marginEnd="5dp"
+                        android:backgroundTint="@color/green1"
+                        android:fontFamily="@font/sf_pro_display_bold"
+                        android:padding="12dp"
+                        android:text="Upload Alumni Data"
 
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:cornerRadius="12dp"
                         app:layout_constraintEnd_toStartOf="@id/importStudentExcelData"
 
-                        android:fontFamily="@font/sf_pro_display_bold"
-                        android:text="Upload Alumni Data" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/socialIcons" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/importStudentExcelData"
                         android:layout_width="0dp"
-                        android:layout_marginStart="5dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
                         android:layout_marginTop="10dp"
                         android:backgroundTint="@color/green1"
                         android:fontFamily="@font/sf_pro_display_bold"
@@ -312,19 +299,18 @@
                         android:id="@+id/alumni_profile_TabLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:tabIndicatorHeight="5dp"
                         app:layout_constraintTop_toBottomOf="@id/importAlumniExcelData"
+                        app:tabGravity="fill"
                         app:tabIndicatorColor="@color/green1"
                         app:tabIndicatorFullWidth="true"
+                        app:tabIndicatorHeight="5dp"
                         app:tabMode="fixed"
-                        app:tabGravity="fill"
                         app:tabRippleColor="@null">
 
                         <com.google.android.material.tabs.TabItem
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/millestones"
-                            />
+                            android:text="@string/millestones" />
 
                         <com.google.android.material.tabs.TabItem
                             android:layout_width="wrap_content"
@@ -341,17 +327,21 @@
                         app:layout_constraintTop_toBottomOf="@+id/alumni_profile_TabLayout" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/goToEditProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                   />
+
+
 
 
             </RelativeLayout>
+
         </ScrollView>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/goToEditProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="16dp"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

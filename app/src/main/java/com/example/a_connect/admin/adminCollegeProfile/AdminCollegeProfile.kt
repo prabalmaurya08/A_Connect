@@ -53,12 +53,16 @@ class AdminCollegeProfile : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
+when(context) {
+    is OnGoToEditProfileClickListener -> {
+        listener = context
+    }
 
-        if (parentFragment is OnGoToEditProfileClickListener) {
-            listener = parentFragment as OnGoToEditProfileClickListener
-        } else {
-            throw RuntimeException("$context must implement OnViewPdfButtonClickListener")
-        }
+    else -> {
+        throw RuntimeException("$context must implement OnGoToEditProfileClickListener")
+
+    }
+}
     }
 
 

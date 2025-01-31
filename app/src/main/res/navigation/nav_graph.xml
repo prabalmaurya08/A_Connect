@@ -5,7 +5,6 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/mainLogin">
 
-    <!-- Main Login Fragment -->
     <fragment
         android:id="@+id/mainLogin"
         android:name="com.example.a_connect.login.MainLogin"
@@ -21,15 +20,11 @@
             android:id="@+id/action_mainLogin_to_studentMainPage"
             app:destination="@id/studentMainPage" />
     </fragment>
-
-    <!-- Alumni Login Fragment -->
     <fragment
         android:id="@+id/aluminiLogin"
         android:name="com.example.a_connect.login.AlumniLogin"
         android:label="fragment_student_login"
         tools:layout="@layout/fragment_student_login" />
-
-    <!-- Alumni Main Page Fragment -->
     <fragment
         android:id="@+id/aluminiMainPage"
         android:name="com.example.a_connect.alumni.alumniMainPage.AluminiMainPage"
@@ -48,16 +43,18 @@
                 android:name="jobId"
                 app:argType="string" />
         </action>
+        <action
+            android:id="@+id/action_aluminiMainPage_to_alumniSearchScreen"
+            app:destination="@id/alumniSearchScreen" />
+        <action
+            android:id="@+id/action_aluminiMainPage_to_alumniEditProfile"
+            app:destination="@id/alumniEditProfile" />
     </fragment>
-
-    <!-- Alumni Chat Fragment -->
     <fragment
         android:id="@+id/aluminiChat"
         android:name="com.example.a_connect.alumni.alumniChat.AluminiChat"
         android:label="fragment_alumini_chat"
         tools:layout="@layout/fragment_alumni_chat" />
-
-    <!-- Alumni Home Page Fragment -->
     <fragment
         android:id="@+id/aluminiHomePage"
         android:name="com.example.a_connect.alumni.alumniHome.AluminiHomePage"
@@ -66,16 +63,15 @@
         <action
             android:id="@+id/action_aluminiHomePage_to_aluminiChat"
             app:destination="@id/aluminiChat" />
+        <action
+            android:id="@+id/action_aluminiHomePage_to_alumniSearchScreen"
+            app:destination="@id/alumniSearchScreen" />
     </fragment>
-
-    <!-- Student Login Fragment -->
     <fragment
         android:id="@+id/studentLogin"
         android:name="com.example.a_connect.login.StudentLogin"
         android:label="fragment_student_login"
         tools:layout="@layout/fragment_student_login" />
-
-    <!-- Admin Login Fragment -->
     <fragment
         android:id="@+id/adminLogin"
         android:name="com.example.a_connect.login.AdminLogin"
@@ -283,5 +279,9 @@
             android:name="jobId"
             app:argType="string" />
     </fragment>
-
+    <fragment
+        android:id="@+id/alumniSearchScreen"
+        android:name="com.example.a_connect.alumni.alumniHome.search.AlumniSearchScreen"
+        android:label="fragment_alumni_search_screen"
+        tools:layout="@layout/fragment_alumni_search_screen" />
 </navigation>

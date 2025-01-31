@@ -34,7 +34,7 @@
             android:textSize="14sp"
             android:layout_marginTop="5dp"
             />
-        <com.denzcoskun.imageslider.ImageSlider
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/company_logo"
             android:layout_width="100dp"
             android:layout_height="100dp"
