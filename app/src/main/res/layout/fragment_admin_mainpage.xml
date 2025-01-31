@@ -40,15 +40,15 @@
             android:id="@+id/search_top_bar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/green5"
+            android:background="@color/white"
             android:visibility="gone"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/hamburger_icon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="28dp"
+                android:layout_height="26dp"
+                android:layout_marginStart="14dp"
                 android:src="@drawable/hamburger_menu"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -62,6 +62,8 @@
                 android:background="@drawable/search_box"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintStart_toEndOf="@id/hamburger_icon"
                 app:layout_constraintEnd_toStartOf="@id/search_icon"
                 app:layout_constraintTop_toTopOf="parent"
@@ -69,8 +71,8 @@
 
             <ImageView
                 android:id="@+id/search_icon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/search_icon"
                 app:layout_constraintEnd_toStartOf="@id/notification_icon"
@@ -79,8 +81,8 @@
 
             <ImageView
                 android:id="@+id/notification_icon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="19dp"
+                android:layout_height="22dp"
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/notification_icon"
                 app:layout_constraintEnd_toEndOf="parent"

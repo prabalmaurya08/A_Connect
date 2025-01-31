@@ -52,7 +52,7 @@ class AdminMainPage : Fragment() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.bottom_nav_home -> switchToDefaultBar("Dashboard", 0)
-                R.id.bottom_nav_announcement -> switchToDefaultBar("Announcements", 1)
+                R.id.bottom_nav_announcement -> switchToDefaultBar("Announcements & News", 1)
                 R.id.bottom_nav_events -> switchToDefaultBar("Events", 2)
                 R.id.bottom_nav_job -> switchToSearchBar(3) // Show search bar for Job page
                 R.id.bottom_nav_college -> switchToDefaultBar("College Profile", 4)
