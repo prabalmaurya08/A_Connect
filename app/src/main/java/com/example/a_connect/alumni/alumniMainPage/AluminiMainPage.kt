@@ -34,7 +34,7 @@ class AluminiMainPage : Fragment() {
         // Set up ViewPager with FragmentStateAdapter
         alumniMainPageViewPagerAdapter = AlumniMainPageViewPagerAdapter(this)
         viewPager.adapter = alumniMainPageViewPagerAdapter
-        
+
         setupViewPagerWithBottomNavigation()
         return binding.root
     }

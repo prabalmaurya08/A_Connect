@@ -5,6 +5,7 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/mainLogin">
 
+    <!-- Main Login Fragment -->
     <fragment
         android:id="@+id/mainLogin"
         android:name="com.example.a_connect.login.MainLogin"
@@ -20,11 +21,15 @@
             android:id="@+id/action_mainLogin_to_studentMainPage"
             app:destination="@id/studentMainPage" />
     </fragment>
+
+    <!-- Alumni Login Fragment -->
     <fragment
         android:id="@+id/aluminiLogin"
         android:name="com.example.a_connect.login.AlumniLogin"
         android:label="fragment_student_login"
         tools:layout="@layout/fragment_student_login" />
+
+    <!-- Alumni Main Page Fragment -->
     <fragment
         android:id="@+id/aluminiMainPage"
         android:name="com.example.a_connect.alumni.alumniMainPage.AluminiMainPage"
@@ -44,11 +49,15 @@
                 app:argType="string" />
         </action>
     </fragment>
+
+    <!-- Alumni Chat Fragment -->
     <fragment
         android:id="@+id/aluminiChat"
         android:name="com.example.a_connect.alumni.alumniChat.AluminiChat"
         android:label="fragment_alumini_chat"
         tools:layout="@layout/fragment_alumni_chat" />
+
+    <!-- Alumni Home Page Fragment -->
     <fragment
         android:id="@+id/aluminiHomePage"
         android:name="com.example.a_connect.alumni.alumniHome.AluminiHomePage"
@@ -58,11 +67,15 @@
             android:id="@+id/action_aluminiHomePage_to_aluminiChat"
             app:destination="@id/aluminiChat" />
     </fragment>
+
+    <!-- Student Login Fragment -->
     <fragment
         android:id="@+id/studentLogin"
         android:name="com.example.a_connect.login.StudentLogin"
         android:label="fragment_student_login"
         tools:layout="@layout/fragment_student_login" />
+
+    <!-- Admin Login Fragment -->
     <fragment
         android:id="@+id/adminLogin"
         android:name="com.example.a_connect.login.AdminLogin"
@@ -75,16 +88,22 @@
             android:id="@+id/action_adminLogin_to_adminMainPage"
             app:destination="@id/adminMainPage" />
     </fragment>
+
+    <!-- Alumni Community Page Fragment -->
     <fragment
         android:id="@+id/aluminiCommunityPage"
         android:name="com.example.a_connect.alumni.alumniCommunity.AluminiCommunityPage"
         android:label="fragment_alumni_community_page"
         tools:layout="@layout/fragment_alumni_community_page" />
+
+    <!-- Alumni Post Fragment -->
     <fragment
         android:id="@+id/aluminiPost"
         android:name="com.example.a_connect.alumni.alumniPost.AlumniPost"
         android:label="fragment_alumni_post"
         tools:layout="@layout/fragment_alumni_post" />
+
+    <!-- Alumni Job Fragment -->
     <fragment
         android:id="@+id/alumniJob"
         android:name="com.example.a_connect.alumni.alumniJob.AlumniJob"
@@ -94,56 +113,78 @@
             android:id="@+id/action_alumniJob_to_alumniJobDetail"
             app:destination="@id/alumniJobDetail" />
     </fragment>
+
+    <!-- Alumni Profile Fragment -->
     <fragment
         android:id="@+id/alumniProfile"
         android:name="com.example.a_connect.alumni.alumniProfile.AlumniProfile"
         android:label="fragment_alumni_profile"
         tools:layout="@layout/fragment_alumni_profile" />
+
+    <!-- Alumni Event Fragment -->
     <fragment
         android:id="@+id/aluminiEvent"
         android:name="com.example.a_connect.alumni.alumniEvent.AluminiEvent"
         android:label="fragment_alumni_event"
         tools:layout="@layout/fragment_alumni_event" />
+
+    <!-- Student Profile Fragment -->
     <fragment
         android:id="@+id/studentProfile"
         android:name="com.example.a_connect.student.studentProfile.StudentProfile"
         android:label="fragment_student_profile"
         tools:layout="@layout/fragment_student_profile" />
+
+    <!-- Student Job Fragment -->
     <fragment
         android:id="@+id/studentJob"
         android:name="com.example.a_connect.student.studentJob.StudentJob"
         android:label="fragment_student_job"
         tools:layout="@layout/fragment_student_job" />
+
+    <!-- Student Event Fragment -->
     <fragment
         android:id="@+id/studentEvent"
         android:name="com.example.a_connect.student.studentEvent.StudentEvent"
         android:label="fragment_student_event"
         tools:layout="@layout/fragment_student_event" />
+
+    <!-- Student Main Page Fragment -->
     <fragment
         android:id="@+id/studentMainPage"
         android:name="com.example.a_connect.student.studentMainPage.StudentMainPage"
         android:label="fragment_student_main_page"
         tools:layout="@layout/fragment_student_main_page" />
+
+    <!-- Student Home Page Fragment -->
     <fragment
         android:id="@+id/studentHomePage"
         android:name="com.example.a_connect.student.studentHomePage.StudentHomePage"
         android:label="fragment_student_home_page"
         tools:layout="@layout/fragment_student_home_page" />
+
+    <!-- Student Community Fragment -->
     <fragment
         android:id="@+id/studentCommunity"
         android:name="com.example.a_connect.student.studentCommunity.StudentCommunity"
         android:label="fragment_student_community"
         tools:layout="@layout/fragment_student_community" />
+
+    <!-- Student Explore Fragment -->
     <fragment
         android:id="@+id/studentExplore"
         android:name="com.example.a_connect.student.studentExplore.StudentExplore"
         android:label="fragment_student_explore"
         tools:layout="@layout/fragment_student_explore" />
+
+    <!-- Admin Home Fragment -->
     <fragment
         android:id="@+id/adminHome"
         android:name="com.example.a_connect.admin.adminHome.AdminHome"
         android:label="fragment_admin_home"
         tools:layout="@layout/fragment_admin_home" />
+
+    <!-- Admin Main Page Fragment -->
     <fragment
         android:id="@+id/adminMainPage"
         android:name="com.example.a_connect.admin.adminMainPage.AdminMainPage"
@@ -163,6 +204,8 @@
                 app:argType="string" />
         </action>
     </fragment>
+
+    <!-- Admin College Profile Fragment -->
     <fragment
         android:id="@+id/adminCollegeProfile"
         android:name="com.example.a_connect.admin.adminCollegeProfile.AdminCollegeProfile"
@@ -172,16 +215,22 @@
             android:id="@+id/action_adminCollegeProfile_to_adminEditProfile"
             app:destination="@id/adminEditProfile" />
     </fragment>
+
+    <!-- Admin Event Fragment -->
     <fragment
         android:id="@+id/adminEvent"
         android:name="com.example.a_connect.admin.adminEvent.AdminEvent"
         android:label="fragment_admin_event"
         tools:layout="@layout/fragment_admin_event" />
+
+    <!-- Admin News Fragment -->
     <fragment
         android:id="@+id/adminNewsAnnouncement"
         android:name="com.example.a_connect.admin.adminNews.AdminNewsAnnouncement"
         android:label="fragment_admin_news_announcement"
         tools:layout="@layout/fragment_admin_news_announcement" />
+
+    <!-- Admin Job Fragment -->
     <fragment
         android:id="@+id/adminJob"
         android:name="com.example.a_connect.admin.adminJob.AdminJob"
@@ -191,21 +240,29 @@
             android:id="@+id/action_adminJob_to_adminJobDetail"
             app:destination="@id/adminJobDetail" />
     </fragment>
+
+    <!-- Alumni Edit Profile Fragment -->
     <fragment
         android:id="@+id/alumniEditProfile"
         android:name="com.example.a_connect.alumni.alumniProfile.AlumniEditProfile"
         android:label="fragment_alumni_edit_profile"
         tools:layout="@layout/fragment_alumni_edit_profile" />
+
+    <!-- Admin Edit Profile Fragment -->
     <fragment
         android:id="@+id/adminEditProfile"
         android:name="com.example.a_connect.admin.adminCollegeProfile.AdminEditProfile"
         tools:layout="@layout/fragment_admin_edit_profile"
         android:label="AdminEditProfile" />
+
+    <!-- Admin Add Job Fragment -->
     <fragment
         android:id="@+id/adminAddJob"
         android:name="com.example.a_connect.admin.adminJob.AdminAddJob"
         android:label="fragment_admin_add_job"
         tools:layout="@layout/fragment_admin_add_job" />
+
+    <!-- Admin Job Detail Fragment -->
     <fragment
         android:id="@+id/adminJobDetail"
         android:name="com.example.a_connect.admin.adminJob.AdminJobDetail"
@@ -215,6 +272,8 @@
             android:name="jobId"
             app:argType="string" />
     </fragment>
+
+    <!-- Alumni Job Detail Fragment -->
     <fragment
         android:id="@+id/alumniJobDetail"
         android:name="com.example.a_connect.alumni.alumniJob.AlumniJobDetail"
@@ -224,4 +283,5 @@
             android:name="jobId"
             app:argType="string" />
     </fragment>
+
 </navigation>

@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Ongoing"
-            
+
             />
 
         <com.google.android.material.tabs.TabItem
@@ -39,7 +39,7 @@
         android:id="@+id/viewPager"
         app:layout_constraintTop_toBottomOf="@id/deleteAll"
         app:layout_constraintBottom_toBottomOf="parent"/>
-    
+
     <TextView
         android:id="@+id/deleteAll"
         android:layout_width="match_parent"
