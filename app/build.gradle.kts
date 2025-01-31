@@ -2,7 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
-
+    id("com.google.devtools.ksp")
+    id ("androidx.navigation.safeargs.kotlin")
 
 
 }
@@ -56,6 +57,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.gridlayout)
     implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -74,5 +76,9 @@ dependencies {
 // Apache POI for reading Excel files
     implementation(libs.poi)
     implementation (libs.poi.ooxml)
+
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
+   // ksp("com.github.bumptech.glide:compiler:4.12.0") // Glide compiler
 
 }
