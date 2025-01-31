@@ -11,6 +11,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.a_connect.admin.adminCollegeProfile.AdminCollegeProfile
+import com.example.a_connect.admin.adminJob.AdminJob
 import com.example.a_connect.admin.adminJob.ExpiredJob
 import com.example.a_connect.admin.adminJob.OngoingJob
 import com.example.a_connect.admin.adminMainPage.AdminMainPageDirections
@@ -24,7 +26,7 @@ import com.example.a_connect.login.AlumniLogin
 import com.example.a_connect.login.StudentLogin
 
 class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideViewPager, AlumniLogin.OnAlumniScreenClicked,StudentLogin.OnStudentScreenClicked,OngoingJob.OnAdminJobClickListener
-,ExpiredJob.OnJobClickListener, AlumniJob.OnAlumniJobClickListener,AlumniProfile.OnAlumniProfileItemClicked{
+,ExpiredJob.OnJobClickListener,AdminCollegeProfile.OnGoToEditProfileClickListener, AlumniJob.OnAlumniJobClickListener,AlumniProfile.OnAlumniProfileItemClicked,AdminJob.OnGoToCreateJobClickListener{
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -110,5 +112,13 @@ class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideVi
 
     override fun onShareProfileClicked() {
         TODO("Not yet implemented")
+    }
+
+    override fun onGoToCreateJobClicked() {
+       findNavController(R.id.fragment).navigate(R.id.action_adminMainPage_to_adminAddJob)
+    }
+
+    override fun onGoToEditProfileClicked() {
+
     }
 }
