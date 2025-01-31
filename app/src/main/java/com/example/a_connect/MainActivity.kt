@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.a_connect.admin.adminJob.AdminJobDetail
 import com.example.a_connect.admin.adminJob.ExpiredJob
 import com.example.a_connect.admin.adminJob.OngoingJob
 import com.example.a_connect.admin.adminMainPage.AdminMainPageDirections
@@ -77,6 +78,7 @@ class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideVi
         val action = AluminiMainPageDirections.actionAluminiMainPageToAlumniJobDetail(jobId)
         findNavController(R.id.fragment).navigate(action)
     }
+
 
     override fun onJobClicked(jobId: String) {
         TODO("Not yet implemented")
