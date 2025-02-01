@@ -95,6 +95,10 @@
     <string name="phone_number">Phone Number</string>
     <string name="phone_numbertxt">987653210</string>
     <string name="image_buttons">Image Buttons</string>
+    <string name="edit_profile" />
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
+
 
 
     <string-array name="gender_array">
