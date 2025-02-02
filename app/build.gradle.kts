@@ -19,11 +19,14 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
+
         release {
+
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -39,6 +42,7 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
+        buildConfig = true
         viewBinding = true
     }
     dataBinding {
@@ -80,6 +84,16 @@ dependencies {
     implementation(libs.glide)
     annotationProcessor(libs.compiler)
    // ksp("com.github.bumptech.glide:compiler:4.12.0") // Glide compiler
+
+
+    //Lottie Animation
+    implementation (libs.lottie)
+
+
+
+// Add the dependency for the Vertex AI in Firebase library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation(libs.firebase.vertexai)
 
 }
 

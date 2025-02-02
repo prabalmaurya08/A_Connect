@@ -5,6 +5,9 @@
         android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- Permission for microphone -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
 
     <application
         android:allowBackup="true"
