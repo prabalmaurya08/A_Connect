@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/aluminiHomeDrawerLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".alumni.alumniHome.AluminiHomePage">
+    tools:context=".alumni.alumniHome.AlumniHomePage">
 
    <androidx.constraintlayout.widget.ConstraintLayout
        android:layout_width="match_parent"
@@ -101,7 +101,7 @@
                    app:layout_constraintEnd_toEndOf="parent">
 
                    <com.denzcoskun.imageslider.ImageSlider
-                       android:id="@+id/aluminiHomePageImageSlider"
+                       android:id="@+id/alumniHomePageImageSlider"
                        android:layout_width="match_parent"
                        android:layout_height="200dp" />
 
@@ -150,12 +150,15 @@
                    android:text="See All"/>
 
 
+
+
                <com.google.android.material.card.MaterialCardView
                    android:id="@+id/college_cardview"
                    android:layout_width="match_parent"
                    android:layout_height="250dp"
                    app:cardCornerRadius="28.5dp"
                    app:cardElevation="0.5dp"
+
                    app:layout_constraintTop_toBottomOf="@id/college_tv">
 
                </com.google.android.material.card.MaterialCardView>
@@ -203,7 +206,22 @@
 
            </androidx.constraintlayout.widget.ConstraintLayout>
        </ScrollView>
+       <com.google.android.material.floatingactionbutton.FloatingActionButton
+           android:id="@+id/fabVoiceInput"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:contentDescription="floatingButton"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintBottom_toBottomOf="parent"
+           android:src="@drawable/microphone"
+           android:layout_margin="20dp"
+
+
+           />
+
+
    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <com.google.android.material.navigation.NavigationView
    android:id="@+id/aluminiHomeNavigationView"

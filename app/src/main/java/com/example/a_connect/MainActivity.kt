@@ -16,17 +16,18 @@ import com.example.a_connect.admin.adminJob.AdminJob
 import com.example.a_connect.admin.adminJob.ExpiredJob
 import com.example.a_connect.admin.adminJob.OngoingJob
 import com.example.a_connect.admin.adminMainPage.AdminMainPageDirections
-import com.example.a_connect.alumni.alumniHome.AluminiHomePage
+
+import com.example.a_connect.alumni.alumniHome.AlumniHomePage
 import com.example.a_connect.alumni.alumniJob.AlumniJob
-import com.example.a_connect.alumni.alumniJob.AlumniJobDirections
+
 import com.example.a_connect.alumni.alumniMainPage.AluminiMainPageDirections
 import com.example.a_connect.alumni.alumniProfile.AlumniProfile
 import com.example.a_connect.databinding.ActivityMainBinding
 import com.example.a_connect.login.AlumniLogin
 import com.example.a_connect.login.StudentLogin
 
-class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideViewPager, AlumniLogin.OnAlumniScreenClicked,StudentLogin.OnStudentScreenClicked,OngoingJob.OnAdminJobClickListener
-,ExpiredJob.OnJobClickListener,AdminCollegeProfile.OnGoToEditProfileClickListener, AlumniJob.OnAlumniJobClickListener,AlumniProfile.OnAlumniProfileItemClicked,AdminJob.OnGoToCreateJobClickListener{
+class MainActivity : AppCompatActivity() , AlumniHomePage.OnItemClickedInsideViewPager, AlumniLogin.OnAlumniScreenClicked,StudentLogin.OnStudentScreenClicked,OngoingJob.OnAdminJobClickListener
+,ExpiredJob.OnJobClickListener,AdminCollegeProfile.OnGoToEditProfileClickListener, AlumniJob.OnAlumniJobClickListener,AlumniProfile.OnAlumniProfileItemClicked,AdminJob.OnGoToCreateJobClickListener,AlumniHomePage.VoiceInputListener{
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -69,6 +70,10 @@ class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideVi
 
     override fun onSearchClicked() {
         findNavController(R.id.fragment).navigate(R.id.action_aluminiMainPage_to_alumniSearchScreen)
+    }
+
+    override fun onVoiceInputClicked() {
+
     }
 
     override fun onAlumniSubmitClicked() {
@@ -119,6 +124,20 @@ class MainActivity : AppCompatActivity() , AluminiHomePage.OnItemClickedInsideVi
     }
 
     override fun onGoToEditProfileClicked() {
+
+    }
+
+    override fun onChatCommandReceived() {
+        findNavController(R.id.fragment).navigate(R.id.action_aluminiMainPage_to_aluminiChat)
+
+    }
+
+    override fun onNotificationCommandReceived() {
+        TODO("Not yet implemented")
+    }
+
+    override fun onSearchCommandReceived() {
+        findNavController(R.id.fragment).navigate(R.id.action_aluminiMainPage_to_alumniSearchScreen)
 
     }
 }
