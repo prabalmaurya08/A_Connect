@@ -5,6 +5,12 @@ import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import com.google.firebase.Firebase
+import com.google.firebase.vertexai.vertexAI
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class AlumniPostViewmodel(application: Application) : AndroidViewModel(application) {
 
@@ -69,4 +75,35 @@ class AlumniPostViewmodel(application: Application) : AndroidViewModel(applicati
             }
         }
     }
+
+
+
+
+
+
+
+
+    private val _aiGeneratedDescription = MutableLiveData<String>()
+    val aiGeneratedDescription: LiveData<String> get() = _aiGeneratedDescription
+
+    private val vertexAI by lazy { Firebase.vertexAI }
+    private val generativeModel by lazy { vertexAI.generativeModel("gemini-1.5-flash") } // Or other model
+
+    // This function will be called when the user taps "Generate with AI"
+    fun generateAiDescription(description: String) {
+        // Launch in a background thread to not block UI
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                // Send the full description prompt to the AI model
+                val prompt = "Generate description from this input: $description"
+                val response = generativeModel.generateContent(prompt)
+                val botResponse = response.text ?: "Sorry, I didn't understand that."
+                _aiGeneratedDescription.postValue(botResponse)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                _aiGeneratedDescription.postValue("Error: ${e.message}")
+            }
+        }
+    }
+
 }

@@ -1,27 +1,18 @@
 package com.example.a_connect.admin.adminMainPage
 
-import android.annotation.SuppressLint
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.EditText
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.widget.ViewPager2
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.example.a_connect.R
-import com.example.a_connect.R.id.about_us
-import com.example.a_connect.R.id.community
-import com.example.a_connect.R.id.donation
-import com.example.a_connect.R.id.events
-import com.example.a_connect.R.id.explore
-import com.example.a_connect.R.id.feedback
-import com.example.a_connect.R.id.logout
-import com.example.a_connect.R.id.news_and_announcements
-import com.example.a_connect.R.id.profile
-import com.example.a_connect.R.id.report
-import com.example.a_connect.R.id.saved_jobs
 import com.example.a_connect.admin.adminAboutUs.AdminAboutUS
 import com.example.a_connect.admin.adminAboutUs.AdminFeedback
 import com.example.a_connect.admin.adminAboutUs.AdminReport
@@ -29,6 +20,8 @@ import com.example.a_connect.admin.adminCollegeProfile.AdminCollegeProfile
 import com.example.a_connect.admin.adminDonation.AdminDonation
 import com.example.a_connect.admin.adminEvent.AdminEvent
 import com.example.a_connect.admin.adminExplore.AdminExplore
+import com.example.a_connect.admin.adminHome.AdminHome
+import com.example.a_connect.admin.adminJob.AdminJob
 import com.example.a_connect.admin.adminJob.SavedJob
 import com.example.a_connect.admin.adminNews.AdminNewsAnnouncement
 import com.example.a_connect.admin.admincommunity.AdminCommunity
@@ -45,16 +38,14 @@ class AdminMainPage : Fragment() {
     private var _binding: FragmentAdminMainpageBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewPager: ViewPager2
     private lateinit var bottomNavigationView: BottomNavigationView
-    private lateinit var adapter: AdminMainPageViewPagerAdapter
-
     private lateinit var defaultTopBar: MaterialToolbar
     private lateinit var searchTopBar: View
     private lateinit var searchInput: EditText
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var navigationView: NavigationView
     private lateinit var toggle: ActionBarDrawerToggle
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,7 +55,6 @@ class AdminMainPage : Fragment() {
         val view = binding.root
 
         // Initialize Views
-        viewPager = binding.viewPager
         bottomNavigationView = binding.bottomNav
         defaultTopBar = binding.defaultTopBar
         searchTopBar = binding.searchTopBar
@@ -73,11 +63,28 @@ class AdminMainPage : Fragment() {
         navigationView = binding.navView
 
         setupHamburgerMenu()
-        setupViewPager()
         setupBottomNavigation()
         setupNotificationIcon()
 
+        // Load default fragment (Dashboard)
+        replaceFragment(AdminHome())
+
+
+
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val navController = findNavController()
+
+                if (!navController.navigateUp()) {
+                    requireActivity().finish() // Exit app if no back stack
+                }
+            }
+        })
     }
 
     private fun setupHamburgerMenu() {
@@ -94,44 +101,30 @@ class AdminMainPage : Fragment() {
         }
     }
 
-    private fun setupViewPager() {
-        adapter = AdminMainPageViewPagerAdapter(this)
-        viewPager.adapter = adapter
-        viewPager.isUserInputEnabled = false
-
-        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                bottomNavigationView.menu.getItem(position).isChecked = true
-            }
-        })
-    }
-
     private fun setupBottomNavigation() {
         bottomNavigationView.setOnItemSelectedListener { item ->
+            drawerLayout.closeDrawer(GravityCompat.START) // Close drawer if open
             when (item.itemId) {
-                R.id.bottom_nav_home -> switchToDefaultBar("Dashboard", 0)
-                R.id.bottom_nav_announcement -> switchToDefaultBar("Announcements & News", 1)
-                R.id.bottom_nav_events -> switchToDefaultBar("Events", 2)
-                R.id.bottom_nav_job -> 3.switchToJobSection()
-                R.id.bottom_nav_college -> switchToDefaultBar("College Profile", 4)
+                R.id.bottom_nav_home -> replaceFragment(AdminHome(), "Dashboard")
+                R.id.bottom_nav_announcement -> replaceFragment(AdminNewsAnnouncement(), "Announcements & News")
+                R.id.bottom_nav_events -> replaceFragment(AdminEvent(), "Events")
+                R.id.bottom_nav_job -> replaceFragment(AdminJob(), "Jobs", showSearchBar = true)
+                R.id.bottom_nav_college -> replaceFragment(AdminCollegeProfile(), "College Profile")
                 else -> false
             }
             true
         }
     }
 
-    private fun switchToDefaultBar(title: String, position: Int) {
-        viewPager.currentItem = position
-        defaultTopBar.visibility = View.VISIBLE
-        searchTopBar.visibility = View.GONE
-        defaultTopBar.title = title
-    }
 
-    private fun Int.switchToJobSection() {
-        viewPager.currentItem = this
+    private fun replaceFragment(fragment: Fragment, title: String = "", showSearchBar: Boolean = false) {
+        childFragmentManager.beginTransaction()
+            .replace(R.id.fragment, fragment)
+            .commit()
+
         defaultTopBar.visibility = View.VISIBLE
-        searchTopBar.visibility = View.VISIBLE
-        defaultTopBar.title = "Jobs"
+        searchTopBar.visibility = if (showSearchBar) View.VISIBLE else View.GONE
+        defaultTopBar.title = title
     }
 
     private fun setupNotificationIcon() {
@@ -140,7 +133,7 @@ class AdminMainPage : Fragment() {
         }
     }
 
-    @SuppressLint("InflateParams")
+
     private fun showNotificationBottomSheet() {
         val dialog = BottomSheetDialog(requireContext())
         val sheetView = layoutInflater.inflate(R.layout.admin_notification, null)
@@ -150,27 +143,54 @@ class AdminMainPage : Fragment() {
 
     private fun handleMenuClick(menuItem: MenuItem) {
         when (menuItem.itemId) {
-            profile -> loadFragment(AdminCollegeProfile())
-            events -> loadFragment(AdminEvent())
-            news_and_announcements -> loadFragment(AdminNewsAnnouncement())
-            explore -> loadFragment(AdminExplore())
-            community -> loadFragment(AdminCommunity())
-            saved_jobs -> loadFragment(SavedJob())
-            donation -> loadFragment(AdminDonation())
-            about_us -> loadFragment(AdminAboutUS())
-            report -> loadFragment(AdminReport())
-            feedback -> loadFragment(AdminFeedback())
-            logout -> logoutUser()
+            R.id.profile -> {
+                replaceFragment(AdminCollegeProfile(), "College Profile")
+                bottomNavigationView.selectedItemId = R.id.bottom_nav_college
+            }
+            R.id.events -> {
+                replaceFragment(AdminEvent(), "Events")
+                bottomNavigationView.selectedItemId = R.id.bottom_nav_events
+            }
+            R.id.news_and_announcements -> {
+                replaceFragment(AdminNewsAnnouncement(), "News & Announcements")
+                bottomNavigationView.selectedItemId = R.id.bottom_nav_announcement
+            }
+            R.id.explore -> {
+               findNavController().navigate(R.id.action_adminMainPage_to_adminExplore)
+                // Set bottom navigation item to a corresponding ID if exists
+            }
+            R.id.community -> {
+                replaceFragment(AdminCommunity(), "Community")
+                // Set bottom navigation item to a corresponding ID if exists
+            }
+            R.id.saved_jobs -> {
+                replaceFragment(SavedJob(), "Saved Jobs")
+                bottomNavigationView.selectedItemId = R.id.bottom_nav_job
+            }
+            R.id.donation -> {
+              findNavController().navigate(R.id.action_adminMainPage_to_adminDonation)
+
+                // Set bottom navigation item to a corresponding ID if exists
+            }
+            R.id.about_us -> {
+            findNavController().navigate(R.id.action_adminMainPage_to_adminAboutUS)
+                // Set bottom navigation item to a corresponding ID if exists
+            }
+            R.id.report -> {
+               findNavController().navigate(R.id.action_adminMainPage_to_adminReport)
+
+
+                // Set bottom navigation item to a corresponding ID if exists
+            }
+            R.id.feedback -> {
+              findNavController().navigate(R.id.action_adminMainPage_to_adminFeedback)
+                // Set bottom navigation item to a corresponding ID if exists
+            }
+            R.id.logout -> logoutUser()
         }
         drawerLayout.closeDrawer(GravityCompat.START)
     }
 
-    private fun loadFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.drawer_layout, fragment)
-            .addToBackStack(null)
-            .commit()
-    }
 
     private fun logoutUser() {
         val intent = Intent(requireContext(), AlumniLogin::class.java)

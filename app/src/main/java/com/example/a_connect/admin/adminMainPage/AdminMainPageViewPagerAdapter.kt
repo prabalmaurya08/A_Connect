@@ -14,7 +14,7 @@ class AdminMainPageViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(f
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> AdminHome()
-            1 -> AdminJob()
+            1 -> AdminNewsAnnouncement()
             2 -> AdminEvent()
             3 -> AdminJob()
             4 -> AdminCollegeProfile()
