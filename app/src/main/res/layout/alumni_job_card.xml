@@ -34,10 +34,10 @@
             android:textSize="14sp"
             android:layout_marginTop="5dp"
             />
-        <ImageView
+        <com.denzcoskun.imageslider.ImageSlider
             android:id="@+id/company_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:src="@drawable/google"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -111,7 +111,7 @@
             android:clickable="true"
 
             app:layout_constraintTop_toBottomOf="@id/time"
-            app:layout_constraintEnd_toStartOf="@id/delete_button"
+            app:layout_constraintEnd_toStartOf="@id/Apply_button"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="10dp">
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -136,7 +136,7 @@
 
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/delete_button"
+            android:id="@+id/Apply_button"
             app:cardCornerRadius="12dp"
             app:elevation="8dp"
             android:layout_width="0dp"

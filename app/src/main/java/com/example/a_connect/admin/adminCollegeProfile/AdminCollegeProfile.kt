@@ -107,7 +107,7 @@ class AdminCollegeProfile : Fragment() {
     private fun setupObservers() {
         viewModel.loadingState.observe(viewLifecycleOwner) { isLoading ->
             if (isLoading) {
-                showLoadingDialog("Loading your image...")
+                showLoadingDialog("Loading...")
             } else {
                 dismissLoadingDialog()
             }
@@ -153,7 +153,7 @@ class AdminCollegeProfile : Fragment() {
     private fun selectExcelFile(requestCode: Int) {
         val intent = Intent(Intent.ACTION_GET_CONTENT)
         intent.type = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        startActivityForResult(Intent.createChooser(intent, "Select Excel File"), requestCode)
+        this.startActivityForResult(Intent.createChooser(intent, "Select Excel File"), requestCode)
     }
 
     @Deprecated("Deprecated in Java")
