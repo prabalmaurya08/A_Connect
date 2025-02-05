@@ -111,9 +111,9 @@ when(context) {
     private fun setupObservers() {
         viewModel.loadingState.observe(viewLifecycleOwner) { isLoading ->
             if (isLoading) {
-                showLoadingDialog("Loading...")
+               // showLoadingDialog("Loading...")
             } else {
-                dismissLoadingDialog()
+              //  dismissLoadingDialog()
             }
         }
 

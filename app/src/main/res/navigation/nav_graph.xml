@@ -27,7 +27,7 @@
         tools:layout="@layout/fragment_student_login" />
     <fragment
         android:id="@+id/aluminiMainPage"
-        android:name="com.example.a_connect.alumni.alumniMainPage.AluminiMainPage"
+        android:name="com.example.a_connect.alumni.alumniMainPage.AlumniMainPage"
         android:label="fragment_alumini_main_page"
         tools:layout="@layout/fragment_alumni_main_page" >
         <action
@@ -199,6 +199,31 @@
                 android:name="jobId"
                 app:argType="string" />
         </action>
+        <action
+            android:id="@+id/action_adminMainPage_to_adminDonation"
+            app:destination="@id/adminDonation"
+            app:popUpTo="@id/adminMainPage"
+            app:popUpToInclusive="false"/>
+        <action
+            android:id="@+id/action_adminMainPage_to_adminReport"
+            app:destination="@id/adminReport"
+            app:popUpTo="@id/adminMainPage"
+            app:popUpToInclusive="false"/>
+        <action
+            android:id="@+id/action_adminMainPage_to_adminFeedback"
+            app:destination="@id/adminFeedback"
+            app:popUpTo="@id/adminMainPage"
+            app:popUpToInclusive="false"/>
+        <action
+            android:id="@+id/action_adminMainPage_to_adminExplore"
+            app:destination="@id/adminExplore"
+            app:popUpTo="@id/adminMainPage"
+            app:popUpToInclusive="false"/>
+        <action
+            android:id="@+id/action_adminMainPage_to_adminAboutUS"
+            app:destination="@id/adminAboutUS"
+            app:popUpTo="@id/adminMainPage"
+            app:popUpToInclusive="false"/>
     </fragment>
 
     <!-- Admin College Profile Fragment -->
@@ -285,4 +310,41 @@
         android:name="com.example.a_connect.alumni.alumniHome.search.AlumniSearchScreen"
         android:label="fragment_alumni_search_screen"
         tools:layout="@layout/fragment_alumni_search_screen" />
+    <fragment
+        android:id="@+id/adminAboutUS"
+        android:name="com.example.a_connect.admin.adminAboutUs.AdminAboutUS"
+        android:label="fragment_admin_about_u_s"
+        tools:layout="@layout/fragment_admin_about_u_s" />
+    <fragment
+        android:id="@+id/adminDonation"
+        android:name="com.example.a_connect.admin.adminDonation.AdminDonation"
+        android:label="fragment_admin_donation"
+        tools:layout="@layout/fragment_admin_donation" >
+        <action
+            android:id="@+id/action_adminDonation_to_adminMainPage"
+            app:destination="@id/adminMainPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminExplore"
+        android:name="com.example.a_connect.admin.adminExplore.AdminExplore"
+        android:label="fragment_admin_explore"
+        tools:layout="@layout/fragment_admin_explore" />
+    <fragment
+        android:id="@+id/adminFeedback"
+        android:name="com.example.a_connect.admin.adminAboutUs.AdminFeedback"
+        android:label="fragment_admin_feedback"
+        tools:layout="@layout/fragment_admin_feedback" >
+        <action
+            android:id="@+id/action_adminFeedback_to_adminMainPage"
+            app:destination="@id/adminMainPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminReport"
+        android:name="com.example.a_connect.admin.adminAboutUs.AdminReport"
+        android:label="fragment_admin_report"
+        tools:layout="@layout/fragment_admin_report" >
+        <action
+            android:id="@+id/action_adminReport_to_adminMainPage"
+            app:destination="@id/adminMainPage" />
+    </fragment>
 </navigation>

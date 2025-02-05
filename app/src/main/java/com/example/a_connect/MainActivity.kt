@@ -20,7 +20,7 @@ import com.example.a_connect.admin.adminMainPage.AdminMainPageDirections
 import com.example.a_connect.alumni.alumniHome.AlumniHomePage
 import com.example.a_connect.alumni.alumniJob.AlumniJob
 
-import com.example.a_connect.alumni.alumniMainPage.AluminiMainPageDirections
+import com.example.a_connect.alumni.alumniMainPage.AlumniMainPageDirections
 import com.example.a_connect.alumni.alumniProfile.AlumniProfile
 import com.example.a_connect.databinding.ActivityMainBinding
 import com.example.a_connect.login.AlumniLogin
@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() , AlumniHomePage.OnItemClickedInsideVie
     }
 
     override fun onAlumniJobClicked(jobId: String) {
-        val action = AluminiMainPageDirections.actionAluminiMainPageToAlumniJobDetail(jobId)
+        val action = AlumniMainPageDirections.actionAluminiMainPageToAlumniJobDetail(jobId)
         findNavController(R.id.fragment).navigate(action)
     }
 
