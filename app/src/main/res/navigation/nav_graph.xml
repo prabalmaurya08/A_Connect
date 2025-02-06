@@ -167,4 +167,34 @@
         android:name="com.example.a_connect.admin.adminCollegeProfile.AdminEditProfile"
         tools:layout="@layout/fragment_admin_edit_profile"
         android:label="AdminEditProfile" />
+    <fragment
+        android:id="@+id/adminEventCreateEvent"
+        android:name="com.example.a_connect.admin.adminEvent.AdminEventCreateEvent"
+        android:label="fragment_admin_event_create_event"
+        tools:layout="@layout/fragment_admin_event_create_event" />
+    <fragment
+        android:id="@+id/alumniEventDetails"
+        android:name="com.example.a_connect.alumni.alumniEvent.AlumniEventDetails"
+        android:label="fragment_alumni_event_details"
+        tools:layout="@layout/fragment_alumni_event_details" />
+    <fragment
+        android:id="@+id/alumniEventPastEvents"
+        android:name="com.example.a_connect.alumni.alumniEvent.AlumniEventPastEvents"
+        android:label="fragment_alumni_event_past_event"
+        tools:layout="@layout/fragment_alumni_event_past_event" />
+    <fragment
+        android:id="@+id/alumniEventUpcomingEvents"
+        android:name="com.example.a_connect.alumni.alumniEvent.AlumniEventUpcomingEvents"
+        android:label="fragment_alumni_event_upcoming_events"
+        tools:layout="@layout/fragment_alumni_event_upcoming_events" />
+    <fragment
+        android:id="@+id/studentEventDetails"
+        android:name="com.example.a_connect.student.studentEvent.StudentEventDetails"
+        android:label="fragment_student_event_details"
+        tools:layout="@layout/fragment_student_event_details" />
+    <fragment
+        android:id="@+id/studentEventPastEvents"
+        android:name="com.example.a_connect.student.studentEvent.StudentEventPastEvents"
+        android:label="fragment_student_event_past_events"
+        tools:layout="@layout/fragment_student_event_past_events" />
 </navigation>
