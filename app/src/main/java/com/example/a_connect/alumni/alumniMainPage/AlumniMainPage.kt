@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
 import com.example.a_connect.R
-import com.example.a_connect.alumni.alumniCommunity.AluminiCommunityPage
+import com.example.a_connect.alumni.alumniCommunity.AlumniCommunityPage
 import com.example.a_connect.databinding.FragmentAlumniMainPageBinding
 
 import com.example.a_connect.alumni.alumniHome.AlumniHomePage
@@ -44,7 +44,7 @@ class AlumniMainPage : Fragment() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.bottom_nav_home -> loadFragment(AlumniHomePage())
-                R.id.bottom_nav_community -> loadFragment(AluminiCommunityPage())
+                R.id.bottom_nav_community -> loadFragment(AlumniCommunityPage())
                 R.id.bottom_nav_post -> loadFragment(AlumniPost())
                 R.id.bottom_nav_job -> loadFragment(AlumniJob())
                 R.id.bottom_nav_profile -> loadFragment(AlumniProfile())

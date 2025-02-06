@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/aluminiChat"
-        android:name="com.example.a_connect.alumni.alumniChat.AluminiChat"
+        android:name="com.example.a_connect.alumni.alumniChat.AlumniChat"
         android:label="fragment_alumini_chat"
         tools:layout="@layout/fragment_alumni_chat" />
     <fragment
@@ -88,7 +88,7 @@
     <!-- Alumni Community Page Fragment -->
     <fragment
         android:id="@+id/aluminiCommunityPage"
-        android:name="com.example.a_connect.alumni.alumniCommunity.AluminiCommunityPage"
+        android:name="com.example.a_connect.alumni.alumniCommunity.AlumniCommunityPage"
         android:label="fragment_alumni_community_page"
         tools:layout="@layout/fragment_alumni_community_page" />
 
@@ -120,7 +120,7 @@
     <!-- Alumni Event Fragment -->
     <fragment
         android:id="@+id/aluminiEvent"
-        android:name="com.example.a_connect.alumni.alumniEvent.AluminiEvent"
+        android:name="com.example.a_connect.alumni.alumniEvent.AlumniEvent"
         android:label="fragment_alumni_event"
         tools:layout="@layout/fragment_alumni_event" />
 

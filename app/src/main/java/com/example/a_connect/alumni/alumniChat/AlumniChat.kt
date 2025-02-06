@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.a_connect.databinding.FragmentAlumniChatBinding
 
 
-class AluminiChat : Fragment() {
+class AlumniChat : Fragment() {
     private lateinit var binding: FragmentAlumniChatBinding
 
 
