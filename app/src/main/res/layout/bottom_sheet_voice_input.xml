@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Chat RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvChat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"/>
+
+    <!-- Message Input Area -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Type a message"
+            android:padding="8dp"/>
+
+        <!-- Send Button -->
+        <ImageView
+            android:id="@+id/btnSend"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/send_icon"
+            android:contentDescription="Send Message"
+            android:layout_gravity="center_vertical"/>
+
+
+    </LinearLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/micWaveAnimation"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:lottie_rawRes="@raw/mic_wave"
+        app:lottie_autoPlay="false"
+        android:layout_gravity="center"
+        app:lottie_loop="true"
+
+        />
+
+
+    <!-- Microphone Icon -->
+
+
+    <!-- Transcription Text -->
+    <TextView
+        android:id="@+id/tvTranscription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Say something"
+        android:textAlignment="center" />
+
+
+
+</LinearLayout>

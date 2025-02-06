@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".alumni.alumniMainPage.AluminiMainPage">
+    tools:context=".alumni.alumniMainPage.AlumniMainPage">
 
 
 
 
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/alumniMainPageViewPager"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
 
         android:layout_height="0dp"

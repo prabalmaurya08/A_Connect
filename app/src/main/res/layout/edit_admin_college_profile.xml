@@ -88,7 +88,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/edit_collage_mail_address"
+        android:id="@+id/alumni_Headline"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
@@ -112,7 +112,7 @@
         android:fontFamily="@font/sf_pro_display"
         android:textStyle="bold"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/edit_collage_mail_address"
+        app:layout_constraintTop_toBottomOf="@id/alumni_Headline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
