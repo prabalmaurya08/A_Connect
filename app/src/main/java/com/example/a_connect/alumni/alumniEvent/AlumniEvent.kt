@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.a_connect.databinding.FragmentAlumniEventBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
-class AluminiEvent : Fragment() {
+class AlumniEvent : Fragment() {
 
     private var _binding: FragmentAlumniEventBinding? = null
     private val binding get() = _binding!!

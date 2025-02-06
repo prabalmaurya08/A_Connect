@@ -3,7 +3,6 @@ package com.example.a_connect.alumni.alumniProfile
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.a_connect.alumni.alumniChat.AluminiChat
 
 
 class AlumniProfileViewPagerAdapter (fragment: FragmentActivity) : FragmentStateAdapter(fragment) {
