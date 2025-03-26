@@ -9,12 +9,15 @@ data class AlumniPostDataClass(
     val likes: List<String> = emptyList(),
     val comments: List<Comment> = emptyList()
 )
-//data class AlumniJobDataClass (
-//
-//    //  val comments: List<Comment> = emptyList()
-//)
+
 data class Comment(
-    val userId: String = "",
-    val comment: String = "",
-    val timestamp: Long = System.currentTimeMillis()
-)
+    val userId: String,
+    val text: String,
+    val createdAt: Long
+) {
+    fun toMap(): Map<String, Any> = mapOf(
+        "userId" to userId,
+        "text" to text,
+        "createdAt" to createdAt
+    )
+}

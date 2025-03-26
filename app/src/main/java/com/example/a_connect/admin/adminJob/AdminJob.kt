@@ -36,7 +36,7 @@ class AdminJob : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAdminJobBinding.inflate(inflater, container, false)
 
         // Set click listener on Create Job button

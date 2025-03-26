@@ -3,7 +3,7 @@ package com.example.a_connect.login.mvvm
 
 import com.example.a_connect.SharedPreferencesHelper
 import com.google.firebase.firestore.FirebaseFirestore
-
+import java.util.Locale
 
 
 class LoginRepository {
@@ -29,9 +29,12 @@ class LoginRepository {
             .addOnSuccessListener { document ->
                 if (document.exists()) {
                     val dbGraduationYear = document.getLong("graduationYear")?.toInt()
-                    val dbCollegeName = document.getString("collegeName")?.toLowerCase() // Convert stored college name to lowercase
+                    val dbCollegeName =
+                        document.getString("collegeName")?.lowercase(Locale.getDefault()) // Convert stored college name to lowercase
 
-                    if (dbGraduationYear == graduationYear && dbCollegeName == collegeName.toLowerCase()) {
+                    if (dbGraduationYear == graduationYear && dbCollegeName == collegeName.lowercase(
+                            Locale.getDefault()
+                        )) {
 
                         // Convert input to lowercase
 
@@ -71,9 +74,13 @@ class LoginRepository {
             .addOnSuccessListener { document ->
                 if (document.exists()) {
                     val dbGraduationYear = document.getLong("graduationYear")?.toInt()
-                    val dbCollegeName = document.getString("collegeName")?.toLowerCase() // Convert stored college name to lowercase
+                    val dbCollegeName =
+                        document.getString("collegeName")?.lowercase(Locale.ROOT) // Convert stored college name to lowercase
 
-                    if (dbGraduationYear == graduationYear && dbCollegeName == collegeName.toLowerCase()) { // Convert input to lowercase
+                    if (dbGraduationYear == graduationYear && dbCollegeName == collegeName.lowercase(
+                            Locale.ROOT
+                        )
+                    ) { // Convert input to lowercase
                         callback(true, null) // Authentication successful
                     } else {
                         callback(false, "Graduation Year or College Name does not match.")

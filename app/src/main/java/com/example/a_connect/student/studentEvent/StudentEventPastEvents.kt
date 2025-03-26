@@ -17,15 +17,10 @@ class StudentEventPastEvents : Fragment() {
     private val binding get() = _binding!!
     private lateinit var eventadaptor: StudentEventRecyclerAdaptor
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding =  FragmentStudentEventPastEventsBinding.inflate(inflater, container, false)
         setuprecyclerview()
         return binding.root

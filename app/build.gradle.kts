@@ -4,9 +4,9 @@ plugins {
     alias(libs.plugins.google.gms.google.services)
     id("com.google.devtools.ksp")
     id ("androidx.navigation.safeargs.kotlin")
-
-
 }
+
+
 
 android {
     namespace = "com.example.a_connect"
@@ -35,11 +35,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
         buildConfig = true
@@ -88,12 +88,16 @@ dependencies {
 
     //Lottie Animation
     implementation (libs.lottie)
+    implementation ("com.google.firebase:firebase-firestore-ktx:24.7.1")
 
 
 
 // Add the dependency for the Vertex AI in Firebase library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation(libs.firebase.vertexai)
+
+    implementation ("androidx.paging:paging-runtime-ktx:3.1.1")
+
 
 }
 
