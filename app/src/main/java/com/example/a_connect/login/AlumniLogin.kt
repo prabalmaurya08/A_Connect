@@ -50,7 +50,7 @@ class AlumniLogin : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAlumniLoginBinding.inflate(layoutInflater)
 
         // Initialize Spinners and ProgressBar

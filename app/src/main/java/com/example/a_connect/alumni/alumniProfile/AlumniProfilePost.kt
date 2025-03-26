@@ -26,7 +26,7 @@ class AlumniProfilePost : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentAlumniProfilePostBinding.inflate(inflater, container, false)
         profileViewModel = ViewModelProvider(this)[AlumniPostViewmodel::class.java]
@@ -53,7 +53,7 @@ class AlumniProfilePost : Fragment() {
         }
 
         profileViewModel.loadUserPosts(currentUserEmail)
-        return binding.root;
+        return binding.root
     }
     override fun onResume() {
         super.onResume()

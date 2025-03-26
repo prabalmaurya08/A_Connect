@@ -26,7 +26,7 @@ class AlumniPost : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentAlumniPostBinding.inflate(inflater, container, false)
         postViewModel = ViewModelProvider(this)[AlumniPostViewmodel::class.java]
@@ -36,7 +36,10 @@ class AlumniPost : Fragment() {
 
         // Observing image URI
         postViewModel.imageUri.observe(viewLifecycleOwner) { uri ->
-            uri?.let { binding.previewImage.setImageURI(it) }
+            uri?.let {
+                binding.previewImage.setImageURI(it)
+                binding.previewImage.visibility=View.VISIBLE
+            }
         }
 
         // Observing post creation status

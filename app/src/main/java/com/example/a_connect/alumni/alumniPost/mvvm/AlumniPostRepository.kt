@@ -28,7 +28,7 @@ class AlumniPostRepository {
         }
 
         val postId = firestore.collection("Post").document().id
-        val postWithId = post.copy(createdBy = currentUserEmail)
+        val postWithId = post.copy(postId = postId, createdBy = currentUserEmail)
 
         // Save post to Firestore
         firestore.collection("Post").document(postId).set(postWithId)

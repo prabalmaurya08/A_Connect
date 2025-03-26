@@ -19,7 +19,7 @@ class AlumniEventUpcomingEvents : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAlumniEventUpcomingEventsBinding.inflate(inflater, container, false)
 setuprecyclerview()
         return binding.root

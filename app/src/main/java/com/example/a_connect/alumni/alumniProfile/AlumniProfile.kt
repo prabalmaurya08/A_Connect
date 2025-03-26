@@ -52,7 +52,7 @@ class AlumniProfile : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding=FragmentAlumniProfileBinding.inflate(inflater,container,false)
         profileViewModel = ViewModelProvider(this)[AlumniPostViewmodel::class.java]

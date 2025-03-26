@@ -27,8 +27,15 @@
         android:paddingBottom="5dp"
         android:paddingRight="10dp"
         />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/deleteAll"/>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_new_button"
+        android:id="@+id/goToAddNews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"

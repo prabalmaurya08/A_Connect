@@ -59,7 +59,7 @@ class AlumniHomePage : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAlumniHomePageBinding.inflate(inflater, container, false)
 
         // Request permissions before starting voice input
