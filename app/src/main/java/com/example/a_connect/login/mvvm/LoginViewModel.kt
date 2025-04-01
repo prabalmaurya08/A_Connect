@@ -8,11 +8,12 @@ class LoginViewModel:ViewModel() {
     private val repository = LoginRepository()
 
     private val _alumniLoginResult = MutableLiveData<Pair<Boolean, String?>>()
+
     val alumniLoginResult: LiveData<Pair<Boolean, String?>> = _alumniLoginResult
 
 
     private val _studentLoginResult = MutableLiveData<Pair<Boolean, String?>>()
-    val studentLoginResult: LiveData<Pair<Boolean, String?>> = _alumniLoginResult
+    val studentLoginResult: LiveData<Pair<Boolean, String?>> = _studentLoginResult
 
     fun alumniLogin(email: String, graduationYear: Int, collegeName: String) {
         repository.alumniLogin(email, graduationYear, collegeName) { success, message ->

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -15,16 +16,27 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.a_connect.R
+import com.example.a_connect.SharedPreferencesHelper
+import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileRepository
+import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileViewModel
+import com.example.a_connect.admin.adminCollegeProfile.mvvm.EditProfileViewModelFactory
+import com.example.a_connect.alumni.alumniHome.mvvm.AlumniHomeViewModel
 import com.example.a_connect.databinding.FragmentAlumniHomePageBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class AlumniHomePage : Fragment() {
 
     private var _binding: FragmentAlumniHomePageBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var alumniHomeViewModel: AlumniHomeViewModel
 
 
     private var listener: OnItemClickedInsideViewPager? = null
@@ -61,13 +73,19 @@ class AlumniHomePage : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAlumniHomePageBinding.inflate(inflater, container, false)
+        alumniHomeViewModel = ViewModelProvider(this)[AlumniHomeViewModel::class.java]
+
+
 
         // Request permissions before starting voice input
         checkPermissions()
+        binding.userName.text="Hi ,"+SharedPreferencesHelper.getCurrentUserName()
 
         // Set up UI elements and actions
         drawerSetUp()
         setupFAB()
+
+        loadImage()
 
 
         // Handle Search Bar click
@@ -76,6 +94,28 @@ class AlumniHomePage : Fragment() {
         }
 
         return binding.root
+    }
+    private fun loadImage(){
+        val collegeId = "collegeId123"
+
+        // Fetch the image URL when the fragment is created
+        alumniHomeViewModel.fetchImageUrl(collegeId)
+
+        // Observe the imageUrl LiveData and load the image into the ImageView
+        alumniHomeViewModel.imageUrl.observe(viewLifecycleOwner) { imageUrl ->
+            Log.d("AlumniHomePage", "Image URL: $imageUrl")
+
+            if (!imageUrl.isNullOrEmpty()) {
+                Glide.with(this)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.alumni_job_detail_bg)  // Placeholder while loading
+                    .error(R.drawable.alumni_job_detail_bg)      // Error image if loading fails
+                    .into(binding.alumniHomePageCollegeImage)   // Your ImageView
+            } else {
+                // Set default image if no image URL is available
+                binding.alumniHomePageCollegeImage.setImageResource(R.drawable.alumni_job_detail_bg)
+            }
+        }
     }
 
     private fun checkPermissions() {

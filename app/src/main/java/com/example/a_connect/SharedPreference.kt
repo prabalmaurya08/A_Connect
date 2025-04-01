@@ -21,10 +21,18 @@ object SharedPreferencesHelper {
         editor.putString("current_user_email", email)
         editor.apply()
     }
+    fun saveCurrentUserName(name: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString("current_user_name", name)
+        editor.apply()
+    }
 
     // Retrieve current user's email
     fun getCurrentUserEmail(): String? {
         return sharedPreferences.getString("current_user_email", null)
+    }
+    fun getCurrentUserName(): String? {
+        return sharedPreferences.getString("current_user_name", null)
     }
 
     // Clear user data (logout)

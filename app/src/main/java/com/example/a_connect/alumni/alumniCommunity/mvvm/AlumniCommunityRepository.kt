@@ -19,24 +19,6 @@ class AlumniCommunityRepository {
     private val db = Firebase.firestore
     private val postCollection = db.collection("Post")
 
-    // Fetch posts as a Flow (real-time updates)
-    fun getPosts(): Flow<List<AlumniPostDataClass>> = callbackFlow {
-        val listener = postCollection.orderBy("createdAt", Query.Direction.DESCENDING)
-            .addSnapshotListener { value, error ->
-                if (error != null) {
-                    close(error)
-                    return@addSnapshotListener
-                }
-                val posts = value?.documents?.mapNotNull { doc ->
-                    val post = doc.toObject(AlumniPostDataClass::class.java)
-                    post?.copy(
-                        postId = doc.id,
-                        createdBy = post.createdBy.ifEmpty { "Unknown" }) // Ensure createdBy is set
-                } ?: emptyList()
-                trySend(posts)
-            }
-        awaitClose { listener.remove() }
-    }
     fun getPagedPosts(): Flow<PagingData<AlumniPostDataClass>> {
         return Pager(
             config = PagingConfig(pageSize = 10, enablePlaceholders = false),

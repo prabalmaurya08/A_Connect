@@ -150,7 +150,15 @@
         android:id="@+id/studentMainPage"
         android:name="com.example.a_connect.student.studentMainPage.StudentMainPage"
         android:label="fragment_student_main_page"
-        tools:layout="@layout/fragment_student_main_page" />
+        tools:layout="@layout/fragment_student_main_page" >
+        <action
+            android:id="@+id/action_studentMainPage_to_studentJobDetail"
+            app:destination="@id/studentJobDetail" >
+            <argument
+                android:name="jobId"
+                app:argType="string" />
+        </action>
+    </fragment>
 
     <!-- Student Home Page Fragment -->
     <fragment
@@ -409,6 +417,15 @@
         tools:layout="@layout/fragment_admin_news_announcement_description" >
         <argument
             android:name="newsId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentJobDetail"
+        android:name="com.example.a_connect.student.studentJob.StudentJobDetail"
+        android:label="fragment_student_job_detail"
+        tools:layout="@layout/fragment_student_job_detail" >
+        <argument
+            android:name="jobId"
             app:argType="string" />
     </fragment>
 </navigation>
