@@ -88,7 +88,7 @@ dependencies {
 
     //Lottie Animation
     implementation (libs.lottie)
-    implementation ("com.google.firebase:firebase-firestore-ktx:24.7.1")
+    implementation (libs.firebase.firestore.ktx)
 
 
 
@@ -96,7 +96,7 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation(libs.firebase.vertexai)
 
-    implementation ("androidx.paging:paging-runtime-ktx:3.1.1")
+    implementation (libs.androidx.paging.runtime.ktx)
 
 
 }

@@ -3,10 +3,11 @@ package com.example.a_connect.alumni.alumniPost.mvvm
 data class AlumniPostDataClass(
     val postId: String = "",
     val createdBy: String = "",
+    val name: String = "",
     val description: String = "",
     val media: List<String> = emptyList(),
     val createdAt: Long = System.currentTimeMillis(),
-    val likes: List<String> = emptyList(),
+    var likes: List<String> = emptyList(),
     val comments: List<Comment> = emptyList()
 )
 

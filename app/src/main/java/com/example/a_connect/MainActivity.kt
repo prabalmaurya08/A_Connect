@@ -24,9 +24,11 @@ import com.example.a_connect.alumni.alumniProfile.AlumniProfile
 import com.example.a_connect.databinding.ActivityMainBinding
 import com.example.a_connect.login.AlumniLogin
 import com.example.a_connect.login.StudentLogin
+import com.example.a_connect.student.studentJob.StudentJob
+import com.example.a_connect.student.studentMainPage.StudentMainPageDirections
 
 class MainActivity : AppCompatActivity() , AlumniHomePage.OnItemClickedInsideViewPager, AlumniLogin.OnAlumniScreenClicked,StudentLogin.OnStudentScreenClicked,OngoingJob.OnAdminJobClickListener
-,ExpiredJob.OnJobClickListener,AdminNewsAnnouncement.OnAdminNewsClicked,AdminCollegeProfile.OnGoToEditProfileClickListener, AlumniJob.OnAlumniJobClickListener,AlumniProfile.OnAlumniProfileItemClicked,AdminJob.OnGoToCreateJobClickListener,AlumniHomePage.VoiceInputListener{
+,ExpiredJob.OnJobClickListener,AdminNewsAnnouncement.OnAdminNewsClicked,AdminCollegeProfile.OnGoToEditProfileClickListener, AlumniJob.OnAlumniJobClickListener,StudentJob.OnStudentJobClickListener,AlumniProfile.OnAlumniProfileItemClicked,AdminJob.OnGoToCreateJobClickListener,AlumniHomePage.VoiceInputListener{
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -147,6 +149,11 @@ class MainActivity : AppCompatActivity() , AlumniHomePage.OnItemClickedInsideVie
 
     override fun onAdminNewsClicked(newsId:String) {
         val action = AdminMainPageDirections.actionAdminMainPageToAdminNewsAnnouncementDescription(newsId)
+        findNavController(R.id.fragment).navigate(action)
+    }
+
+    override fun onStudentJobClicked(jobId: String) {
+        val action = StudentMainPageDirections.actionStudentMainPageToStudentJobDetail(jobId)
         findNavController(R.id.fragment).navigate(action)
     }
 }

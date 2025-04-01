@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a_connect.R
+import com.example.a_connect.SharedPreferencesHelper
 import com.example.a_connect.alumni.alumniCommunity.mvvm.AlumniCommunityRepository
 import com.example.a_connect.alumni.alumniCommunity.mvvm.AlumniCommunityViewModel
 import com.example.a_connect.alumni.alumniCommunity.mvvm.AlumniCommunityViewModelFactory
@@ -25,6 +26,7 @@ class AlumniCommunityPage : Fragment() {
     }
 
     private lateinit var postAdapter: AlumniPostAdapter
+    private val userId = SharedPreferencesHelper.getCurrentUserEmail()
 
 
     override fun onCreateView(
@@ -38,31 +40,47 @@ class AlumniCommunityPage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         postAdapter = AlumniPostAdapter(
-            onLikeClick = { postId -> viewModel.likePost(postId, "USER_ID") },
+            onLikeClick = { postId ->
+                if (userId != null) {
+                    viewModel.likePost(postId, userId)
+                }
+            },
             onCommentClick = { postId -> openCommentDialog(postId) }
         )
 
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = postAdapter
-            itemAnimator = null // ✅ Prevent flickering issues
+            itemAnimator = null // Prevent flickering issues
         }
 
-        // ✅ Observe and submit data to adapter
+        // ✅ Setup Swipe-to-Refresh
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            postAdapter.refresh() // Reloads posts
+        }
+
+        // ✅ Observe paged posts
         lifecycleScope.launch {
             viewModel.pagedPosts.collectLatest { pagingData ->
                 postAdapter.submitData(pagingData)
+                binding.swipeRefreshLayout.isRefreshing = false // Stop refreshing
             }
         }
 
-        // ✅ Show empty state if no data
+        // ✅ Observe Like Updates and refresh UI
         lifecycleScope.launch {
-            postAdapter.loadStateFlow.collectLatest {
-                binding.emptyTextView.visibility = if (postAdapter.itemCount == 0) View.VISIBLE else View.GONE
+            viewModel.updatedPosts.collectLatest { updatedPosts ->
+                postAdapter.snapshot().items.forEachIndexed { index, post ->
+                    updatedPosts[post.postId]?.let {
+                        postAdapter.notifyItemChanged(index)
+                    }
+                }
             }
         }
     }
+
 
     private fun openCommentDialog(postId: String) {
         // Handle opening a comment dialog
