@@ -98,6 +98,10 @@ dependencies {
 
     implementation (libs.androidx.paging.runtime.ktx)
 
+        implementation(libs.play.services.maps) // Use the latest version
+        implementation(libs.play.services.location) // use the latest version
+
+
 
 }
 
