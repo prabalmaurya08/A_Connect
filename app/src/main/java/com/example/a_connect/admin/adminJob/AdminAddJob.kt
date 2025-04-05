@@ -62,7 +62,7 @@ class AdminAddJob : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment using DataBindingUtil and the generated class
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_add_job, container, false)
         binding.viewModel = viewModel

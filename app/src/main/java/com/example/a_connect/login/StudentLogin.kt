@@ -27,6 +27,9 @@ class StudentLogin : Fragment() {
         EditProfileViewModelFactory(repository)
     }
 
+
+
+
     private val loginViewModel: LoginViewModel by viewModels()
     private lateinit var graduationYearsSpinner: Spinner
     private lateinit var collegeNamesSpinner: Spinner
@@ -49,7 +52,7 @@ class StudentLogin : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding=FragmentStudentLoginBinding.inflate(layoutInflater)
 

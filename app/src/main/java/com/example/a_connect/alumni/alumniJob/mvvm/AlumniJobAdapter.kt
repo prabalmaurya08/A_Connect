@@ -23,7 +23,7 @@ import java.util.Locale
 
 class AlumniJobAdapter  ( private val onJobClick: (AlumniJobDataClass) -> Unit,
 private val onApply: (AlumniJobDataClass) -> Unit
-) : ListAdapter<AlumniJobDataClass,AlumniJobAdapter.JobViewHolder>(AlumniJobAdapter.JobDiffCallback()) {
+) : ListAdapter<AlumniJobDataClass,AlumniJobAdapter.JobViewHolder>(JobDiffCallback()) {
 
     inner class JobViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

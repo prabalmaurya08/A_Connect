@@ -225,24 +225,6 @@ class VoiceInputBottomSheetFragment : BottomSheetDialogFragment() {
         }
     }
 
-    // ✅ Send User Message to Vertex AI
-    private fun generateChatResponse(userMessage: String) {
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                val response = generativeModel.generateContentStream(userMessage)
-
-                response.collect { content ->
-                    val botReply = content.text ?: "No response from bot"
-                    addMessage(botReply, false) // Show bot's reply in UI
-                    speakBotResponse(botReply)  // Speak the bot's reply
-                }
-
-            } catch (e: Exception) {
-                e.printStackTrace()
-                addMessage("Error: ${e.message}", false)
-            }
-        }
-    }
 
     // ✅ Add Message to Chat RecyclerView
     private fun addMessage(message: String, isUserMessage: Boolean) {

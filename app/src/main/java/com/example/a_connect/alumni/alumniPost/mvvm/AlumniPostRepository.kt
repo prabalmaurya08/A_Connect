@@ -20,6 +20,7 @@ class AlumniPostRepository {
 
     fun createPost(post: AlumniPostDataClass, callback: (Boolean, String?) -> Unit) {
         val currentUserEmail = SharedPreferencesHelper.getCurrentUserEmail()
+        val userName = SharedPreferencesHelper.getCurrentUserName()
 
         // Ensure the user is logged in
         if (currentUserEmail == null) {
@@ -28,24 +29,27 @@ class AlumniPostRepository {
         }
 
         val postId = firestore.collection("Post").document().id
-        val postWithId = post.copy(createdBy = currentUserEmail)
+        val postWithId =
+            userName?.let { post.copy(postId = postId, createdBy = currentUserEmail, name = it) }
 
         // Save post to Firestore
-        firestore.collection("Post").document(postId).set(postWithId)
-            .addOnSuccessListener {
-                // Update the user's alumni document
-                val alumniRef = firestore.collection("Alumni").document(currentUserEmail)
-                alumniRef.update("posts", FieldValue.arrayUnion(postId))
-                    .addOnSuccessListener {
-                        callback(true, null) // Success
-                    }
-                    .addOnFailureListener { exception ->
-                        callback(false, exception.message) // Error updating user data
-                    }
-            }
-            .addOnFailureListener { exception ->
-                callback(false, exception.message) // Error saving post
-            }
+        if (postWithId != null) {
+            firestore.collection("Post").document(postId).set(postWithId)
+                .addOnSuccessListener {
+                    // Update the user's alumni document
+                    val alumniRef = firestore.collection("Alumni").document(currentUserEmail)
+                    alumniRef.update("posts", FieldValue.arrayUnion(postId))
+                        .addOnSuccessListener {
+                            callback(true, null) // Success
+                        }
+                        .addOnFailureListener { exception ->
+                            callback(false, exception.message) // Error updating user data
+                        }
+                }
+                .addOnFailureListener { exception ->
+                    callback(false, exception.message) // Error saving post
+                }
+        }
     }
 
     private val storage = FirebaseStorage.getInstance()
@@ -121,23 +125,5 @@ class AlumniPostRepository {
 
 
 
-    fun likePost(postId: String, userEmail: String): Task<Void> {
-        val postRef = firestore.collection("Post").document(postId)
-        return firestore.runTransaction { transaction ->
-            val snapshot = transaction.get(postRef)
-            val likes = snapshot.get("likes") as? MutableList<String> ?: mutableListOf()
-            if (likes.contains(userEmail)) {
-                likes.remove(userEmail)
-            } else {
-                likes.add(userEmail)
-            }
-            transaction.update(postRef, "likes", likes)
-            null
-        }
-    }
 
-    fun addComment(postId: String, comment: Comment): Task<Void> {
-        val postRef = firestore.collection("Post").document(postId)
-        return postRef.update("comments", FieldValue.arrayUnion(comment))
-    }
 }

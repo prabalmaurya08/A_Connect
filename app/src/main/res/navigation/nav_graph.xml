@@ -27,7 +27,7 @@
         tools:layout="@layout/fragment_student_login" />
     <fragment
         android:id="@+id/aluminiMainPage"
-        android:name="com.example.a_connect.alumni.alumniMainPage.AluminiMainPage"
+        android:name="com.example.a_connect.alumni.alumniMainPage.AlumniMainPage"
         android:label="fragment_alumini_main_page"
         tools:layout="@layout/fragment_alumni_main_page" >
         <action
@@ -52,7 +52,7 @@
     </fragment>
     <fragment
         android:id="@+id/aluminiChat"
-        android:name="com.example.a_connect.alumni.alumniChat.AluminiChat"
+        android:name="com.example.a_connect.alumni.alumniChat.AlumniChat"
         android:label="fragment_alumini_chat"
         tools:layout="@layout/fragment_alumni_chat" />
     <fragment
@@ -88,7 +88,7 @@
     <!-- Alumni Community Page Fragment -->
     <fragment
         android:id="@+id/aluminiCommunityPage"
-        android:name="com.example.a_connect.alumni.alumniCommunity.AluminiCommunityPage"
+        android:name="com.example.a_connect.alumni.alumniCommunity.AlumniCommunityPage"
         android:label="fragment_alumni_community_page"
         tools:layout="@layout/fragment_alumni_community_page" />
 
@@ -120,7 +120,7 @@
     <!-- Alumni Event Fragment -->
     <fragment
         android:id="@+id/aluminiEvent"
-        android:name="com.example.a_connect.alumni.alumniEvent.AluminiEvent"
+        android:name="com.example.a_connect.alumni.alumniEvent.AlumniEvent"
         android:label="fragment_alumni_event"
         tools:layout="@layout/fragment_alumni_event" />
 
@@ -150,7 +150,15 @@
         android:id="@+id/studentMainPage"
         android:name="com.example.a_connect.student.studentMainPage.StudentMainPage"
         android:label="fragment_student_main_page"
-        tools:layout="@layout/fragment_student_main_page" />
+        tools:layout="@layout/fragment_student_main_page" >
+        <action
+            android:id="@+id/action_studentMainPage_to_studentJobDetail"
+            app:destination="@id/studentJobDetail" >
+            <argument
+                android:name="jobId"
+                app:argType="string" />
+        </action>
+    </fragment>
 
     <!-- Student Home Page Fragment -->
     <fragment
@@ -199,6 +207,41 @@
                 android:name="jobId"
                 app:argType="string" />
         </action>
+        <action
+            android:id="@+id/action_adminMainPage_to_adminDonation"
+            app:destination="@id/adminDonation"
+            app:popUpTo="@id/adminMainPage"
+            app:popUpToInclusive="false"/>
+        <action
+            android:id="@+id/action_adminMainPage_to_adminReport"
+            app:destination="@id/adminReport"
+            app:popUpTo="@id/adminMainPage"
+            app:popUpToInclusive="false"/>
+        <action
+            android:id="@+id/action_adminMainPage_to_adminFeedback"
+            app:destination="@id/adminFeedback"
+            app:popUpTo="@id/adminMainPage"
+            app:popUpToInclusive="false"/>
+        <action
+            android:id="@+id/action_adminMainPage_to_adminExplore"
+            app:destination="@id/adminExplore"
+            app:popUpTo="@id/adminMainPage"
+            app:popUpToInclusive="false"/>
+        <action
+            android:id="@+id/action_adminMainPage_to_adminAboutUS"
+            app:destination="@id/adminAboutUS"
+            app:popUpTo="@id/adminMainPage"
+            app:popUpToInclusive="false"/>
+        <action
+            android:id="@+id/action_adminMainPage_to_adminAddNewsAnnouncement"
+            app:destination="@id/adminAddNewsAnnouncement" />
+        <action
+            android:id="@+id/action_adminMainPage_to_adminNewsAnnouncementDescription"
+            app:destination="@id/adminNewsAnnouncementDescription" >
+            <argument
+                android:name="newsId"
+                app:argType="string" />
+        </action>
     </fragment>
 
     <!-- Admin College Profile Fragment -->
@@ -225,7 +268,14 @@
         android:id="@+id/adminNewsAnnouncement"
         android:name="com.example.a_connect.admin.adminNews.AdminNewsAnnouncement"
         android:label="fragment_admin_news_announcement"
-        tools:layout="@layout/fragment_admin_news_announcement" />
+        tools:layout="@layout/fragment_admin_news_announcement" >
+        <action
+            android:id="@+id/action_adminNewsAnnouncement_to_adminAddNewsAnnouncement"
+            app:destination="@id/adminAddNewsAnnouncement" />
+        <action
+            android:id="@+id/action_adminNewsAnnouncement_to_adminNewsAnnouncementDescription"
+            app:destination="@id/adminNewsAnnouncementDescription" />
+    </fragment>
 
     <!-- Admin Job Fragment -->
     <fragment
@@ -251,6 +301,39 @@
         android:name="com.example.a_connect.admin.adminCollegeProfile.AdminEditProfile"
         tools:layout="@layout/fragment_admin_edit_profile"
         android:label="AdminEditProfile" />
+
+    <fragment
+        android:id="@+id/adminEventCreateEvent"
+        android:name="com.example.a_connect.admin.adminEvent.AdminEventCreateEvent"
+        android:label="fragment_admin_event_create_event"
+        tools:layout="@layout/fragment_admin_event_create_event" />
+    <fragment
+        android:id="@+id/alumniEventDetails"
+        android:name="com.example.a_connect.alumni.alumniEvent.AlumniEventDetails"
+        android:label="fragment_alumni_event_details"
+        tools:layout="@layout/fragment_alumni_event_details" />
+    <fragment
+        android:id="@+id/alumniEventPastEvents"
+        android:name="com.example.a_connect.alumni.alumniEvent.AlumniEventPastEvents"
+        android:label="fragment_alumni_event_past_event"
+        tools:layout="@layout/fragment_alumni_event_past_event" />
+    <fragment
+        android:id="@+id/alumniEventUpcomingEvents"
+        android:name="com.example.a_connect.alumni.alumniEvent.AlumniEventUpcomingEvents"
+        android:label="fragment_alumni_event_upcoming_events"
+        tools:layout="@layout/fragment_alumni_event_upcoming_events" />
+    <fragment
+        android:id="@+id/studentEventDetails"
+        android:name="com.example.a_connect.student.studentEvent.StudentEventDetails"
+        android:label="fragment_student_event_details"
+        tools:layout="@layout/fragment_student_event_details" />
+    <fragment
+        android:id="@+id/studentEventPastEvents"
+        android:name="com.example.a_connect.student.studentEvent.StudentEventPastEvents"
+        android:label="fragment_student_event_past_events"
+        tools:layout="@layout/fragment_student_event_past_events" />
+
+
 
     <!-- Admin Add Job Fragment -->
     <fragment
@@ -285,4 +368,65 @@
         android:name="com.example.a_connect.alumni.alumniHome.search.AlumniSearchScreen"
         android:label="fragment_alumni_search_screen"
         tools:layout="@layout/fragment_alumni_search_screen" />
+    <fragment
+        android:id="@+id/adminAboutUS"
+        android:name="com.example.a_connect.admin.adminAboutUs.AdminAboutUS"
+        android:label="fragment_admin_about_u_s"
+        tools:layout="@layout/fragment_admin_about_u_s" />
+    <fragment
+        android:id="@+id/adminDonation"
+        android:name="com.example.a_connect.admin.adminDonation.AdminDonation"
+        android:label="fragment_admin_donation"
+        tools:layout="@layout/fragment_admin_donation" >
+        <action
+            android:id="@+id/action_adminDonation_to_adminMainPage"
+            app:destination="@id/adminMainPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminExplore"
+        android:name="com.example.a_connect.admin.adminExplore.AdminExplore"
+        android:label="fragment_admin_explore"
+        tools:layout="@layout/fragment_admin_explore" />
+    <fragment
+        android:id="@+id/adminFeedback"
+        android:name="com.example.a_connect.admin.adminAboutUs.AdminFeedback"
+        android:label="fragment_admin_feedback"
+        tools:layout="@layout/fragment_admin_feedback" >
+        <action
+            android:id="@+id/action_adminFeedback_to_adminMainPage"
+            app:destination="@id/adminMainPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminReport"
+        android:name="com.example.a_connect.admin.adminAboutUs.AdminReport"
+        android:label="fragment_admin_report"
+        tools:layout="@layout/fragment_admin_report" >
+        <action
+            android:id="@+id/action_adminReport_to_adminMainPage"
+            app:destination="@id/adminMainPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminAddNewsAnnouncement"
+        android:name="com.example.a_connect.admin.adminNews.AdminAddNewsAnnouncement"
+        android:label="fragment_admin_add_news_announcement"
+        tools:layout="@layout/fragment_admin_add_news_announcement" />
+    <fragment
+        android:id="@+id/adminNewsAnnouncementDescription"
+        android:name="com.example.a_connect.admin.adminNews.AdminNewsAnnouncementDescription"
+        android:label="fragment_admin_news_announcement_description"
+        tools:layout="@layout/fragment_admin_news_announcement_description" >
+        <argument
+            android:name="newsId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentJobDetail"
+        android:name="com.example.a_connect.student.studentJob.StudentJobDetail"
+        android:label="fragment_student_job_detail"
+        tools:layout="@layout/fragment_student_job_detail" >
+        <argument
+            android:name="jobId"
+            app:argType="string" />
+    </fragment>
 </navigation>
+

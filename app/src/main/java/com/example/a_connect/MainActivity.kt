@@ -1,8 +1,5 @@
 package com.example.a_connect
-
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -11,23 +8,27 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+
 import com.example.a_connect.admin.adminCollegeProfile.AdminCollegeProfile
 import com.example.a_connect.admin.adminJob.AdminJob
 import com.example.a_connect.admin.adminJob.ExpiredJob
 import com.example.a_connect.admin.adminJob.OngoingJob
 import com.example.a_connect.admin.adminMainPage.AdminMainPageDirections
+import com.example.a_connect.admin.adminNews.AdminNewsAnnouncement
 
 import com.example.a_connect.alumni.alumniHome.AlumniHomePage
 import com.example.a_connect.alumni.alumniJob.AlumniJob
 
-import com.example.a_connect.alumni.alumniMainPage.AluminiMainPageDirections
+import com.example.a_connect.alumni.alumniMainPage.AlumniMainPageDirections
 import com.example.a_connect.alumni.alumniProfile.AlumniProfile
 import com.example.a_connect.databinding.ActivityMainBinding
 import com.example.a_connect.login.AlumniLogin
 import com.example.a_connect.login.StudentLogin
+import com.example.a_connect.student.studentJob.StudentJob
+import com.example.a_connect.student.studentMainPage.StudentMainPageDirections
 
 class MainActivity : AppCompatActivity() , AlumniHomePage.OnItemClickedInsideViewPager, AlumniLogin.OnAlumniScreenClicked,StudentLogin.OnStudentScreenClicked,OngoingJob.OnAdminJobClickListener
-,ExpiredJob.OnJobClickListener,AdminCollegeProfile.OnGoToEditProfileClickListener, AlumniJob.OnAlumniJobClickListener,AlumniProfile.OnAlumniProfileItemClicked,AdminJob.OnGoToCreateJobClickListener,AlumniHomePage.VoiceInputListener{
+,ExpiredJob.OnJobClickListener,AdminNewsAnnouncement.OnAdminNewsClicked,AdminCollegeProfile.OnGoToEditProfileClickListener, AlumniJob.OnAlumniJobClickListener,StudentJob.OnStudentJobClickListener,AlumniProfile.OnAlumniProfileItemClicked,AdminJob.OnGoToCreateJobClickListener,AlumniHomePage.VoiceInputListener{
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -99,7 +100,7 @@ class MainActivity : AppCompatActivity() , AlumniHomePage.OnItemClickedInsideVie
     }
 
     override fun onAlumniJobClicked(jobId: String) {
-        val action = AluminiMainPageDirections.actionAluminiMainPageToAlumniJobDetail(jobId)
+        val action = AlumniMainPageDirections.actionAluminiMainPageToAlumniJobDetail(jobId)
         findNavController(R.id.fragment).navigate(action)
     }
 
@@ -139,5 +140,20 @@ class MainActivity : AppCompatActivity() , AlumniHomePage.OnItemClickedInsideVie
     override fun onSearchCommandReceived() {
         findNavController(R.id.fragment).navigate(R.id.action_aluminiMainPage_to_alumniSearchScreen)
 
+    }
+
+    override fun onAddNewsClicked() {
+        findNavController(R.id.fragment).navigate(R.id.action_adminMainPage_to_adminAddNewsAnnouncement)
+
+    }
+
+    override fun onAdminNewsClicked(newsId:String) {
+        val action = AdminMainPageDirections.actionAdminMainPageToAdminNewsAnnouncementDescription(newsId)
+        findNavController(R.id.fragment).navigate(action)
+    }
+
+    override fun onStudentJobClicked(jobId: String) {
+        val action = StudentMainPageDirections.actionStudentMainPageToStudentJobDetail(jobId)
+        findNavController(R.id.fragment).navigate(action)
     }
 }

@@ -1,60 +1,151 @@
 package com.example.a_connect.admin.adminNews
 
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.a_connect.R
+import com.example.a_connect.admin.adminNews.mvvm.NewsDataClass
+import com.example.a_connect.admin.adminNews.mvvm.NewsRepository
+import com.example.a_connect.admin.adminNews.mvvm.NewsViewModel
+import com.example.a_connect.admin.adminNews.mvvm.NewsViewModelFactory
+import com.example.a_connect.databinding.FragmentAdminAddNewsAnnouncementBinding
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [AdminAddNewsAnnouncement.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AdminAddNewsAnnouncement : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private var _binding: FragmentAdminAddNewsAnnouncementBinding? = null
+    private val binding get() = _binding!!
+
+    private val viewModel: NewsViewModel by viewModels {
+        NewsViewModelFactory(NewsRepository())
     }
+
+    private lateinit var headlineEditText: EditText
+    private lateinit var contentEditText: EditText
+    private lateinit var selectHeadlineImageBtn: FrameLayout
+    private lateinit var selectImageBtn: FrameLayout
+    private lateinit var addNewsBtn: FloatingActionButton
+   // private lateinit var progressBar: ProgressBar
+    private lateinit var headlineImageView: ImageView
+    private lateinit var imageView: ImageView
+
+    private var headlinePhotoUri: Uri? = null
+    private var photoUri: Uri? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin_add_news_announcement, container, false)
+    ): View {
+        _binding = FragmentAdminAddNewsAnnouncementBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        headlineEditText = view.findViewById(R.id.edit_news_heading)
+        contentEditText = view.findViewById(R.id.edit_news_description)
+        selectHeadlineImageBtn = view.findViewById(R.id.selectHeadlineImageBtn)
+        selectImageBtn = view.findViewById(R.id.selectImageBtn)
+        addNewsBtn = view.findViewById(R.id.add_new_button)
+      //  progressBar = view.findViewById(R.id.progressBar)
+        headlineImageView = view.findViewById(R.id.selected_headline_image)
+        imageView = view.findViewById(R.id.selected_image)
+
+        // Initially hide ImageViews
+        headlineImageView.visibility = View.GONE
+        imageView.visibility = View.GONE
+
+        selectHeadlineImageBtn.setOnClickListener { selectImage(HEADLINE_IMAGE_REQUEST_CODE) }
+        selectImageBtn.setOnClickListener { selectImage(IMAGE_REQUEST_CODE) }
+        addNewsBtn.setOnClickListener { addNews() }
+
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.loadingState.collect { isLoading ->
+                     //   progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+                    }
+                }
+                launch {
+                    viewModel.errorState.collect { error ->
+                        error?.let {
+                            Toast.makeText(requireContext(), "Error: $it", Toast.LENGTH_SHORT).show()
+                            viewModel.clearError()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun selectImage(requestCode: Int) {
+        val intent = Intent(Intent.ACTION_PICK).apply { type = "image/*" }
+        startActivityForResult(intent, requestCode)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            data?.data?.let { uri ->
+                when (requestCode) {
+                    HEADLINE_IMAGE_REQUEST_CODE -> {
+                        headlinePhotoUri = uri
+                        headlineImageView.setImageURI(uri)
+                        headlineImageView.visibility = View.VISIBLE  // Make visible after selection
+                        Toast.makeText(requireContext(), "Headline Image Selected", Toast.LENGTH_SHORT).show()
+                    }
+                    IMAGE_REQUEST_CODE -> {
+                        photoUri = uri
+                        imageView.setImageURI(uri)
+                        imageView.visibility = View.VISIBLE  // Make visible after selection
+                        Toast.makeText(requireContext(), "News Image Selected", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun addNews() {
+        val headline = headlineEditText.text.toString().trim()
+        val content = contentEditText.text.toString().trim()
+
+        if (headline.isBlank() || content.isBlank()) {
+            Toast.makeText(requireContext(), "Headline and Content are required", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val headlinePhotoBytes = headlinePhotoUri?.let { uriToByteArray(it) }
+        val photoBytes = photoUri?.let { uriToByteArray(it) }
+
+        val news = NewsDataClass(heading = headline, description = content)
+
+        Toast.makeText(requireContext(), "Saving News...", Toast.LENGTH_SHORT).show()
+        Log.d("AdminAddNews", "Saving News: $news")  // Debug Log
+
+        viewModel.saveNews(news, headlinePhotoBytes, photoBytes)
+    }
+
+    private fun uriToByteArray(uri: Uri): ByteArray {
+        return requireContext().contentResolver.openInputStream(uri)?.use { it.readBytes() } ?: ByteArray(0)
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AdminAddNewsAnnouncement.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AdminAddNewsAnnouncement().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        private const val HEADLINE_IMAGE_REQUEST_CODE = 1001
+        private const val IMAGE_REQUEST_CODE = 1002
     }
 }

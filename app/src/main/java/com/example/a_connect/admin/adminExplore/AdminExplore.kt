@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
+import androidx.navigation.fragment.findNavController
 import com.example.a_connect.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -35,6 +37,15 @@ class AdminExplore : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (findNavController().currentDestination?.id != R.id.adminMainPage) {
+                    findNavController().navigateUp()
+                } else {
+                    requireActivity().finish() // Exit app
+                }
+            }
+        })
         return inflater.inflate(R.layout.fragment_admin_explore, container, false)
     }
 
