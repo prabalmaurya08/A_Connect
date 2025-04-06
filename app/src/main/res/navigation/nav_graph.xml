@@ -27,7 +27,7 @@
         tools:layout="@layout/fragment_student_login" />
     <fragment
         android:id="@+id/aluminiMainPage"
-        android:name="com.example.a_connect.alumni.alumniMainPage.AlumniMainPage"
+        android:name="com.example.a_connect.alumni.alumniMainPage.AluminiMainPage"
         android:label="fragment_alumini_main_page"
         tools:layout="@layout/fragment_alumni_main_page" >
         <action

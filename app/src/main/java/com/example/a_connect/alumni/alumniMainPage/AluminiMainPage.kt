@@ -11,7 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.a_connect.R
-import com.example.a_connect.alumni.alumniCommunity.AluminiCommunityPage
+import com.example.a_connect.alumni.alumniCommunity.AlumniCommunityPage
 import com.example.a_connect.alumni.alumniJob.AlumniJob
 import com.example.a_connect.alumni.alumniPost.AlumniPost
 import com.example.a_connect.alumni.alumniProfile.AlumniProfile
@@ -133,7 +133,7 @@ class AluminiMainPage : Fragment() {
     private fun handleMenuClick(menuItem: MenuItem) {
         when (menuItem.itemId) {
             R.id.profile -> loadFragment(AlumniProfile())
-            R.id.community -> loadFragment(AluminiCommunityPage())
+            R.id.community -> loadFragment(AlumniCommunityPage())
             R.id.aluminiPost -> loadFragment(AlumniPost())
             R.id.alumniJob -> loadFragment(AlumniJob())
             R.id.logout -> logoutUser()
