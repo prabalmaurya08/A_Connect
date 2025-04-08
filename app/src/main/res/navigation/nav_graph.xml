@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_aluminiMainPage_to_alumniEditProfile"
             app:destination="@id/alumniEditProfile" />
+        <action
+            android:id="@+id/action_aluminiMainPage_to_alumniMap"
+            app:destination="@id/alumniMap" />
     </fragment>
     <fragment
         android:id="@+id/aluminiChat"
@@ -428,5 +431,10 @@
             android:name="jobId"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/alumniMap"
+        android:name="com.example.a_connect.alumni.alumniExplore.AlumniMap"
+        android:label="fragment_alumni_map"
+        tools:layout="@layout/fragment_alumni_map" />
 </navigation>
 

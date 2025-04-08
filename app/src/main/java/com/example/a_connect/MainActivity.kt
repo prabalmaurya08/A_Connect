@@ -63,10 +63,15 @@ class MainActivity : AppCompatActivity() , AlumniHomePage.OnItemClickedInsideVie
     override fun onChatButtonClicked() {
         findNavController(R.id.fragment).navigate(R.id.action_aluminiMainPage_to_aluminiChat)
 
+
     }
 
     override fun onNotificationButtonClicked() {
 
+    }
+
+    override fun onMapClick() {
+        findNavController(R.id.fragment).navigate(R.id.action_aluminiMainPage_to_alumniMap)
     }
 
     override fun onSearchClicked() {

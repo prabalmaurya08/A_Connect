@@ -16,6 +16,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.RequiresPermission
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -27,11 +28,22 @@ import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileViewMo
 import com.example.a_connect.admin.adminCollegeProfile.mvvm.EditProfileViewModelFactory
 import com.example.a_connect.alumni.alumniHome.mvvm.AlumniHomeViewModel
 import com.example.a_connect.databinding.FragmentAlumniHomePageBinding
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.firebase.firestore.FirebaseFirestore
 
 
-class AlumniHomePage : Fragment() {
+class AlumniHomePage : Fragment(), OnMapReadyCallback {
+
+    private lateinit var googleMap: GoogleMap
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     private var _binding: FragmentAlumniHomePageBinding? = null
     private val binding get() = _binding!!
@@ -48,6 +60,7 @@ class AlumniHomePage : Fragment() {
     interface OnItemClickedInsideViewPager {
         fun onChatButtonClicked()
         fun onNotificationButtonClicked()
+        fun onMapClick()
         fun onSearchClicked()
         fun onVoiceInputClicked()  // Add this method to handle the FAB click
     }
@@ -163,9 +176,40 @@ class AlumniHomePage : Fragment() {
         _binding = null
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        val mapFragment = childFragmentManager.findFragmentById(R.id.mapPreviewContainer) as? SupportMapFragment
+            ?: SupportMapFragment.newInstance().also {
+                childFragmentManager.beginTransaction().replace(R.id.mapPreviewContainer, it).commit()
+            }
 
+        mapFragment.getMapAsync(this)
 
+       binding.viewFullMap.setOnClickListener {
+          listener?.onMapClick()
+        }
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+    }
+
+    @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
+    override fun onMapReady(map: GoogleMap) {
+        googleMap = map
+        googleMap.uiSettings.isScrollGesturesEnabled = false
+        googleMap.uiSettings.isZoomGesturesEnabled = false
+        googleMap.uiSettings.isMapToolbarEnabled = false
+
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            if (location != null) {
+                val userLatLng = LatLng(location.latitude, location.longitude)
+                googleMap.addMarker(
+                    MarkerOptions().position(userLatLng).title("Your Location")
+                )
+                googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLatLng, 12f))
+            }
+        }
+    }
 
 
 }

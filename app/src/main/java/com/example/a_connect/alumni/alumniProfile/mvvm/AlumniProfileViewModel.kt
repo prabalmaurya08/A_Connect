@@ -19,9 +19,9 @@ class AlumniProfileViewModel(private val repository: AlumniProfileRepository) : 
     val bio = MutableLiveData<String>()
     val headline = MutableLiveData<String>()
     val industryName = MutableLiveData<String>()
-    val websiteLink = MutableLiveData<String>()
+    val websiteLink = MutableLiveData<String?>()
     val phoneNumber = MutableLiveData<String>()
-    val location = MutableLiveData<String>()
+
     val gender = MutableLiveData<String>()
     val degreeSpecialization = MutableLiveData<String>()
     val linkedinUrl = MutableLiveData<String>()
@@ -44,14 +44,13 @@ class AlumniProfileViewModel(private val repository: AlumniProfileRepository) : 
                 headline.postValue(it.headline)
                 industryName.postValue(it.industryName)
                 websiteLink.postValue(it.websiteLink)
-                phoneNumber.postValue(it.phoneNumber)
-                location.postValue(it.location)
+                phoneNumber.postValue(it.phoneNumber!!)
+              //  location.postValue(it.location)
                 gender.postValue(it.gender)
                 degreeSpecialization.postValue(it.degreeSpecialization)
-                linkedinUrl.postValue(it.linkedinUrl)
-                instagramUrl.postValue(it.instagramUrl)
-                gmailUrl.postValue(it.gmailUrl)
-                threadsUrl.postValue(it.threadsUrl)
+                linkedinUrl.postValue(it.linkedinUrl!!)
+                gmailUrl.postValue(it.gmailUrl!!)
+                threadsUrl.postValue(it.threadsUrl!!)
             }
 
             isLoading.value = false
@@ -81,7 +80,7 @@ class AlumniProfileViewModel(private val repository: AlumniProfileRepository) : 
                 profileData["industryName"] = industryName.value ?: it.industryName
                 profileData["websiteLink"] = websiteLink.value ?: it.websiteLink
                 profileData["phoneNumber"] = phoneNumber.value ?: it.phoneNumber
-                profileData["location"] = location.value ?: it.location
+
                 profileData["gender"] = gender.value ?: it.gender
                 profileData["degreeSpecialization"] = degreeSpecialization.value ?: it.degreeSpecialization
                 profileData["linkedinUrl"] = linkedinUrl.value ?: it.linkedinUrl
