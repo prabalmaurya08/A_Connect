@@ -21,7 +21,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.A_Connect"
-        tools:targetApi="31">
+        android:screenOrientation="landscape"
+
+        tools:targetApi="31"
+        tools:ignore="DiscouragedApi">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD24U3XOhbkXNOYQELBBc60IK77xR8gBNU" />

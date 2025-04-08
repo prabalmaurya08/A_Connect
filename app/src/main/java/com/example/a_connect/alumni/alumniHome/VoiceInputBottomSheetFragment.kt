@@ -1,6 +1,6 @@
 package com.example.a_connect.alumni.alumniHome
 
-import android.annotation.SuppressLint
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -17,11 +17,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
+
 import com.example.a_connect.R
 import com.example.a_connect.alumni.alumniHome.ai.ChatAdapter
 import com.example.a_connect.alumni.alumniHome.ai.ChatMessageDataClass
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.Firebase
+
 
 import com.google.firebase.vertexai.vertexAI
 import kotlinx.coroutines.CoroutineScope
@@ -203,7 +205,7 @@ class VoiceInputBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     // ✅ Process User Commands Correctly
-    @SuppressLint("SetTextI18n")
+
     private fun handleVoiceCommand(command: String) {
         when {
             command.contains("open chat", ignoreCase = true) -> {
