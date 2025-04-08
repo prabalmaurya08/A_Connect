@@ -87,15 +87,13 @@ class AluminiHomePage : Fragment() {
 
         // Set up the toolbar and drawer Button
         toolbar = binding.aluminiHomeToolbar
-        drawerButton = binding.aluminiHomePageDrawer
+        //drawerButton = binding.aluminiHomePageSearchBar
 
 
         binding.aluminiHomePageChat.setOnClickListener {
             listener?.onChatButtonClicked()
         }
-        binding.aluminiHomePageNotification.setOnClickListener {
-            listener?.onNotificationButtonClicked()
-        }
+
 
 
         drawerButton.setOnClickListener {
