@@ -19,38 +19,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@+id/aluminiHomePageDrawer"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:backgroundTint="@android:color/transparent"
-                android:src="@drawable/hamburger_menu"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                />
+
             <com.google.android.material.search.SearchBar
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@id/aluminiHomePageDrawer"
-                app:layout_constraintEnd_toStartOf="@id/aluminiHomePageNotification"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:id="@+id/aluminiHomePageSearchBar"
+                android:layout_marginHorizontal="16dp"
                 />
 
-            <ImageView
-                android:id="@+id/aluminiHomePageNotification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
 
-
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginEnd="20dp"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                android:src="@drawable/notification_icon"/>
 
 
 

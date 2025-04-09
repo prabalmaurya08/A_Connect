@@ -158,9 +158,11 @@ class AlumniHomePage : Fragment(), OnMapReadyCallback {
         binding.aluminiHomePageChat.setOnClickListener {
             listener?.onChatButtonClicked()
         }
-        binding.aluminiHomePageNotification.setOnClickListener {
+        /*binding.aluminiHomePageNotification.setOnClickListener {
             listener?.onNotificationButtonClicked()
         }
+
+         */
     }
 
     private fun setupFAB() {
