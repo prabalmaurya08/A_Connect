@@ -442,8 +442,8 @@
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
         <action
-            android:id="@+id/action_splashScreenFragment_to_adminLogin"
-            app:destination="@id/adminLogin" />
+            android:id="@+id/action_splashScreenFragment_to_mainLogin"
+            app:destination="@id/mainLogin" />
     </fragment>
 </navigation>
 
