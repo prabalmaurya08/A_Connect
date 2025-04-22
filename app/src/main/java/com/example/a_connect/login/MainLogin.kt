@@ -51,8 +51,8 @@ class MainLogin : Fragment() {
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when (tab?.position) {
-                    0 -> tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(requireContext(), R.color.blue))
-                    1 -> tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(requireContext(), R.color.green))
+                    0 -> tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(requireContext(), R.color.blue1))
+                    1 -> tabLayout.setSelectedTabIndicatorColor(ContextCompat.getColor(requireContext(), R.color.orange1))
                 }
             }
 

@@ -28,7 +28,7 @@
 
     <!--    THis is for Alumni Job page Button style-->
     <style name="alumni_applyButtonStyle" parent="Widget.MaterialComponents.Button">
-        <item name="backgroundTint">@color/blue</item>
+        <item name="backgroundTint">@color/blue1</item>
 
         <item name="shapeAppearanceOverlay">@style/CustomButtonShape2</item>
 

@@ -21,17 +21,18 @@
         android:id="@+id/mainLoginTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabIndicatorHeight="5dp"
-
-
         app:layout_constraintEnd_toEndOf="parent"
+
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mainLoginAppLogo"
-        app:tabIndicatorColor="#673AB7"
+        app:tabIndicatorColor="@color/blue1"
         app:tabIndicatorFullWidth="true"
+        app:tabIndicatorHeight="5dp"
         app:tabMode="fixed"
 
-        >
+
+        app:tabTextColor="@color/black">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -51,7 +52,7 @@
         android:id="@+id/mainLoginViewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="16dp"
+
         app:layout_constraintTop_toBottomOf="@id/mainLoginTabLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         />
