@@ -8,14 +8,22 @@
     tools:context=".login.MainLogin">
 
     <ImageView
+
         android:id="@+id/mainLoginAppLogo"
+
+        android:contentDescription="@string/app_image"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:src="@drawable/ic_app_icon"
-        android:layout_marginTop="50dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:layout_marginTop="50dp"
+        />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/mainLoginTabLayout"
@@ -38,13 +46,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Alumini" />
+            android:text="@string/alumni" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Student" />
+            android:text="@string/student" />
     </com.google.android.material.tabs.TabLayout>
 
 

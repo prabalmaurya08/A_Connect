@@ -110,6 +110,8 @@
     <string name="submit_button">submit credentials</string>
     <string name="college_name">College Name</string>
     <string name="login_as_admin">Login as Admin</string>
+    <string name="alumni">Alumni</string>
+    <string name="student">Student</string>
 
 
     <string-array name="gender_array">
