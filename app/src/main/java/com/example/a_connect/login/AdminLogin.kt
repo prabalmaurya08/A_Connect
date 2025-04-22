@@ -29,7 +29,6 @@ class AdminLogin : Fragment() {
             findNavController().navigate(R.id.action_adminLogin_to_mainLogin)
         }
 
-
         binding.submitButton.setOnClickListener {
 
             if (binding.adminLoginEmail.text.toString() == "admin@gmail.Com" && binding.adminLoginPassword.text.toString() == "1234") {
@@ -39,14 +38,16 @@ class AdminLogin : Fragment() {
             }
 
             if ( binding.adminLoginPassword.text.toString() != "1234") {
+
                 Toast.makeText(context, "wrong password please try again !!", Toast.LENGTH_SHORT).show()
+
             }
             if (binding.adminLoginEmail.text.toString() != "admin@gmail.Com") {
+
                 Toast.makeText(context, "wrong credentials please try again !!", Toast.LENGTH_SHORT).show()
+
             }
         }
         return binding.root
     }
-
-
 }
