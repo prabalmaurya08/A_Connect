@@ -28,6 +28,7 @@
     <EditText
 
         android:id="@+id/aluminiLoginEmailAddress"
+        android:autofillHints="emailAddress"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +42,7 @@
         android:layout_marginHorizontal="16dp"
 
         android:background="@drawable/ic_input_bg"
-        android:hint="Enter Email Address"/>
+        android:hint="@string/enter_email_address"/>
 
     <TextView
         android:id="@+id/aluminiLoginTv2"
@@ -84,7 +85,7 @@
 
         android:textSize="16sp"
         android:textStyle="bold"
-        android:text="College Name"/>
+        android:text="@string/college_name"/>
 
     <androidx.appcompat.widget.AppCompatSpinner
 
@@ -105,7 +106,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:text="Login as Admin"
+        android:text="@string/login_as_admin"
         android:textStyle="bold"
         android:textColor="@color/green1"
 
