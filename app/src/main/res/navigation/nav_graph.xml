@@ -444,6 +444,18 @@
         <action
             android:id="@+id/action_splashScreenFragment_to_mainLogin"
             app:destination="@id/mainLogin" />
+
+        <action
+            android:id="@+id/action_splashScreenFragment_to_aluminiMainPage"
+            app:destination="@id/aluminiMainPage" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_adminMainPage"
+            app:destination="@id/adminMainPage" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_studentMainPage"
+            app:destination="@id/studentMainPage" />
+
+
     </fragment>
 </navigation>
 
