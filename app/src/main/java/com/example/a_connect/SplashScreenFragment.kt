@@ -11,7 +11,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.paging.LOG_TAG
 import com.example.a_connect.databinding.FragmentSplashScreenBinding
 
 class SplashScreenFragment : Fragment() {
@@ -94,16 +93,6 @@ class SplashScreenFragment : Fragment() {
             }
         } catch (e: Exception) {
             Log.e("SplashScreenFragment", "Error during navigation: ${e.message}")
-        }
-    }
-
-    private fun navigateToHomeScreen(userType: String) {
-        if (isAdded && findNavController().currentDestination?.id == R.id.splashScreenFragment) {
-            when (userType) {
-                UserSessionManager.USER_TYPE_ALUMNI -> findNavController().navigate(R.id.action_splashScreenFragment_to_aluminiMainPage)
-                UserSessionManager.USER_TYPE_STUDENT -> findNavController().navigate(R.id.action_splashScreenFragment_to_studentMainPage)
-                UserSessionManager.USER_TYPE_ADMIN -> findNavController().navigate(R.id.action_splashScreenFragment_to_adminMainPage)
-            }
         }
     }
 
