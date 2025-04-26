@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">A_Connect</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile">Profile</string>
     <string name="events">Events</string>
@@ -98,6 +98,20 @@
     <string name="edit_profile" />
     <string name="drawer_open">Drawer Open</string>
     <string name="drawer_close">Drawer Close</string>
+    <string name="email_address">Email Address</string>
+    <string name="enter_email_address">Enter Email Address</string>
+    <string name="graduation_year">Graduation Year</string>
+    <string name="back_to_main_login">back to main login</string>
+    <string name="app_image">app image</string>
+    <string name="admin_login">Admin Login</string>
+    <string name="outline">outline</string>
+    <string name="password">Password</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="submit_button">submit credentials</string>
+    <string name="college_name">College Name</string>
+    <string name="login_as_admin">Login as Admin</string>
+    <string name="alumni">Alumni</string>
+    <string name="student">Student</string>
 
 
     <string-array name="gender_array">

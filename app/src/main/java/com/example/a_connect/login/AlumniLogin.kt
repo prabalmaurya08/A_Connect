@@ -1,6 +1,5 @@
 package com.example.a_connect.login
 
-
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.example.a_connect.UserSessionManager
 
 import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileRepository
 import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileViewModel
@@ -20,12 +20,17 @@ import com.example.a_connect.admin.adminCollegeProfile.mvvm.EditProfileViewModel
 import com.example.a_connect.databinding.FragmentAlumniLoginBinding
 import com.example.a_connect.login.mvvm.LoginViewModel
 
-
 class AlumniLogin : Fragment() {
+
+    // Initialize user session manager
+    private lateinit var sessionManager: UserSessionManager
+
     private lateinit var binding: FragmentAlumniLoginBinding
+
     private var listener: OnAlumniScreenClicked? = null
     private val repository = CollegeProfileRepository()
     private val viewModel: CollegeProfileViewModel by viewModels {
+
         EditProfileViewModelFactory(repository)
     }
 
@@ -38,6 +43,7 @@ class AlumniLogin : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         when (context) {
+
             is OnAlumniScreenClicked -> {
                 listener = context
             }
@@ -51,6 +57,7 @@ class AlumniLogin : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         binding = FragmentAlumniLoginBinding.inflate(layoutInflater)
 
         // Initialize Spinners and ProgressBar
@@ -60,6 +67,7 @@ class AlumniLogin : Fragment() {
 
         // Get the collegeId and load the profile data
         val collegeId = "collegeId123" // Example collegeId
+
         viewModel.loadProfileData(collegeId)
 
         // Observe graduation years and college names LiveData
@@ -82,9 +90,17 @@ class AlumniLogin : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        sessionManager = UserSessionManager(requireContext())
+    }
+
     private fun authentication() {
+
         // Handle login button clicks
         binding.submitButton.setOnClickListener {
+
             val email = binding.aluminiLoginEmailAddress.text.toString()
             val graduationYear = graduationYearsSpinner.selectedItem.toString().toInt()
             val collegeName = collegeNamesSpinner.selectedItem.toString()
@@ -104,6 +120,14 @@ class AlumniLogin : Fragment() {
             progressBar.visibility = View.GONE
 
             if (success) {
+                // Save user credentials to SharedPreferences
+                val email = binding.aluminiLoginEmailAddress.text.toString()
+                val graduationYear = graduationYearsSpinner.selectedItem.toString().toInt()
+                val collegeName = collegeNamesSpinner.selectedItem.toString()
+
+                // Save to session manager
+                sessionManager.createAlumniSession(email, graduationYear, collegeName)
+
                 listener?.onAlumniSubmitClicked()
                 // Navigate to home screen on successful login
                 showToast("Login Successful")
@@ -130,6 +154,4 @@ class AlumniLogin : Fragment() {
         fun onAlumniSubmitClicked()
         fun onAlumniAdminClicked()
     }
-
-
 }
