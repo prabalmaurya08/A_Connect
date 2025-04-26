@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainLogin">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
         android:id="@+id/mainLogin"
@@ -436,5 +436,26 @@
         android:name="com.example.a_connect.alumni.alumniExplore.AlumniMap"
         android:label="fragment_alumni_map"
         tools:layout="@layout/fragment_alumni_map" />
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.example.a_connect.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_mainLogin"
+            app:destination="@id/mainLogin" />
+
+        <action
+            android:id="@+id/action_splashScreenFragment_to_aluminiMainPage"
+            app:destination="@id/aluminiMainPage" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_adminMainPage"
+            app:destination="@id/adminMainPage" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_studentMainPage"
+            app:destination="@id/studentMainPage" />
+
+
+    </fragment>
 </navigation>
 

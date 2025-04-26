@@ -12,33 +12,35 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-
+import com.example.a_connect.UserSessionManager
 import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileRepository
 import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileViewModel
 import com.example.a_connect.admin.adminCollegeProfile.mvvm.EditProfileViewModelFactory
 import com.example.a_connect.databinding.FragmentStudentLoginBinding
-
 import com.example.a_connect.login.mvvm.LoginViewModel
 
 class StudentLogin : Fragment() {
+
+
+    private lateinit var sessionManager: UserSessionManager
+
     private lateinit var binding: FragmentStudentLoginBinding
+
+    private var listener: OnStudentScreenClicked? = null
     private val repository = CollegeProfileRepository()
     private val viewModel: CollegeProfileViewModel by viewModels {
+
         EditProfileViewModelFactory(repository)
     }
-
-
-
 
     private val loginViewModel: LoginViewModel by viewModels()
     private lateinit var graduationYearsSpinner: Spinner
     private lateinit var collegeNamesSpinner: Spinner
 
-
-    private var listener: OnStudentScreenClicked? = null
     override fun onAttach(context: Context) {
         super.onAttach(context)
         when (context) {
+
             is OnStudentScreenClicked -> {
                 listener = context
             }
@@ -48,16 +50,13 @@ class StudentLogin : Fragment() {
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         // Inflate the layout for this fragment
         binding=FragmentStudentLoginBinding.inflate(layoutInflater)
-
-
-
 
         // Initialize Spinners and ProgressBar
         graduationYearsSpinner = binding.studentLoginGraduationYear
@@ -66,6 +65,7 @@ class StudentLogin : Fragment() {
 
         // Get the collegeId and load the profile data
         val collegeId = "collegeId123" // Example collegeId
+
         viewModel.loadProfileData(collegeId)
 
         // Observe graduation years and college names LiveData
@@ -85,11 +85,21 @@ class StudentLogin : Fragment() {
         }
 
         authentication()
+
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        sessionManager = UserSessionManager(requireContext())
+    }
+
     private fun authentication() {
+
         // Handle login button clicks
         binding.submitButton.setOnClickListener {
+
             val email = binding.studentLoginEmailAddress.text.toString()
             val graduationYear = graduationYearsSpinner.selectedItem.toString().toInt()
             val collegeName = collegeNamesSpinner.selectedItem.toString()
@@ -109,6 +119,12 @@ class StudentLogin : Fragment() {
          //   progressBar.visibility = View.GONE
 
             if (success) {
+
+                val email = binding.studentLoginEmailAddress.text.toString()
+                val graduationYear = graduationYearsSpinner.selectedItem.toString().toInt()
+                val collegeName = collegeNamesSpinner.selectedItem.toString()
+                sessionManager.createStudentSession(email, graduationYear, collegeName)
+
                 listener?.onStudentSubmitClicked()
                 // Navigate to home screen on successful login
                 showToast("Login Successful")
@@ -128,7 +144,4 @@ class StudentLogin : Fragment() {
         fun onStudentSubmitClicked()
         fun onStudentAdminClicked()
     }
-
-
-
 }
