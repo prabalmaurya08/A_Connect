@@ -2,15 +2,11 @@ package com.example.a_connect
 
 import android.animation.Animator
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.example.a_connect.R
 import com.example.a_connect.databinding.FragmentSplashScreenBinding
 
 class SplashScreenFragment : Fragment() {
@@ -51,7 +47,7 @@ class SplashScreenFragment : Fragment() {
 
         if (isAdded && findNavController().currentDestination?.id == R.id.splashScreenFragment) {
 
-            findNavController().navigate(R.id.action_splashScreenFragment_to_adminLogin)
+            findNavController().navigate(R.id.action_splashScreenFragment_to_mainLogin)
         }
 
     }

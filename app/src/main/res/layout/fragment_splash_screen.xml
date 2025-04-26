@@ -5,13 +5,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
+    tools:context=".SplashScreenFragment"
 
     android:id="@+id/splashScreenFragment"
 
-    tools:context=".SplashScreenFragment">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="@color/white">
 
     <com.airbnb.lottie.LottieAnimationView
 
@@ -20,14 +21,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        app:lottie_rawRes="@raw/animationsplash"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:lottie_rawRes="@raw/mainscene"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        >
+
+
 
     </com.airbnb.lottie.LottieAnimationView>
 
