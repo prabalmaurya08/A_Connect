@@ -102,7 +102,7 @@ class AlumniHomePage : Fragment(), OnMapReadyCallback {
 
 
         // Handle Search Bar click
-        binding.aluminiHomePageSearchBar.setOnClickListener {
+        binding.alumniHomePageSearchBar.setOnClickListener {
             listener?.onSearchClicked()
         }
 
@@ -155,9 +155,9 @@ class AlumniHomePage : Fragment(), OnMapReadyCallback {
     }
 
     private fun drawerSetUp() {
-        binding.aluminiHomePageChat.setOnClickListener {
-            listener?.onChatButtonClicked()
-        }
+//        binding.aluminiHomePageChat.setOnClickListener {
+//            listener?.onChatButtonClicked()
+//        }
         /*binding.aluminiHomePageNotification.setOnClickListener {
             listener?.onNotificationButtonClicked()
         }

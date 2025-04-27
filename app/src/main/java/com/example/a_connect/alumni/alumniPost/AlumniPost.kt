@@ -38,7 +38,9 @@ class AlumniPost : Fragment() {
         postViewModel.imageUri.observe(viewLifecycleOwner) { uri ->
             uri?.let {
                 binding.previewImage.setImageURI(it)
+                binding.previewCard.visibility=View.VISIBLE
                 binding.previewImage.visibility=View.VISIBLE
+
             }
         }
 
@@ -65,7 +67,7 @@ class AlumniPost : Fragment() {
         }
 
         // Media picker to select an image
-        binding.media.setOnClickListener {
+        binding.mediaCard.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, pickImageRequestCode)
         }
