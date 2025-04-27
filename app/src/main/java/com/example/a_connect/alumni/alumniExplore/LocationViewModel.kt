@@ -8,13 +8,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.a_connect.alumni.alumniProfile.mvvm.AlumniProfileDataClass
-import com.example.a_connect.alumni.alumniProfile.mvvm.AlumniProfileRepository
-import com.example.a_connect.alumni.alumniProfile.mvvm.AlumniProfileViewModel
+
 import kotlinx.coroutines.launch
 
 class LocationViewModel(private val locationRepository: LocationRepository) : ViewModel() {
 
-    // Function to update the alumni's location in Firestore
+
     fun updateUserLocation(userEmail: String, latitude: Double, longitude: Double, onResult: (Boolean) -> Unit) {
         viewModelScope.launch {
             val isUpdated = locationRepository.updateUserLocation(userEmail, latitude, longitude)
@@ -22,13 +21,13 @@ class LocationViewModel(private val locationRepository: LocationRepository) : Vi
         }
     }
 
-    // Function to retrieve the alumni's location (if needed)
-    fun getUserLocation(userEmail: String, onResult: (Map<String, Double>?) -> Unit) {
-        viewModelScope.launch {
-            val location = locationRepository.getUserLocation(userEmail)
-            onResult(location) // Callback to notify UI with the location data
-        }
-    }
+
+//    fun getUserLocation(userEmail: String, onResult: (Map<String, Double>?) -> Unit) {
+//        viewModelScope.launch {
+//            val location = locationRepository.getUserLocation(userEmail)
+//            onResult(location) // Callback to notify UI with the location data
+//        }
+//    }
 //    private val _alumniLocations = MutableLiveData<List<Triple<String, String, Pair<Double, Double>>>>()
 //    val alumniLocations: LiveData<List<Triple<String, String, Pair<Double, Double>>>> get() = _alumniLocations
 //
@@ -52,8 +51,8 @@ class LocationViewModel(private val locationRepository: LocationRepository) : Vi
 
 
 
-
 class LocationViewModelFactory(private val repository: LocationRepository) : ViewModelProvider.Factory {
+    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(LocationViewModel::class.java)) {
             return LocationViewModel(repository) as T
@@ -61,3 +60,4 @@ class LocationViewModelFactory(private val repository: LocationRepository) : Vie
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
+

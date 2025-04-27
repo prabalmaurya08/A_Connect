@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
 
 import com.example.a_connect.R
+import com.example.a_connect.alumni.alumniExplore.AlumniMap
 
 import com.example.a_connect.databinding.FragmentStudentMainPageBinding
 import com.example.a_connect.student.studentCommunity.StudentCommunity
@@ -47,7 +48,7 @@ class StudentMainPage : Fragment() {
             when (item.itemId) {
                 R.id.bottom_nav_home-> loadFragment(StudentHomePage())
                 R.id.bottom_nav_community -> loadFragment(StudentCommunity())
-                R.id.bottom_nav_explore ->loadFragment(StudentExplore())
+                R.id.bottom_nav_explore ->loadFragment(AlumniMap())
                 R.id.bottom_nav_job -> loadFragment(StudentJob())
                 R.id.bottom_nav_profile ->loadFragment(StudentProfile())
             }

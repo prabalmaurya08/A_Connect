@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.a_connect.R
 import com.example.a_connect.SharedPreferencesHelper
 import com.example.a_connect.alumni.alumniCommunity.mvvm.AlumniCommunityRepository
 import com.example.a_connect.alumni.alumniCommunity.mvvm.AlumniCommunityViewModel

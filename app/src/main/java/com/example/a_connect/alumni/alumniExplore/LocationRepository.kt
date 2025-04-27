@@ -10,7 +10,7 @@ class LocationRepository {
     private val firestore = FirebaseFirestore.getInstance()
     private val alumniCollection = firestore.collection("Alumni")
 
-    // Function to update user location (latitude and longitude) in Firestore
+    // Function to update user location (latitude and longitude) in FireStore
     suspend fun updateUserLocation(userEmail: String, latitude: Double, longitude: Double): Boolean {
         val locationData = mapOf(
             "latitude" to latitude,
@@ -25,16 +25,16 @@ class LocationRepository {
         }
     }
 
-    // Optionally, you can add a function to get the current location from Firestore
-    suspend fun getUserLocation(userEmail: String): Map<String, Double>? {
-        return try {
-            val document = alumniCollection.document(userEmail).get().await()
-            val locationData = document.get("location") as? Map<String, Double>
-            locationData
-        } catch (e: Exception) {
-            null
-        }
-    }
+    // Optionally, you can add a function to get the current location from FireStore
+//    suspend fun getUserLocation(userEmail: String): Map<String, Double>? {
+//        return try {
+//            val document = alumniCollection.document(userEmail).get().await()
+//            val locationData = document.get("location") as? Map<String, Double>
+//            locationData
+//        } catch (e: Exception) {
+//            null
+//        }
+//    }
     // Fetch all alumni locations (using the location field of AlumniProfileDataClass)
     suspend fun getAllAlumniLocations(): List<AlumniProfileDataClass> {
         return try {
