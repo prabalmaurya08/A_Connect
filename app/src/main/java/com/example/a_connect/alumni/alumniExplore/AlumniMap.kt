@@ -144,7 +144,6 @@ class AlumniMap : Fragment(), OnMapReadyCallback {
         )
     }
 
-
     @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -174,7 +173,7 @@ class AlumniMap : Fragment(), OnMapReadyCallback {
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             Toast.makeText(requireContext(), "Location permission not granted.", Toast.LENGTH_SHORT).show()
-            return
+            return;
         }
 
         fusedLocationClient.lastLocation.addOnSuccessListener(OnSuccessListener { location ->

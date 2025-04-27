@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.example.a_connect.databinding.FragmentSplashScreenBinding
 
 class SplashScreenFragment : Fragment() {
@@ -19,7 +20,7 @@ class SplashScreenFragment : Fragment() {
     private var handler: Handler? = null
 
     private var _binding: FragmentSplashScreenBinding? = null
-    private val binding get() = _binding!!  // Use !! for non-null assertion
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +31,6 @@ class SplashScreenFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
 
         // Initialize session manager
@@ -38,9 +38,7 @@ class SplashScreenFragment : Fragment() {
 
         binding.splashAnimationView.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator) {}
-            override fun onAnimationEnd(animation: Animator) {
-                // We'll use the Handler delay instead
-            }
+            override fun onAnimationEnd(animation: Animator) {}
             override fun onAnimationCancel(animation: Animator) {}
             override fun onAnimationRepeat(animation: Animator) {}
         })
@@ -63,32 +61,41 @@ class SplashScreenFragment : Fragment() {
 
         try {
             if (sessionManager.isLoggedIn()) {
-                val userType = sessionManager.getUserType()
-                if (isAdded && findNavController().currentDestination?.id == R.id.splashScreenFragment) {
-                    when (userType) {
-                        UserSessionManager.USER_TYPE_ALUMNI -> {
-                            findNavController().navigate(R.id.action_splashScreenFragment_to_aluminiMainPage)
-                            if (isAdded) {
-                                Toast.makeText(requireContext(), "Welcome back, Alumni!", Toast.LENGTH_SHORT).show()
-                            }
+                val navOptions = navOptions {
+                    popUpTo(R.id.splashScreenFragment) {
+                        inclusive = true
+                    }
+                }
+                when (sessionManager.getUserType()) {
+                    UserSessionManager.USER_TYPE_ALUMNI -> {
+
+                        findNavController().navigate(R.id.action_splashScreenFragment_to_aluminiMainPage, null, navOptions)
+
+                        if (isAdded) {
+                            Toast.makeText(requireContext(), "Welcome back, Alumni!", Toast.LENGTH_SHORT).show()
                         }
-                        UserSessionManager.USER_TYPE_STUDENT -> {
-                            findNavController().navigate(R.id.action_splashScreenFragment_to_studentMainPage)
-                            if (isAdded) {
-                                Toast.makeText(requireContext(), "Welcome back, Student!", Toast.LENGTH_SHORT).show()
-                            }
+                    }
+                    UserSessionManager.USER_TYPE_STUDENT -> {
+                        findNavController().navigate(R.id.action_splashScreenFragment_to_studentMainPage, null, navOptions)
+                        if (isAdded) {
+                            Toast.makeText(requireContext(), "Welcome back, Student!", Toast.LENGTH_SHORT).show()
                         }
-                        UserSessionManager.USER_TYPE_ADMIN -> {
-                            findNavController().navigate(R.id.action_splashScreenFragment_to_adminMainPage)
-                            if (isAdded) {
-                                Toast.makeText(requireContext(), "Welcome back, Admin!", Toast.LENGTH_SHORT).show()
-                            }
+                    }
+                    UserSessionManager.USER_TYPE_ADMIN -> {
+                        findNavController().navigate(R.id.action_splashScreenFragment_to_adminMainPage, null, navOptions)
+                        if (isAdded) {
+                            Toast.makeText(requireContext(), "Welcome back, Admin!", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
             } else {
+                val navOptions = navOptions {
+                    popUpTo(R.id.splashScreenFragment) {
+                        inclusive = true
+                    }
+                }
                 if (isAdded && findNavController().currentDestination?.id == R.id.splashScreenFragment) {
-                    findNavController().navigate(R.id.action_splashScreenFragment_to_mainLogin)
+                    findNavController().navigate(R.id.action_splashScreenFragment_to_mainLogin, null, navOptions)
                 }
             }
         } catch (e: Exception) {

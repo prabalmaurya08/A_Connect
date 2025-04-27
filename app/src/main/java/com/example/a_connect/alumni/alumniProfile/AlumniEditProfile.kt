@@ -14,6 +14,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.example.a_connect.R
 import com.example.a_connect.SharedPreferencesHelper
 import com.example.a_connect.alumni.alumniProfile.mvvm.AlumniEditProfileViewModelFactory
@@ -27,7 +28,7 @@ class AlumniEditProfile : Fragment() {
         AlumniEditProfileViewModelFactory(AlumniProfileRepository())
     }
     private lateinit var currentUserEmail: String
-    private var profileImageUri: Uri? = null  // Variable to hold the selected image URI
+    private var profileImageUri: Uri? = null
 
     private val imagePickerLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri?.let {
@@ -50,6 +51,17 @@ class AlumniEditProfile : Fragment() {
 
         // Load the user profile data
         viewModel.fetchUserProfile(currentUserEmail)
+
+        // Observe the profilePic LiveData and update the image view if it changes
+        viewModel.profilePic.observe(viewLifecycleOwner, Observer { profilePicUrl ->
+            profilePicUrl?.let {
+                // Load image from URL (or locally stored URI) into the ImageView
+                // Assuming you are using an image loading library like Glide or Picasso
+                Glide.with(requireContext())
+                    .load(profilePicUrl)  // If the URL is stored in Firestore, this should work
+                    .into(binding.editProfileCircleImageView)
+            }
+        })
 
         return binding.root
     }
@@ -134,3 +146,4 @@ class AlumniEditProfile : Fragment() {
         viewModel.updateUserProfile(currentUserEmail, profileImageUri)
     }
 }
+
