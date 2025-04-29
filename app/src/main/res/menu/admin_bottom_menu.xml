@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/bottom_nav_home"
+    <item android:id="@+id/a_bottom_nav_home"
         android:title="@string/home"
         android:icon="@drawable/home_icon"/>
 
-    <item android:id="@+id/bottom_nav_announcement"
+    <item android:id="@+id/a_bottom_nav_announcement"
         android:title="@string/announcement"
         android:icon="@drawable/news_icon"/>
 
-    <item android:id="@+id/bottom_nav_events"
+    <item android:id="@+id/a_bottom_nav_events"
         android:title="@string/events"
         android:icon="@drawable/event_create_icon"/>
 
-    <item android:id="@+id/bottom_nav_job"
+    <item android:id="@+id/a_bottom_nav_job"
         android:title="@string/job"
         android:icon="@drawable/jobpost_icon"/>
 
-    <item android:id="@+id/bottom_nav_college"
+    <item android:id="@+id/a_bottom_nav_college"
         android:title="@string/college"
         android:icon="@drawable/collage_icon"/>
 

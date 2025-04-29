@@ -78,6 +78,7 @@ class LoginRepository {
             .addOnSuccessListener { document ->
                 if (document.exists()) {
                     val dbGraduationYear = document.getLong("enrollmentYear")?.toInt()
+                    val studentName=document.getString("name")
                     val dbCollegeName =
                         document.getString("collegeName")?.lowercase(Locale.ROOT) // Convert stored college name to lowercase
 
@@ -85,6 +86,9 @@ class LoginRepository {
                             Locale.ROOT
                         )
                     ) { // Convert input to lowercase
+                        if (studentName != null) {
+                            SharedPreferencesHelper.saveStudentName(studentName)
+                        }
                         callback(true, null) // Authentication successful
                     } else {
                         callback(false, "Graduation Year or College Name does not match.")

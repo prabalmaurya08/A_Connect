@@ -61,6 +61,12 @@ class UserSessionManager(context: Context) {
         return sharedPreferences.getString(KEY_USER_TYPE, null)
     }
 
+    // Get current user's email
+    fun getCurrentUserEmail(): String? {
+        return sharedPreferences.getString(KEY_EMAIL, null)
+    }
+
+
     // Get alumni details
     fun getAlumniDetails(): Map<String, Any?> {
         val user = HashMap<String, Any?>()

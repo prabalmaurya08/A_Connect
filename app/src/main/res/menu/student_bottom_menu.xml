@@ -4,23 +4,23 @@
 
 
 
-    <item android:id="@+id/bottom_nav_home"
+    <item android:id="@+id/s_bottom_nav_home"
         android:title="@string/home"
         android:icon="@drawable/home_icon"/>
 
-    <item android:id="@+id/bottom_nav_community"
+    <item android:id="@+id/s_bottom_nav_community"
         android:title="@string/community"
         android:icon="@drawable/community_icon"/>
 
-    <item android:id="@+id/bottom_nav_explore"
+    <item android:id="@+id/s_bottom_nav_explore"
         android:title="@string/explore"
         android:icon="@drawable/explore_icon"/>
 
-    <item android:id="@+id/bottom_nav_job"
+    <item android:id="@+id/s_bottom_nav_job"
         android:title="@string/job_events"
         android:icon="@drawable/student_jobsearch_icon"/>
 
-    <item android:id="@+id/bottom_nav_profile"
+    <item android:id="@+id/s_bottom_nav_profile"
         android:title="@string/profile"
         android:icon="@drawable/profile_icon"/>
 

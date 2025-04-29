@@ -101,9 +101,7 @@ class AdminNewsAnnouncement : Fragment() {
             adapter = NewsAdapter(
                 emptyList(),
                 onItemClick = {newsId ->
-//                    val action = AdminNewsAnnouncementDirections
-//                        .actionAdminNewsAnnouncementToAdminNewsAnnouncementDescription()
-//                    findNavController().navigate(action)
+
 
                     listener?.onAdminNewsClicked(newsId.newsId)
                 },
@@ -129,7 +127,16 @@ class AdminNewsAnnouncement : Fragment() {
 
             lifecycleScope.launch {
                 viewModel.loadingState.collectLatest {
-                    //   binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+                    if(it){
+                        binding.shimmerLayout.visibility = View.VISIBLE
+                        binding.shimmerLayout.startShimmer()
+                    }else{
+                        binding.shimmerLayout.stopShimmer()
+                        binding.shimmerLayout.visibility = View.GONE
+                    }
+
+
+
                 }
             }
 

@@ -92,6 +92,10 @@ class AlumniHomePage : Fragment(), OnMapReadyCallback {
 
         // Request permissions before starting voice input
         checkPermissions()
+        if(SharedPreferencesHelper.getCurrentUserName().isNullOrEmpty()){
+
+            binding.userName.text="Welcome, Alumni"
+        }
         binding.userName.text="Hi ,"+SharedPreferencesHelper.getCurrentUserName()
 
         // Set up UI elements and actions
