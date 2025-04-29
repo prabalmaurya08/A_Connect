@@ -22,10 +22,18 @@ object SharedPreferencesHelper {
             putString("current_user_email", email)
         }
     }
+    fun saveStudentName(name:String){
+        sharedPreferences.edit() {
+            putString("current_student_name", name)
+        }
+    }
+    fun getStudentName(): String? {
+        return sharedPreferences.getString("current_student_name", null)
+    }
     fun saveCurrentUserName(name: String) {
-        val editor = sharedPreferences.edit()
-        editor.putString("current_user_name", name)
-        editor.apply()
+        sharedPreferences.edit() {
+            putString("current_user_name", name)
+        }
     }
 
     // Retrieve current user's email

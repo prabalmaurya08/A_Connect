@@ -113,31 +113,6 @@
                 <!-- Map preview will be added here -->
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- College Events Section -->
-            <TextView
-                android:id="@+id/collegeEventsTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="College Events"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/exploreCard"
-                app:layout_constraintStart_toStartOf="parent"
-                android:paddingTop="16dp" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/collegeEventsCard"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
-                app:layout_constraintTop_toBottomOf="@id/collegeEventsTitle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="8dp"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="4dp">
-
-                <!-- College events content -->
-            </com.google.android.material.card.MaterialCardView>
 
             <!-- Trending News Section -->
             <TextView
@@ -147,38 +122,66 @@
                 android:text="Trending News"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/collegeEventsCard"
+                app:layout_constraintTop_toBottomOf="@id/exploreCard"
                 app:layout_constraintStart_toStartOf="parent"
                 android:paddingTop="16dp" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/trendingNewsCard"
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmerLayout"
                 android:layout_width="0dp"
-                android:layout_height="200dp"
+                android:layout_height="0dp"
+
                 app:layout_constraintTop_toBottomOf="@id/trendingNewsTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="8dp"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="4dp">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:shimmer_auto_start="true"
+                app:shimmer_duration="1500">
 
-                <!-- Trending news content -->
-            </com.google.android.material.card.MaterialCardView>
+                <!-- Fake loading items inside shimmer -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-            <!-- Donate Section -->
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/donateCard"
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                app:layout_constraintTop_toBottomOf="@id/trendingNewsCard"
-                app:layout_constraintStart_toStartOf="parent"
+                    <!-- Repeat shimmer placeholders -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/shimmer_placeholder" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/shimmer_placeholder" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/shimmer_placeholder" />
+
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="16dp"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="4dp">
+                app:layout_constraintTop_toBottomOf="@id/trendingNewsTitle"/>
+
+
+
+
 
                 <!-- Donate content -->
-            </com.google.android.material.card.MaterialCardView>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

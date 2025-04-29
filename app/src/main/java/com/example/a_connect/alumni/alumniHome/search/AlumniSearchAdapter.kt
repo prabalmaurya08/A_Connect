@@ -29,11 +29,7 @@ class AlumniSearchAdapter(private val onClick: (AlumniSearchDataClass)->Unit) :
             binding.graduationYearTextView.text = alumni.graduationYear.toString()
             binding.collegeTextView.text = alumni.collegeName
 
-            // Load profile picture using Glide (or Picasso)
-            Glide.with(binding.profileImageView.context)
-                .load(alumni.profilePicUrl)
-                .placeholder(R.drawable.ic_media) // Optional placeholder image
-                .into(binding.profileImageView)
+
 
             binding.root.setOnClickListener {
                 onClick(alumni)

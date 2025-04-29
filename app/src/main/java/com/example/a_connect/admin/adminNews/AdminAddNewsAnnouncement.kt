@@ -1,6 +1,7 @@
 package com.example.a_connect.admin.adminNews
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -40,6 +41,7 @@ class AdminAddNewsAnnouncement : Fragment() {
    // private lateinit var progressBar: ProgressBar
     private lateinit var headlineImageView: ImageView
     private lateinit var imageView: ImageView
+    private lateinit var loadingDialog: Dialog
 
     private var headlinePhotoUri: Uri? = null
     private var photoUri: Uri? = null
@@ -49,6 +51,7 @@ class AdminAddNewsAnnouncement : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAdminAddNewsAnnouncementBinding.inflate(inflater, container, false)
+        initLoadingDialog()
         return binding.root
     }
 
@@ -78,6 +81,20 @@ class AdminAddNewsAnnouncement : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.loadingState.collect { isLoading ->
+                        if (isLoading) {
+                            loadingDialog.show()
+                        } else {
+                            loadingDialog.dismiss()
+                            Toast.makeText(requireContext(), "News Added Successfully", Toast.LENGTH_SHORT).show()
+                            headlineEditText.text.clear()
+                            contentEditText.text.clear()
+                            headlinePhotoUri = null
+                            photoUri = null
+                            headlineImageView.visibility = View.GONE
+                            imageView.visibility = View.GONE
+                            binding.tv1.visibility=View.VISIBLE
+                            binding.tv2.visibility=View.VISIBLE
+                        }
                      //   progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
                     }
                 }
@@ -106,13 +123,16 @@ class AdminAddNewsAnnouncement : Fragment() {
                     HEADLINE_IMAGE_REQUEST_CODE -> {
                         headlinePhotoUri = uri
                         headlineImageView.setImageURI(uri)
-                        headlineImageView.visibility = View.VISIBLE  // Make visible after selection
+                        headlineImageView.visibility = View.VISIBLE
+                        binding.tv1.visibility=View.GONE
+                        // Make visible after selection
                         Toast.makeText(requireContext(), "Headline Image Selected", Toast.LENGTH_SHORT).show()
                     }
                     IMAGE_REQUEST_CODE -> {
                         photoUri = uri
                         imageView.setImageURI(uri)
                         imageView.visibility = View.VISIBLE  // Make visible after selection
+                        binding.tv2.visibility=View.GONE
                         Toast.makeText(requireContext(), "News Image Selected", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -139,6 +159,13 @@ class AdminAddNewsAnnouncement : Fragment() {
 
         viewModel.saveNews(news, headlinePhotoBytes, photoBytes)
     }
+    // Initialize the loading dialog with Lottie animation
+    private fun initLoadingDialog() {
+        loadingDialog = Dialog(requireContext())
+        loadingDialog.setContentView(R.layout.dialog_loading)
+        loadingDialog.setCancelable(false)  // Prevent user interaction during loading
+    }
+
 
     private fun uriToByteArray(uri: Uri): ByteArray {
         return requireContext().contentResolver.openInputStream(uri)?.use { it.readBytes() } ?: ByteArray(0)

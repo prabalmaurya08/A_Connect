@@ -60,7 +60,7 @@
         tools:layout="@layout/fragment_alumni_chat" />
     <fragment
         android:id="@+id/aluminiHomePage"
-        android:name="com.example.a_connect.alumni.alumniHome.AluminiHomePage"
+        android:name="com.example.a_connect.alumni.alumniHome.AlumniHomePage"
         android:label="fragment_alumini_home_page"
         tools:layout="@layout/fragment_alumni_home_page" >
         <action
@@ -161,6 +161,15 @@
                 android:name="jobId"
                 app:argType="string" />
         </action>
+        <action
+            android:id="@+id/action_studentMainPage_to_studentEditProfile"
+            app:destination="@id/studentEditProfile" />
+        <action
+            android:id="@+id/action_studentMainPage_to_alumniSearchScreen"
+            app:destination="@id/alumniSearchScreen" />
+        <action
+            android:id="@+id/action_studentMainPage_to_alumniJobDetail"
+            app:destination="@id/alumniJobDetail" />
     </fragment>
 
     <!-- Student Home Page Fragment -->
@@ -457,5 +466,9 @@
 
 
     </fragment>
+    <fragment
+        android:id="@+id/studentEditProfile"
+        android:name="com.example.a_connect.student.studentProfile.StudentEditProfile"
+        android:label="StudentEditProfile" />
 </navigation>
 
