@@ -8,6 +8,7 @@ import com.example.a_connect.alumni.alumniJob.AlumniJob
 import com.example.a_connect.student.studentCommunity.StudentCommunity
 import com.example.a_connect.student.studentExplore.StudentExplore
 import com.example.a_connect.student.studentHomePage.StudentHomePage
+import com.example.a_connect.student.studentJob.StudentJob
 
 import com.example.a_connect.student.studentProfile.StudentProfile
 
@@ -20,7 +21,7 @@ class StudentMainPageAdapter(fragment: Fragment): FragmentStateAdapter(fragment)
             0-> StudentHomePage()
             1-> StudentCommunity()
             2-> StudentExplore()
-            3->AlumniJob()
+            3-> StudentJob()
             else-> StudentProfile()
 
         }

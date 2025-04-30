@@ -17,7 +17,7 @@
         android:icon="@drawable/explore_icon"/>
 
     <item android:id="@+id/s_bottom_nav_job"
-        android:title="@string/job_events"
+        android:title="Jobs"
         android:icon="@drawable/student_jobsearch_icon"/>
 
     <item android:id="@+id/s_bottom_nav_profile"
