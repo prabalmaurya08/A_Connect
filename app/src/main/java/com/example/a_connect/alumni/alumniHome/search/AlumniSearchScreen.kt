@@ -2,6 +2,7 @@ package com.example.a_connect.alumni.alumniHome.search
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.appcompat.widget.SearchView
+import androidx.navigation.fragment.findNavController
+import com.example.a_connect.R
 import com.example.a_connect.databinding.FragmentAlumniSearchScreenBinding
 
 
@@ -87,8 +90,15 @@ class AlumniSearchScreen : Fragment() {
     }
 
     private fun openAlumniProfile(alumni: AlumniSearchDataClass) {
-        // Implement navigation to Alumni Profile Fragment
+        // Log email before passing to the next screen
+        Log.d("AlumniSearchScreen", "Sending email: ${alumni.email}")
+
+        val bundle = Bundle().apply {
+            putString("email", alumni.email)
+        }
+        findNavController().navigate(R.id.alumniProfileDetail, bundle)
     }
+
 
     private fun showKeyboard(view: View) {
         view.post {
