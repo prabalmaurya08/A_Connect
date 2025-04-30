@@ -1,3 +1,4 @@
+
 package com.example.a_connect.student.studentProfile
 
 import android.content.Context
@@ -6,8 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.example.a_connect.R
@@ -70,6 +74,7 @@ class StudentProfile : Fragment() {
         swipeRefreshLayout = binding.swipeRefreshLayout
 
         sessionManager = UserSessionManager(requireContext())
+
         currentUserEmail=sessionManager.getCurrentUserEmail().toString()
 
         swipeRefreshLayout.setOnRefreshListener {
@@ -98,10 +103,29 @@ class StudentProfile : Fragment() {
             }
         })
 
+        binding.btnLogout.setOnClickListener(){
+            logout()
+        }
+
+
+
 
         return binding.root
     }
 
+    private fun logout() {
 
+            val sessionManager = UserSessionManager(requireContext())
+            sessionManager.logout()
 
+            findNavController().navigate(R.id.action_studentMainPage_to_mainLogin, null,
+                NavOptions.Builder()
+                    .setPopUpTo(R.id.mainLogin, true)
+                    .build())
+            Toast.makeText(requireContext(), "Logged out successfully", Toast.LENGTH_SHORT).show()
+        }
 }
+
+
+
+
