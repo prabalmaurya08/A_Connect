@@ -1,30 +1,34 @@
-package com.example.a_connect.alumni.alumniProfile
-
+package com.example.a_connect.student.studentProfile
 
 import android.net.Uri
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.a_connect.R
-import com.example.a_connect.SharedPreferencesHelper
-import com.example.a_connect.alumni.alumniProfile.mvvm.AlumniEditProfileViewModelFactory
-import com.example.a_connect.alumni.alumniProfile.mvvm.AlumniProfileRepository
-import com.example.a_connect.alumni.alumniProfile.mvvm.AlumniProfileViewModel
-import com.example.a_connect.databinding.FragmentAlumniEditProfileBinding
+import com.example.a_connect.UserSessionManager
 
-class AlumniEditProfile : Fragment() {
-    private lateinit var binding: FragmentAlumniEditProfileBinding
-    private val viewModel: AlumniProfileViewModel by viewModels {
-        AlumniEditProfileViewModelFactory(AlumniProfileRepository())
+import com.example.a_connect.databinding.FragmentStudentEditProfileBinding
+import com.example.a_connect.student.studentProfile.mvvm.StudentEditProfileViewModelFactory
+import com.example.a_connect.student.studentProfile.mvvm.StudentProfileRepository
+import com.example.a_connect.student.studentProfile.mvvm.StudentProfileViewmodel
+import kotlin.getValue
+
+
+class StudentEditProfile : Fragment() {
+    private var _binding: FragmentStudentEditProfileBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var sessionManager: UserSessionManager
+
+    private val viewModel: StudentProfileViewmodel by viewModels {
+        StudentEditProfileViewModelFactory(StudentProfileRepository())
     }
     private lateinit var currentUserEmail: String
     private var profileImageUri: Uri? = null
@@ -35,15 +39,32 @@ class AlumniEditProfile : Fragment() {
             binding.editProfileCircleImageView.setImageURI(uri)  // Assuming you have an ImageView to show the selected image
         }
     }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+    }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentAlumniEditProfileBinding.inflate(inflater, container, false)
+        savedInstanceState: Bundle?,
+    ): View? {
+        // Inflate the layout for this fragment
+        _binding = FragmentStudentEditProfileBinding.inflate(inflater, container, false)
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        currentUserEmail = SharedPreferencesHelper.getCurrentUserEmail() ?: return binding.root
+        sessionManager = UserSessionManager(requireContext())
+        currentUserEmail=sessionManager.getCurrentUserEmail().toString()
+
+
+
+        if (currentUserEmail != null) {
+            println("Current user's email: $currentUserEmail")
+        } else {
+            println("No user logged in.")
+        }
 
         setupUI()
         observeViewModel()
@@ -61,6 +82,7 @@ class AlumniEditProfile : Fragment() {
                     .into(binding.editProfileCircleImageView)
             }
         })
+
 
         return binding.root
     }
@@ -84,7 +106,6 @@ class AlumniEditProfile : Fragment() {
             }
         }
     }
-
     private fun observeViewModel() {
         // Show/Hide ProgressBar while fetching/updating
         viewModel.isLoading.observe(viewLifecycleOwner, Observer { isLoading ->
@@ -115,7 +136,6 @@ class AlumniEditProfile : Fragment() {
             }
         }
     }
-
     private fun validateInput(): Boolean {
         if (binding.editAlumniName.text.toString().trim().isEmpty()) {
             binding.editAlumniName.error = "Name is required"
@@ -144,5 +164,5 @@ class AlumniEditProfile : Fragment() {
         // Update user profile on Firestore (including the new profile picture)
         viewModel.updateUserProfile(currentUserEmail, profileImageUri)
     }
-}
 
+}

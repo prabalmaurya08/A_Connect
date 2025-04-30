@@ -8,11 +8,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.a_connect.R
-import com.example.a_connect.alumni.alumniCommunity.AlumniCommunityPage
-import com.example.a_connect.alumni.alumniHome.AlumniHomePage
-import com.example.a_connect.alumni.alumniJob.AlumniJob
-import com.example.a_connect.alumni.alumniPost.AlumniPost
-import com.example.a_connect.alumni.alumniProfile.AlumniProfile
+
 import com.example.a_connect.databinding.FragmentAlumniMainPageBinding
 import com.example.a_connect.login.AlumniLogin
 

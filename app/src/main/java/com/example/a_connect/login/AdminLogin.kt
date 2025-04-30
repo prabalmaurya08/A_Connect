@@ -31,7 +31,7 @@ class AdminLogin : Fragment() {
 
         binding.submitButton.setOnClickListener {
 
-            if (binding.adminLoginEmail.text.toString() == "admin@gmail.Com" && binding.adminLoginPassword.text.toString() == "1234") {
+            if (binding.adminLoginEmail.text.toString() == "admin@gmail.com" && binding.adminLoginPassword.text.toString() == "1234") {
 
                 findNavController().navigate(R.id.action_adminLogin_to_adminMainPage)
 

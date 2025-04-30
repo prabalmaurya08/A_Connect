@@ -1,336 +1,351 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.a_connect.student.studentProfile.mvvm.StudentProfileViewmodel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:background="#FFFFFF"
     tools:context=".student.studentProfile.StudentProfile"
    >
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/profileAppbarLayout"
-        android:layout_width="match_parent"
-
+    <TextView
+        android:id="@+id/profile"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Profile"
+        android:fontFamily="@font/sf_pro_display_bold"
+        android:textSize="24sp"
+
+        android:textStyle="bold"
+        android:paddingTop="10dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <com.google.android.material.appbar.MaterialToolbar
+    <ImageView
+        android:id="@+id/btn_logout"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/logout"
+        app:layout_constraintBottom_toTopOf="@+id/swipeRefreshLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            android:id="@+id/profileToolbar"
-
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-
-            app:title="Profile"
-            app:titleCentered="true"
-
-            app:navigationIcon="@drawable/hamburger_menu">
-
-        </com.google.android.material.appbar.MaterialToolbar>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <ScrollView
+    <!-- Profile image and statistics -->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-      android:layout_marginHorizontal="16dp"
-        app:layout_constraintTop_toBottomOf="@id/profileAppbarLayout">
+        app:layout_constraintTop_toBottomOf="@id/profile"
+        android:layout_height="0dp"
 
 
+        android:fillViewport="true">
 
-
-    <RelativeLayout
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
 
-        <!-- Profile image and statistics -->
+        android:layout_marginHorizontal="16dp"
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/profile_stats_container"
+        >
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/student_shape_card"
-            android:padding="16dp"
+            android:layout_height="wrap_content">
 
-            android:layout_marginBottom="16dp"
-            android:elevation="10dp"
-            >
+            <!-- Profile image and statistics -->
 
-            <!-- Circle ImageView -->
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/student_profile_circleImageView"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/alumni_profile_photo"
-                app:civ_border_color="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ImageContrastCheck" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profile_stats_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/student_shape_card"
+                android:padding="16dp"
+
+                android:layout_marginBottom="16dp"
+                android:elevation="10dp"
+                >
+
+                <!-- Circle ImageView -->
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/student_profile_circleImageView"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/alumni_profile_photo"
+                    app:civ_border_color="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ImageContrastCheck" />
 
 
-            <!-- Post, Student, Alumni stats -->
+                <!-- Post, Student, Alumni stats -->
+                <LinearLayout
+                    android:id="@+id/student_stats_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:paddingTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/student_profile_circleImageView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/_1_234_nposts"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:gravity="center"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/_5_678_nstudents"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:gravity="center"
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/_9_101_nalumni"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:gravity="center"
+                        android:textColor="#000000" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="@={viewModel.name}"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/student_profile_circleImageView"
+
+                    android:textStyle="bold"
+                    android:paddingTop="10dp"
+
+                    />
+
+                <!-- Bio -->
+                <TextView
+                    android:id="@+id/bio_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="30dp"
+                    android:text="@={viewModel.bio}"
+                    android:textColor="#616161"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/userName" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Unique ID button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/student_unique_id_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/get_your_unique_id_txt"
+                android:backgroundTint="@color/orange1"
+                android:textColor="@color/white"
+                android:layout_marginBottom="16dp"
+                android:layout_below="@id/profile_stats_container"
+                android:layout_marginTop="10dp"
+                app:cornerRadius="12dp"
+                android:fontFamily="@font/sf_pro_display"
+                tools:ignore="VisualLintButtonSize" />
+
+            <!-- Edit and Share Profile buttons -->
             <LinearLayout
-                android:id="@+id/student_stats_container"
+                android:id="@+id/student_edit_share_buttons_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="16dp"
+                android:layout_below="@id/student_unique_id_button">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/student_edit_profile_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="@string/edit_profile_txt"
+                    android:textColor="@color/orange1"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="8dp"
+                    app:cornerRadius="12dp"
+
+                    app:backgroundTint="#F0F0F0"
+                    app:elevation="14dp"
+                    app:rippleColor="@android:color/darker_gray"
+                    tools:ignore="VisualLintButtonSize" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/student_share_profile_button"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="@string/share_profile_txt"
+                    android:textColor="@color/orange1"
+                    android:layout_marginStart="8dp"
+                    app:cornerRadius="12dp"
+                    app:backgroundTint="#F0F0F0"
+                    app:elevation="4dp"
+                    app:rippleColor="@android:color/darker_gray"
+                    tools:ignore="VisualLintButtonSize" />
+
+            </LinearLayout>
+
+            <!-- Social Icons -->
+            <LinearLayout
+                android:id="@+id/socialIcons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:paddingTop="8dp"
-                app:layout_constraintTop_toBottomOf="@id/student_profile_circleImageView"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/student_edit_share_buttons_container"
+                app:layout_constraintTop_toBottomOf="@id/student_edit_share_buttons_container"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                android:elevation="13dp">
 
-                <TextView
-                    android:layout_width="0dp"
+                <!-- LinkedIn Icon -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/_1_234_nposts"
-                    android:fontFamily="@font/sf_pro_display"
-                    android:gravity="center"
-                    android:textColor="#000000" />
+                    android:background="@drawable/edit_area_box"
+                    android:paddingVertical="5dp"
+                    android:paddingHorizontal="15dp"
+                    android:layout_marginHorizontal="5dp">
+                    <ImageButton
+                        android:id="@+id/linkedinIcon"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/social_icon_linkdin"
+                        android:contentDescription="@string/linkedin"
+                        android:background="@null"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:layout_width="0dp"
+                <!-- Gmail Icon -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/_5_678_nstudents"
-                    android:fontFamily="@font/sf_pro_display"
-                    android:gravity="center"
-                    android:textColor="#000000" />
+                    android:background="@drawable/edit_area_box"
+                    android:paddingVertical="5dp"
+                    android:paddingHorizontal="15dp"
+                    android:layout_marginHorizontal="5dp">
+                    <ImageButton
+                        android:id="@+id/gmailIcon"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/social_icon_gmail"
+                        android:contentDescription="@string/gmail"
+                        android:background="@null"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:layout_width="0dp"
+                <!-- Instagram Icon -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/_9_101_nalumni"
-                    android:fontFamily="@font/sf_pro_display"
-                    android:gravity="center"
-                    android:textColor="#000000" />
+                    android:background="@drawable/edit_area_box"
+                    android:paddingVertical="5dp"
+                    android:paddingHorizontal="15dp"
+                    android:layout_marginHorizontal="5dp">
+                    <ImageButton
+                        android:id="@+id/instagramIcon"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/social_icon_instagram"
+                        android:contentDescription="@string/instagram"
+                        android:background="@null"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Twitter Icon -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_area_box"
+                    android:paddingVertical="5dp"
+                    android:paddingHorizontal="15dp"
+                    android:layout_marginHorizontal="5dp">
+                    <ImageButton
+                        android:id="@+id/twitterIcon"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/social_icon_thread"
+                        android:contentDescription="@string/twitter"
+                        android:background="@null"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
-            <!-- Bio -->
-            <TextView
-                android:id="@+id/bio_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:paddingTop="4dp"
-                android:paddingBottom="30dp"
-                android:text="@string/bio"
-                android:textColor="#616161"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/student_stats_container" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!-- Unique ID button -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/student_unique_id_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/get_your_unique_id_txt"
-            android:backgroundTint="@color/orange1"
-            android:textColor="@color/white"
-            android:layout_marginBottom="16dp"
-            android:layout_below="@id/profile_stats_container"
-            android:layout_marginTop="10dp"
-            app:cornerRadius="12dp"
-            android:fontFamily="@font/sf_pro_display"
-            tools:ignore="VisualLintButtonSize" />
-
-        <!-- Edit and Share Profile buttons -->
-        <LinearLayout
-            android:id="@+id/student_edit_share_buttons_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="16dp"
-            android:layout_below="@id/student_unique_id_button">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/student_edit_profile_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/sf_pro_display"
-                android:text="@string/edit_profile_txt"
-                android:textColor="@color/orange1"
-                android:textStyle="bold"
-                android:layout_marginEnd="8dp"
-                app:cornerRadius="12dp"
-
-                app:backgroundTint="#F0F0F0"
-                app:elevation="14dp"
-                app:rippleColor="@android:color/darker_gray"
-                tools:ignore="VisualLintButtonSize" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/student_share_profile_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/sf_pro_display"
-                android:text="@string/share_profile_txt"
-                android:textColor="@color/orange1"
-                android:layout_marginStart="8dp"
-                app:cornerRadius="12dp"
-                app:backgroundTint="#F0F0F0"
-                app:elevation="4dp"
-                app:rippleColor="@android:color/darker_gray"
-                tools:ignore="VisualLintButtonSize" />
-
-        </LinearLayout>
-
-        <!-- Social Icons -->
-        <LinearLayout
-            android:id="@+id/socialIcons"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/student_edit_share_buttons_container"
-            app:layout_constraintTop_toBottomOf="@id/student_edit_share_buttons_container"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:elevation="13dp">
-
-            <!-- LinkedIn Icon -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_area_box"
-                android:paddingVertical="5dp"
-                android:paddingHorizontal="15dp"
-                android:layout_marginHorizontal="5dp">
-                <ImageButton
-                    android:id="@+id/linkedinIcon"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/social_icon_linkdin"
-                    android:contentDescription="@string/linkedin"
-                    android:background="@null"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <!-- Gmail Icon -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_area_box"
-                android:paddingVertical="5dp"
-                android:paddingHorizontal="15dp"
-                android:layout_marginHorizontal="5dp">
-                <ImageButton
-                    android:id="@+id/gmailIcon"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/social_icon_gmail"
-                    android:contentDescription="@string/gmail"
-                    android:background="@null"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <!-- Instagram Icon -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_area_box"
-                android:paddingVertical="5dp"
-                android:paddingHorizontal="15dp"
-                android:layout_marginHorizontal="5dp">
-                <ImageButton
-                    android:id="@+id/instagramIcon"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/social_icon_instagram"
-                    android:contentDescription="@string/instagram"
-                    android:background="@null"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <!-- Twitter Icon -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_area_box"
-                android:paddingVertical="5dp"
-                android:paddingHorizontal="15dp"
-                android:layout_marginHorizontal="5dp">
-                <ImageButton
-                    android:id="@+id/twitterIcon"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/social_icon_thread"
-                    android:contentDescription="@string/twitter"
-                    android:background="@null"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_below="@id/socialIcons"
-            android:layout_marginTop="10dp">
-            <!-- Tab Layout -->
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/student_mainLoginTabLayout"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:tabIndicatorHeight="5dp"
-                app:tabIndicatorColor="@color/orange1"
-                app:tabIndicatorFullWidth="true"
-                app:tabMode="fixed"
-                app:tabGravity="fill"
-                app:tabTextColor="@color/black1"
-                app:tabRippleColor="@null">
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_pro_display"
-                    android:text="@string/millestones" />
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sf_pro_display"
-                    android:text="@string/posts" />
-            </com.google.android.material.tabs.TabLayout>
+                android:gravity="center_vertical"
+                android:layout_below="@id/socialIcons"
+                android:layout_marginTop="10dp">
 
 
 
-        </LinearLayout>
-        <!-- ViewPager -->
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/student_login_viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintBottom_toBottomOf="parent" />
+
+            </LinearLayout>
+            <!-- ViewPager -->
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/student_login_viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
 
-    </RelativeLayout>
-    </ScrollView>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

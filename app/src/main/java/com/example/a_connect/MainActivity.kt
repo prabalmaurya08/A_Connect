@@ -24,11 +24,15 @@ import com.example.a_connect.alumni.alumniProfile.AlumniProfile
 import com.example.a_connect.databinding.ActivityMainBinding
 import com.example.a_connect.login.AlumniLogin
 import com.example.a_connect.login.StudentLogin
+import com.example.a_connect.student.studentHomePage.StudentHomePage
 import com.example.a_connect.student.studentJob.StudentJob
 import com.example.a_connect.student.studentMainPage.StudentMainPageDirections
+import com.example.a_connect.student.studentProfile.StudentProfile
 
 class MainActivity : AppCompatActivity() , AlumniHomePage.OnItemClickedInsideViewPager, AlumniLogin.OnAlumniScreenClicked,StudentLogin.OnStudentScreenClicked,OngoingJob.OnAdminJobClickListener
-,ExpiredJob.OnJobClickListener,AdminNewsAnnouncement.OnAdminNewsClicked,AdminCollegeProfile.OnGoToEditProfileClickListener, AlumniJob.OnAlumniJobClickListener,StudentJob.OnStudentJobClickListener,AlumniProfile.OnAlumniProfileItemClicked,AdminJob.OnGoToCreateJobClickListener,AlumniHomePage.VoiceInputListener{
+,ExpiredJob.OnJobClickListener,AdminNewsAnnouncement.OnAdminNewsClicked, StudentHomePage.OnStudentHomePageItemClicked,AdminCollegeProfile.OnGoToEditProfileClickListener, AlumniJob.OnAlumniJobClickListener,StudentJob.OnStudentJobClickListener,AlumniProfile.OnAlumniProfileItemClicked,AdminJob.OnGoToCreateJobClickListener,AlumniHomePage.VoiceInputListener
+
+, StudentProfile.OnStudentProfileItemClicked{
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -69,6 +73,9 @@ class MainActivity : AppCompatActivity() , AlumniHomePage.OnItemClickedInsideVie
     override fun onNotificationButtonClicked() {
 
     }
+    override fun onStudentEditProfileClicked(){
+        findNavController(R.id.fragment).navigate(R.id.action_studentMainPage_to_studentEditProfile)
+    }
 
     override fun onMapClick() {
         findNavController(R.id.fragment).navigate(R.id.action_aluminiMainPage_to_alumniMap)
@@ -106,6 +113,10 @@ class MainActivity : AppCompatActivity() , AlumniHomePage.OnItemClickedInsideVie
 
     override fun onAlumniJobClicked(jobId: String) {
         val action = AluminiMainPageDirections.actionAluminiMainPageToAlumniJobDetail(jobId)
+        findNavController(R.id.fragment).navigate(action)
+    }
+    override fun onStudentJobClicked(jobId: String) {
+        val action = StudentMainPageDirections.actionStudentMainPageToAlumniJobDetail(jobId)
         findNavController(R.id.fragment).navigate(action)
     }
 
@@ -157,8 +168,11 @@ class MainActivity : AppCompatActivity() , AlumniHomePage.OnItemClickedInsideVie
         findNavController(R.id.fragment).navigate(action)
     }
 
-    override fun onStudentJobClicked(jobId: String) {
-        val action = StudentMainPageDirections.actionStudentMainPageToStudentJobDetail(jobId)
-        findNavController(R.id.fragment).navigate(action)
+
+
+    override fun onStudentSearchClicked() {
+        findNavController(R.id.fragment).navigate(R.id.action_studentMainPage_to_alumniSearchScreen)
+
+
     }
 }

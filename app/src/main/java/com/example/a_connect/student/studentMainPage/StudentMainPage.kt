@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
+import androidx.viewpager2.widget.ViewPager2
 
 import com.example.a_connect.R
 import com.example.a_connect.alumni.alumniExplore.AlumniMap
+import com.example.a_connect.alumni.alumniMainPage.AlumniMainPageViewPagerAdapter
 
 import com.example.a_connect.databinding.FragmentStudentMainPageBinding
 import com.example.a_connect.student.studentCommunity.StudentCommunity
@@ -20,9 +22,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class StudentMainPage : Fragment() {
-    private lateinit var binding: FragmentStudentMainPageBinding
+   private var _binding: FragmentStudentMainPageBinding? = null
+    private val binding get() = _binding!!
 
+    private lateinit var viewPager: ViewPager2
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var adapter: StudentMainPageAdapter
 
 
 
@@ -31,37 +36,45 @@ class StudentMainPage : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding=FragmentStudentMainPageBinding.inflate(layoutInflater)
+        _binding = FragmentStudentMainPageBinding.inflate(inflater, container, false)
 
 
         bottomNavigationView = binding.bottomNav
+        viewPager = binding.studentMainPageViewPager
+        setupViewPager()
 
 
 
 
-        setupViewPagerWithBottomNavigation()
+     setupBottomNavigation()
         return binding.root
     }
-    private fun setupViewPagerWithBottomNavigation() {
 
+    private fun setupViewPager() {
+        adapter = StudentMainPageAdapter(this)
+        viewPager.adapter = adapter
+        viewPager.isUserInputEnabled = false
+
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                bottomNavigationView.menu.getItem(position).isChecked = true
+            }
+        })
+    }
+
+    private fun setupBottomNavigation() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.bottom_nav_home-> loadFragment(StudentHomePage())
-                R.id.bottom_nav_community -> loadFragment(StudentCommunity())
-                R.id.bottom_nav_explore ->loadFragment(AlumniMap())
-                R.id.bottom_nav_job -> loadFragment(StudentJob())
-                R.id.bottom_nav_profile ->loadFragment(StudentProfile())
+                R.id.s_bottom_nav_home -> viewPager.currentItem = 0
+                R.id.s_bottom_nav_community -> viewPager.currentItem = 1
+                R.id.s_bottom_nav_explore-> viewPager.currentItem = 2
+                R.id.s_bottom_nav_job -> viewPager.currentItem = 3
+                R.id.s_bottom_nav_profile -> viewPager.currentItem = 4
             }
             true
         }
     }
-    private fun loadFragment(fragment: Fragment) {
-        // Replace the existing fragment in FragmentContainerView
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, fragment)
-            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-            .commit()
-    }
+
 
 
 

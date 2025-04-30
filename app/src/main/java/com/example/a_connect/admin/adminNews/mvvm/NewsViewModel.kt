@@ -3,6 +3,8 @@ package com.example.a_connect.admin.adminNews.mvvm
 
 
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -48,6 +50,25 @@ class NewsViewModel(private val repository: NewsRepository) : ViewModel() {
             }
         }
     }
+    private val _selectedNews = MutableLiveData<NewsDataClass?>()
+    val selectedNews: LiveData<NewsDataClass?> = _selectedNews
+
+    fun loadNewsById(newsId: String) {
+        viewModelScope.launch {
+            _loadingState.value = true
+            try{
+                val news = repository.getNewsById(newsId)
+                _selectedNews.postValue(news)
+            } catch (e: Exception) {
+                _errorState.value = e.message
+            }
+            finally {
+                _loadingState.value = false
+            }
+
+        }
+    }
+
 
     fun deleteNews(newsId: String) {
         viewModelScope.launch {

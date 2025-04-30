@@ -1,4 +1,8 @@
-package com.example.a_connect.admin.adminNews.mvvm
+package com.example.a_connect.student.studentHomePage
+
+import com.example.a_connect.admin.adminNews.mvvm.NewsDataClass
+
+
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,17 +11,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.a_connect.R
 import com.example.a_connect.databinding.AdminNewsCardBinding
+import com.example.a_connect.databinding.NewsCardBinding
 
 import java.text.SimpleDateFormat
 import java.util.*
 
-class NewsAdapter(
+class SecondNewsAdapter(
     private var newsList: List<NewsDataClass>,
     private val onItemClick: (NewsDataClass) -> Unit,
-    private val onDeleteClick: (String) -> Unit
-) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
-    inner class NewsViewHolder(private val binding: AdminNewsCardBinding) :
+) : RecyclerView.Adapter<SecondNewsAdapter.NewsViewHolder>() {
+
+    inner class NewsViewHolder(private val binding: NewsCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(news: NewsDataClass) {
@@ -38,9 +43,7 @@ class NewsAdapter(
                 onItemClick(news)
             }
 
-            binding.delete.setOnClickListener {
-                onDeleteClick(news.newsId)
-            }
+
         }
 
         private fun formatDate(timestamp: Long): String {
@@ -61,7 +64,7 @@ class NewsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
-        val binding = AdminNewsCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = NewsCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NewsViewHolder(binding)
     }
 
