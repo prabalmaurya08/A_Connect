@@ -480,5 +480,10 @@
         android:id="@+id/studentEditProfile"
         android:name="com.example.a_connect.student.studentProfile.StudentEditProfile"
         android:label="StudentEditProfile" />
+    <fragment
+        android:id="@+id/alumniProfileDetail"
+        android:name="com.example.a_connect.alumni.alumniProfile.AlumniProfileDetail"
+        android:label="fragment_alumni_profile_detail"
+        tools:layout="@layout/fragment_alumni_profile_detail" />
 </navigation>
 
