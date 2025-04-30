@@ -52,6 +52,12 @@
         <action
             android:id="@+id/action_aluminiMainPage_to_alumniMap"
             app:destination="@id/alumniMap" />
+
+        <action
+            android:id="@+id/action_aluminiMainPage_to_mainLogin"
+            app:destination="@id/mainLogin"
+            app:popUpTo="@id/mainLogin"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/aluminiChat"
@@ -161,6 +167,12 @@
                 android:name="jobId"
                 app:argType="string" />
         </action>
+
+        <action
+            android:id="@+id/action_studentMainPage_to_mainLogin"
+            app:destination="@id/mainLogin"
+            app:popUpTo="@id/mainLogin"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <!-- Student Home Page Fragment -->

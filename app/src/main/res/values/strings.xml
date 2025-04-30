@@ -112,6 +112,7 @@
     <string name="login_as_admin">Login as Admin</string>
     <string name="alumni">Alumni</string>
     <string name="student">Student</string>
+    <string name="logout_as_alumni">log out as alumni</string>
 
 
     <string-array name="gender_array">

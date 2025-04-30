@@ -10,29 +10,35 @@
    >
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+        android:id="@+id/profileAppbarLayout"
         android:layout_width="match_parent"
 
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
+
         <com.google.android.material.appbar.MaterialToolbar
+
+            android:id="@+id/profileToolbar"
+
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
+
             app:title="Profile"
             app:titleCentered="true"
-            app:navigationIcon="@drawable/hamburger_menu"
-            >
+
+            app:navigationIcon="@drawable/hamburger_menu">
 
         </com.google.android.material.appbar.MaterialToolbar>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
       android:layout_marginHorizontal="16dp"
-        app:layout_constraintTop_toBottomOf="@id/appbar">
+        app:layout_constraintTop_toBottomOf="@id/profileAppbarLayout">
 
 
 
