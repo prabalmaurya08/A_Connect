@@ -113,6 +113,7 @@
     <string name="alumni">Alumni</string>
     <string name="student">Student</string>
     <string name="logout_as_alumni">log out as alumni</string>
+    <string name="news">News</string>
 
 
     <string-array name="gender_array">
