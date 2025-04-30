@@ -3,11 +3,11 @@ package com.example.a_connect.student.studentHomePage
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -16,17 +16,13 @@ import com.bumptech.glide.Glide
 import com.example.a_connect.R
 import com.example.a_connect.SharedPreferencesHelper
 import com.example.a_connect.UserSessionManager
-import com.example.a_connect.admin.adminNews.AdminNewsAnnouncement
-import com.example.a_connect.admin.adminNews.mvvm.NewsAdapter
 import com.example.a_connect.admin.adminNews.mvvm.NewsRepository
 import com.example.a_connect.admin.adminNews.mvvm.NewsViewModel
 import com.example.a_connect.admin.adminNews.mvvm.NewsViewModelFactory
-import com.example.a_connect.alumni.alumniHome.AlumniHomePage.OnItemClickedInsideViewPager
 import com.example.a_connect.alumni.alumniHome.mvvm.AlumniHomeViewModel
 import com.example.a_connect.databinding.FragmentStudentHomePageBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import kotlin.getValue
 
 
 class StudentHomePage : Fragment() {
@@ -42,13 +38,11 @@ class StudentHomePage : Fragment() {
 
     private var listener2: OnStudentNewsClicked? = null
 
-    interface OnStudentNewsClicked{
+    interface OnStudentNewsClicked {
 
 
-        fun onStudentNewsClicked(newsId:String)
+        fun onStudentNewsClicked(newsId: String)
     }
-
-
 
 
     private var listener: OnStudentHomePageItemClicked? = null
@@ -56,16 +50,15 @@ class StudentHomePage : Fragment() {
         super.onAttach(context)
         if (context is OnStudentHomePageItemClicked) {
             listener = context
-        }
-        else if (context is OnStudentNewsClicked) {
+        } else if (context is OnStudentNewsClicked) {
             listener2 = context
 
-        } else{
+        } else {
             throw ClassCastException("$context must implement OnItemClickedInsideViewPager interface")
         }
     }
-    interface OnStudentHomePageItemClicked{
 
+    interface OnStudentHomePageItemClicked {
 
 
         fun onStudentSearchClicked()
@@ -74,7 +67,7 @@ class StudentHomePage : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentStudentHomePageBinding.inflate(inflater, container, false)
@@ -86,11 +79,12 @@ class StudentHomePage : Fragment() {
         }
 
         sessionManager = UserSessionManager(requireContext())
-        currentUserEmail=sessionManager.getCurrentUserEmail().toString()
-        binding.userName.text="Hi ,"+SharedPreferencesHelper.getStudentName()
+        currentUserEmail = sessionManager.getCurrentUserEmail().toString()
+        binding.userName.text = "Hi ," + SharedPreferencesHelper.getStudentName()
         return binding.root
     }
-    private fun loadImage(){
+
+    private fun loadImage() {
         val collegeId = "collegeId123"
 
         // Fetch the image URL when the fragment is created
@@ -112,6 +106,7 @@ class StudentHomePage : Fragment() {
             }
         }
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -129,13 +124,13 @@ class StudentHomePage : Fragment() {
     private fun setupRecyclerView() {
         adapter = SecondNewsAdapter(
             emptyList(),
-            onItemClick = {newsId ->
+            onItemClick = { newsId ->
 
 
                 listener2?.onStudentNewsClicked(newsId.newsId)
             },
 
-        )
+            )
 
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -154,14 +149,13 @@ class StudentHomePage : Fragment() {
 
         lifecycleScope.launch {
             viewModel.loadingState.collectLatest {
-                if(it){
+                if (it) {
                     binding.shimmerLayout.visibility = View.VISIBLE
                     binding.shimmerLayout.startShimmer()
-                }else{
+                } else {
                     binding.shimmerLayout.stopShimmer()
                     binding.shimmerLayout.visibility = View.GONE
                 }
-
 
 
             }
@@ -176,7 +170,6 @@ class StudentHomePage : Fragment() {
             }
         }
     }
-
 
 
 }
