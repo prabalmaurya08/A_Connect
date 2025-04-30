@@ -6,12 +6,10 @@
         android:icon="@drawable/home_icon"/>
 
     <item android:id="@+id/a_bottom_nav_announcement"
-        android:title="@string/announcement"
+        android:title="@string/news"
         android:icon="@drawable/news_icon"/>
 
-    <item android:id="@+id/a_bottom_nav_events"
-        android:title="@string/events"
-        android:icon="@drawable/event_create_icon"/>
+
 
     <item android:id="@+id/a_bottom_nav_job"
         android:title="@string/job"

@@ -1,7 +1,7 @@
 package com.example.a_connect.admin.adminMainPage
 
 
-import android.content.Intent
+
 import android.os.Bundle
 import android.view.*
 
@@ -15,7 +15,7 @@ import com.example.a_connect.R
 
 
 import com.example.a_connect.databinding.FragmentAdminMainpageBinding
-import com.example.a_connect.login.AlumniLogin
+
 
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.core.view.get
@@ -84,9 +84,9 @@ class AdminMainPage : Fragment() {
             when (item.itemId) {
                 R.id.a_bottom_nav_home -> viewPager.currentItem = 0
                 R.id.a_bottom_nav_announcement -> viewPager.currentItem = 1
-                R.id.a_bottom_nav_events -> viewPager.currentItem = 2
-                R.id.a_bottom_nav_job -> viewPager.currentItem = 3
-                R.id.a_bottom_nav_college -> viewPager.currentItem = 4
+
+                R.id.a_bottom_nav_job -> viewPager.currentItem = 2
+                R.id.a_bottom_nav_college -> viewPager.currentItem = 3
             }
             true
         }
