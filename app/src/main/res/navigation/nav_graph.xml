@@ -481,6 +481,7 @@
     <fragment
         android:id="@+id/studentEditProfile"
         android:name="com.example.a_connect.student.studentProfile.StudentEditProfile"
-        android:label="StudentEditProfile" />
+        android:label="StudentEditProfile"
+        tools:layout="@layout/fragment_student_edit_profile"/>
 </navigation>
 
