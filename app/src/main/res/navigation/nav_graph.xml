@@ -179,9 +179,7 @@
         <action
             android:id="@+id/action_studentMainPage_to_alumniSearchScreen"
             app:destination="@id/alumniSearchScreen" />
-        <action
-            android:id="@+id/action_studentMainPage_to_alumniJobDetail"
-            app:destination="@id/alumniJobDetail" />
+
     </fragment>
 
     <!-- Student Home Page Fragment -->
