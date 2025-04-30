@@ -64,6 +64,10 @@ class MainActivity : AppCompatActivity() , AlumniHomePage.OnItemClickedInsideVie
 
     }
 
+    override fun onNewsClicked(newsId: String) {
+        TODO("Not yet implemented")
+    }
+
     override fun onChatButtonClicked() {
         findNavController(R.id.fragment).navigate(R.id.action_aluminiMainPage_to_aluminiChat)
 
@@ -116,7 +120,7 @@ class MainActivity : AppCompatActivity() , AlumniHomePage.OnItemClickedInsideVie
         findNavController(R.id.fragment).navigate(action)
     }
     override fun onStudentJobClicked(jobId: String) {
-        val action = StudentMainPageDirections.actionStudentMainPageToAlumniJobDetail(jobId)
+        val action = StudentMainPageDirections.actionStudentMainPageToStudentJobDetail(jobId)
         findNavController(R.id.fragment).navigate(action)
     }
 
@@ -141,6 +145,8 @@ class MainActivity : AppCompatActivity() , AlumniHomePage.OnItemClickedInsideVie
     }
 
     override fun onGoToEditProfileClicked() {
+        findNavController(R.id.fragment).navigate(R.id.action_adminMainPage_to_adminEditProfile)
+
 
     }
 
