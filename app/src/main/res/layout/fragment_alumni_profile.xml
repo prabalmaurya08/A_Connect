@@ -16,19 +16,22 @@
         tools:context=".alumni.alumniProfile.AlumniProfile">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/AlumniProfileAppBarLayout"
+
+            android:id="@+id/alumniProfileAppBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="?attr/actionBarSize"
             app:liftOnScroll="true">
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/AlumniProfileToolBarLayout"
+
+                android:id="@+id/alumniProfileToolBarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="@font/sf_pro_display_bold"
                 app:menu="@menu/alumni_profile_top_menu"
-                app:title="Profile"
-                app:layout_scrollFlags="scroll|enterAlways|snap" />
+                app:title="Profile">
+
+            </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

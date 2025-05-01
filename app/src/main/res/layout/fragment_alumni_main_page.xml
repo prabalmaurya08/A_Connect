@@ -28,8 +28,8 @@
 
             app:menu="@menu/alumini_bottom_menu"
 
-            app:itemBackground="@null"
-            app:itemRippleColor="@android:color/transparent"
+            app:itemBackground="@color/white"
+            app:itemRippleColor="@color/white"
 
             app:itemIconTint="@drawable/alumni_bottom_nav_selector"
             app:itemTextColor="@drawable/alumni_bottom_nav_selector"
