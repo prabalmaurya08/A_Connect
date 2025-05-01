@@ -3,6 +3,9 @@ package com.example.a_connect.alumni.alumniProfile
 import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
+
+
+
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +23,7 @@ import com.example.a_connect.alumni.alumniProfile.mvvm2.AlumniProfileDetailViewM
 import com.example.a_connect.alumni.alumniProfile.mvvm2.AlumniProfileDetailViewModelFactory
 import com.example.a_connect.databinding.FragmentAlumniProfileDetailBinding
 import androidx.core.net.toUri
+
 
 
 class AlumniProfileDetail : Fragment() {
@@ -89,6 +93,7 @@ initLoadingDialog()
             .load(profile.profilePic)
             .placeholder(R.drawable.ic_media)
             .into(binding.profileImageView)
+
 
 //        // Optional fields
 //        binding.phoneLayout.visibility = if (profile.phoneNumber.isNullOrEmpty()) View.GONE else View.VISIBLE
