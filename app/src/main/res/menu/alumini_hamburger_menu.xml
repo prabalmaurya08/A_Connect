@@ -61,7 +61,5 @@
             android:icon="@drawable/profile_icon"
             android:title="@string/about_us"/>
     </group>
-
-
-
+    
 </menu>
