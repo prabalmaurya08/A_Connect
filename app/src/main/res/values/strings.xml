@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">A_Connect</string>
+    <string name="app_name">A Connect</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile">Profile</string>
@@ -114,6 +114,44 @@
     <string name="student">Student</string>
     <string name="logout_as_alumni">log out as alumni</string>
     <string name="news">News</string>
+    <string name="eligible_course_and_branch">Eligible Course and Branch</string>
+    <string name="eligible_batch">Eligible Batch</string>
+    <string name="roles_and_responsibilities">Roles And Responsibilities</string>
+    <string name="specific_requirements">Specific Requirements</string>
+    <string name="selection_process">Selection Process</string>
+    <string name="campus_interview">Campus Interview</string>
+    <string name="tentative_joining_date">Tentative Joining Date</string>
+    <string name="bond_to_be_signed">Bond to be signed</string>
+    <string name="about_company">About Company</string>
+    <string name="apply">Apply</string>
+    <string name="n_a">N/A</string>
+    <string name="will_be_informed">will be informed</string>
+    <string name="paragraph_about_the_company">Paragraph about the company Paragraph about the company Paragraph about the company Paragraph about the company Paragraph about the company Paragraph about the company.</string>
+    <string name="todo">TODO</string>
+    <string name="company_website">Company Website</string>
+    <string name="deadline_for_registration">DeadLine For Registration</string>
+    <string name="dd_mm_yyyy_till_5_p_m">dd/mm/yyyy till 5 p.m.</string>
+    <string name="software_developer_1">Software Developer 1</string>
+    <string name="google">Google</string>
+    <string name="on_site">On Site</string>
+    <string name="icon">icon</string>
+    <string name="noida_delhi">Noida, Delhi</string>
+    <string name="two_days_ago">Two Days Ago</string>
+    <string name="january_5_2025">January,5 2025</string>
+    <string name="b_tech_cs_it_ec">B.tech(CS/IT/EC)</string>
+    <string name="_2025_pass_outs">2025 Pass outs</string>
+    <string name="text">bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla</string>
+    <string name="three_round_of_interview">Three Round of Interview</string>
+    <string name="trending_news">Trending News</string>
+    <string name="voice_input">Voice Input</string>
+    <string name="search">Search</string>
+    <string name="notification">notification</string>
+    <string name="chat">chat</string>
+    <string name="search_here">Search here...</string>
+    <string name="community_posts">community posts</string>
+    <string name="nothing_to_show">Nothing to Show</string>
+    <string name="view_full_map">View Full Map</string>
+    <string name="create_post">Create Post</string>
 
 
     <string-array name="gender_array">
