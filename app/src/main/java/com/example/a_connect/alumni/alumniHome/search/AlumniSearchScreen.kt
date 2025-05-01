@@ -24,7 +24,9 @@ import com.example.a_connect.databinding.FragmentAlumniSearchScreenBinding
 class AlumniSearchScreen : Fragment() {
 
     private lateinit var binding: FragmentAlumniSearchScreenBinding
+
     private lateinit var searchView: SearchView
+
     private lateinit var searchViewModel: AlumniSearchViewModel
     private lateinit var alumniAdapter: AlumniSearchAdapter
 

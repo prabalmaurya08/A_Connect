@@ -1,48 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     tools:context=".alumni.alumniHome.AlumniHomePage">
 
+    <com.google.android.material.appbar.AppBarLayout
 
+        android:id="@+id/alumni_homepage_AppBar"
 
-
-
-    <TextView
-        android:id="@+id/userName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hi, John 👋"
-        android:fontFamily="@font/sf_pro_display_bold"
-        android:textSize="24sp"
-        android:padding="12dp"
-        android:textStyle="bold"
-        android:paddingTop="10dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-    <com.google.android.material.search.SearchBar
-        android:id="@+id/alumniHomePageSearchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/userName"
+        android:background="@color/white"
 
-        app:layout_constraintStart_toStartOf="parent"
+        android:minHeight="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
-        android:hint="Search here..." />
+        app:layout_constraintStart_toStartOf="parent"
 
+        app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.appcompat.widget.Toolbar
+
+            android:id="@+id/alumni_homepage_ToolBar"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            app:title="@+id/userName"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:textSize="24sp"
+            android:textStyle="bold"
+
+            app:menu="@menu/alumni_home_top_menu">
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.search.SearchBar
+
+        android:id="@+id/alumniHomePageSearchBar"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:hint="@string/search_here"
+        android:background="@color/blue5"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/alumni_homepage_AppBar"
+
+        app:menu="@menu/alumni_home_search_menu"
+
+        app:navigationIcon="@drawable/search_icon" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:fillViewport="true"
         android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@id/alumniHomePageSearchBar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:fillViewport="true">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/alumniHomePageSearchBar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -53,14 +76,16 @@
                 android:id="@+id/collegeCard"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:cardCornerRadius="24dp"
-                app:cardElevation="4dp">
+                app:cardElevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/alumniHomePageCollegeImage"
+
+                    android:contentDescription="@string/college_image"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -72,23 +97,24 @@
                 android:id="@+id/exploreTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Explore"
+                android:paddingTop="16dp"
+                android:text="@string/explore"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/collegeCard"
-                android:paddingTop="16dp"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/collegeCard" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/exploreCard"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
-                app:layout_constraintTop_toBottomOf="@id/exploreTitle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="8dp"
                 app:cardCornerRadius="24dp"
-                app:cardElevation="4dp">
+                app:cardElevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/exploreTitle">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -101,16 +127,16 @@
                     <TextView
                         android:id="@+id/viewFullMap"
                         android:layout_width="match_parent"
-                        android:gravity="center"
                         android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:layout_centerHorizontal="true"
-
                         android:background="@drawable/rounded_button"
+
+                        android:gravity="center"
                         android:padding="8dp"
-                        android:text="View Full Map"
+                        android:text="@string/view_full_map"
                         android:textColor="@android:color/white"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp" />
                 </RelativeLayout>
 
                 <!-- Map preview will be added here -->
@@ -122,21 +148,22 @@
                 android:id="@+id/trendingNewsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Trending News"
+                android:paddingTop="16dp"
+                android:text="@string/trending_news"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/exploreCard"
                 app:layout_constraintStart_toStartOf="parent"
-                android:paddingTop="16dp" />
+                app:layout_constraintTop_toBottomOf="@id/exploreCard" />
+
             <com.facebook.shimmer.ShimmerFrameLayout
                 android:id="@+id/shimmerLayout"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
 
-                app:layout_constraintTop_toBottomOf="@id/trendingNewsTitle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/trendingNewsTitle"
                 app:shimmer_auto_start="true"
                 app:shimmer_duration="1500">
 
@@ -170,21 +197,18 @@
 
             </com.facebook.shimmer.ShimmerFrameLayout>
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/trendingNewsTitle"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/trendingNewsTitle">
 
+            </androidx.recyclerview.widget.RecyclerView>
 
-
-
-
-                <!-- Donate content -->
-
+            <!-- Donate content -->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -192,12 +216,20 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabVoiceInput"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="16dp"
         android:src="@drawable/microphone"
-        android:contentDescription="Voice Input" />
+
+        android:contentDescription="@string/voice_input"
+        android:backgroundTint="@color/blue3"
+        android:tint="@color/white"
+        android:elevation="8dp"
+        app:shapeAppearanceOverlay="@style/MyCustomFabShape"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

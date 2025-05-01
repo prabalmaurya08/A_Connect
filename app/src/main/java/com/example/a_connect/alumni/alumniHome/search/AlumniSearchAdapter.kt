@@ -29,8 +29,6 @@ class AlumniSearchAdapter(private val onClick: (AlumniSearchDataClass)->Unit) :
             binding.graduationYearTextView.text = alumni.graduationYear.toString()
             binding.collegeTextView.text = alumni.collegeName
 
-
-
             binding.root.setOnClickListener {
                 onClick(alumni)
             }
