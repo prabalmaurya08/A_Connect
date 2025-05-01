@@ -8,7 +8,6 @@
     <style name="Theme.A_Connect" parent="Base.Theme.A_Connect" />
 
 
-
     <!--    THis is for Alumni Job page Button style-->
     <style name="alumni_jobDetailButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">@color/white</item>
