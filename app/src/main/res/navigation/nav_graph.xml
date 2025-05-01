@@ -264,6 +264,12 @@
                 android:name="newsId"
                 app:argType="string" />
         </action>
+
+        <action
+            android:id="@+id/action_adminMainPage_to_mainLogin"
+            app:destination="@id/mainLogin"
+            app:popUpTo="@id/mainLogin"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <!-- Admin College Profile Fragment -->

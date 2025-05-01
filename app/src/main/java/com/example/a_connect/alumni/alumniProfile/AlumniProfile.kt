@@ -149,12 +149,6 @@ class AlumniProfile : Fragment() {
                         logout()
                         true // Indicate handled
                     }
-                    // Handle other potential menu items if any, e.g., the Up/Home button
-                    android.R.id.home -> {
-                        // Handle Up button click if you haven't disabled it
-                        // findNavController().navigateUp()
-                        true // Indicate handled if you consume it
-                    }
                     else -> false // Let the system handle other menu items
                 }
             }
@@ -174,26 +168,6 @@ class AlumniProfile : Fragment() {
 
         Toast.makeText(context,"logged out", Toast.LENGTH_SHORT).show()
     }
-
-
-//    private fun setupLogoutButton() {
-//
-//        binding..setOnClickListener {
-//
-//            userSessionManager.logout()
-//
-//            Toast.makeText(requireContext(), "Logged out successfully", Toast.LENGTH_SHORT).show()
-//
-//            findNavController().navigate(
-//                R.id.action_aluminiMainPage_to_mainLogin,
-//                null,
-//
-//                NavOptions.Builder()
-//                    .setPopUpTo(R.id.mainLogin, true)
-//                    .build()
-//            )
-//        }
-//    }
 
     private fun setUpViewPagerAdapter() {
         val adapter = AlumniProfileViewPagerAdapter(requireActivity())
