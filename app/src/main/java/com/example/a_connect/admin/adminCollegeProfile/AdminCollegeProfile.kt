@@ -9,17 +9,26 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 
 
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuHost
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 
 import com.example.a_connect.R
+import com.example.a_connect.UserSessionManager
 import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileRepository
 import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileViewModel
 import com.example.a_connect.admin.adminCollegeProfile.mvvm.EditProfileViewModelFactory
@@ -266,6 +275,8 @@ import java.io.InputStream
 
 class AdminCollegeProfile : Fragment() {
 
+    private lateinit var userSessionManager: UserSessionManager
+
     private lateinit var binding: FragmentAdminCollegeProfileBinding
     private val IMAGE_PICK_REQUEST = 1003
     private var imageUri: Uri? = null
@@ -307,6 +318,7 @@ when(context) {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_admin_college_profile, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
@@ -315,9 +327,54 @@ when(context) {
 
         viewModel.loadProfileData(collegeId)
         setupUI()
+        setupToolbarMenu()
         setupObservers()
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        userSessionManager = UserSessionManager(requireContext())
+        val activity = requireActivity() as AppCompatActivity
+        activity.setSupportActionBar(binding.AdminProfileToolBarLayout)
+    }
+
+    private fun setupToolbarMenu() {
+        val menuHost: MenuHost = requireActivity()
+
+        menuHost.addMenuProvider(object : androidx.core.view.MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.admin_profile_top_menu, menu)
+
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.logout_action -> {
+                        logout()
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
+    }
+
+    private fun logout() {
+        val sessionManager = UserSessionManager(requireContext())
+        sessionManager.logout()
+
+        findNavController().navigate(R.id.action_adminMainPage_to_mainLogin, null,
+            NavOptions.Builder()
+                .setPopUpTo(R.id.mainLogin, true) // Pop everything up to mainLogin
+                .build())
+
+        Toast.makeText(context,"logged out successfully", Toast.LENGTH_SHORT).show()
+    }
+
 
     private fun setupUI() {
         // Add Image

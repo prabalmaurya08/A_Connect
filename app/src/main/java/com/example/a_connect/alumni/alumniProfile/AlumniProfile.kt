@@ -1,14 +1,20 @@
 package com.example.a_connect.alumni.alumniProfile
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuHost
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavOptions
@@ -33,7 +39,6 @@ class AlumniProfile : Fragment() {
 
     private lateinit var userSessionManager: UserSessionManager
 
-
     private var _binding: FragmentAlumniProfileBinding? = null
     private val binding get() = _binding!!
 
@@ -45,12 +50,9 @@ class AlumniProfile : Fragment() {
         AlumniEditProfileViewModelFactory(AlumniProfileRepository())
     }
     private lateinit var currentUserEmail: String
-    private var profileImageUri: Uri? = null
 
 
     private var listener: OnAlumniProfileItemClicked? = null
-
-
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -59,10 +61,7 @@ class AlumniProfile : Fragment() {
             is OnAlumniProfileItemClicked -> {
                 listener=context
 
-
             }
-
-
 
             else -> {
                 throw ClassCastException("$context must implement OnSignupClickListener")
@@ -74,10 +73,15 @@ class AlumniProfile : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         // Inflate the layout for this fragment
         _binding=FragmentAlumniProfileBinding.inflate(inflater,container,false)
+
+        setupToolbarMenu()
+
         profileViewModel = ViewModelProvider(this)[AlumniPostViewmodel::class.java]
         currentUserEmail = SharedPreferencesHelper.getCurrentUserEmail() ?: return binding.root
+
         swipeRefreshLayout = binding.swipeRefreshLayout
 
         swipeRefreshLayout.setOnRefreshListener {
@@ -114,7 +118,10 @@ class AlumniProfile : Fragment() {
 
         userSessionManager = UserSessionManager(requireContext())
 
-        setupLogoutButton()
+        val activity = requireActivity() as AppCompatActivity
+        activity.setSupportActionBar(binding.alumniProfileToolBarLayout)
+
+
     }
 
     override fun onDestroyView() {
@@ -125,22 +132,41 @@ class AlumniProfile : Fragment() {
 
     //private functions
 
-    private fun setupLogoutButton() {
-        binding.btnLogout.setOnClickListener {
+    private fun setupToolbarMenu() {
+        val menuHost: MenuHost = requireActivity()
 
-            userSessionManager.logout()
+        menuHost.addMenuProvider(object : androidx.core.view.MenuProvider {
+            override fun onCreateMenu(menu: android.view.Menu, menuInflater: android.view.MenuInflater) {
+                // Inflate the menu defined in XML into the Toolbar
+                menuInflater.inflate(R.menu.alumni_profile_top_menu, menu)
 
-            Toast.makeText(requireContext(), "Logged out successfully", Toast.LENGTH_SHORT).show()
+            }
 
-            findNavController().navigate(
-                R.id.action_aluminiMainPage_to_mainLogin,
-                null,
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                // Handle menu item selection
+                return when (menuItem.itemId){
+                    R.id.logout_action -> {
+                        logout()
+                        true // Indicate handled
+                    }
+                    else -> false // Let the system handle other menu items
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED) // <<< FIX: Tie the menu provider to the view lifecycle
+    }
 
-                NavOptions.Builder()
-                    .setPopUpTo(R.id.mainLogin, true)
-                    .build()
-            )
-        }
+    private fun logout() {
+        // Create session manager locally
+        val sessionManager = UserSessionManager(requireContext())
+        sessionManager.logout()
+
+        // Navigate back to login fragment and clear the back stack
+        findNavController().navigate(R.id.action_aluminiMainPage_to_mainLogin, null,
+            NavOptions.Builder()
+                .setPopUpTo(R.id.mainLogin, true) // Pop everything up to mainLogin
+                .build())
+
+        Toast.makeText(context,"logged out", Toast.LENGTH_SHORT).show()
     }
 
     private fun setUpViewPagerAdapter() {
