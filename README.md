@@ -134,7 +134,7 @@ Here are the members of the team behind the AConnect project:
 | :------ | :---------------- | :----------------------------------------------------: |
 | Prabal <br> <img src="https://avatars.githubusercontent.com/u/135323881?v=4" alt="Prabal Maurya" width="50"> | Team Lead | [GitHub Profile](https://github.com/prabalmaurya08) <br> prabal1513@gmail.com |
 | Anand <br> <img src="YOUR_MEMBER_GITHUB_IMAGE_URL" alt="Member GitHub Image" width="50"> | kolin, XML | [GitHub Profile](http://github.com/member) <br> anandjadon844@gmail.com |
-| Ishan <br> <img src="YOUR_MEMBER_GITHUB_IMAGE_URL" alt="Member GitHub Image" width="50"> | App Design, Kotlin, XML | [GitHub Profile](http://github.com/ishanparashar24) <br> ishanparashar24@gmail.com |
+| Ishan <br> <img src="https://avatars.githubusercontent.com/u/95953093?v=4" alt="Member GitHub Image" width="50"> | App Design, Kotlin, XML | [GitHub Profile](http://github.com/ishanparashar24) <br> ishanparashar24@gmail.com |
 | Member <br> <img src="YOUR_MEMBER_GITHUB_IMAGE_URL" alt="Member GitHub Image" width="50"> | Role of Member | [GitHub Profile](http://github.com/member) <br> member4@example.com |
 | Member <br> <img src="YOUR_MEMBER_GITHUB_IMAGE_URL" alt="Member GitHub Image" width="50"> | Role of Member | [GitHub Profile](http://github.com/member) <br> member5@example.com |
 | Member <br> <img src="YOUR_MEMBER_GITHUB_IMAGE_URL" alt="Member GitHub Image" width="50"> | Role of Member | [GitHub Profile](http://github.com/member) <br> member5@example.com |
