@@ -1,5 +1,7 @@
 package com.example.a_connect.admin.adminHome
+
 import android.animation.ValueAnimator
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -8,11 +10,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a_connect.R
 import com.example.a_connect.admin.adminHome.mvvm.AdminDashboardRepository
 import com.example.a_connect.admin.adminHome.mvvm.AdminDashboardViewModelFactory
 import com.example.a_connect.admin.adminHome.mvvm.AdminDashboardViewmodel
+import com.example.a_connect.admin.adminHome.mvvm.AlumniAdapter
+import com.example.a_connect.admin.adminHome.mvvm.StudentAdapter
 import com.example.a_connect.databinding.FragmentAdminHomeBinding
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.Legend
@@ -25,46 +31,106 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 class AdminHome : Fragment() {
     private var _binding: FragmentAdminHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: AdminDashboardViewmodel
+    private val viewModel: AdminDashboardViewmodel by viewModels {
+        AdminDashboardViewModelFactory(AdminDashboardRepository())
+    }
+    private lateinit var alumniAdapter: AlumniAdapter
+    private lateinit var studentAdapter: StudentAdapter
+    // Define the interface
+    interface ViewMoreListener {
+        fun onViewMoreClicked(section: String)
+    }
+
+    private var listener: ViewMoreListener? = null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        // Ensure the parent activity implements the listener
+        if (context is ViewMoreListener) {
+            listener = context
+        } else {
+            throw RuntimeException("$context must implement ViewMoreListener")
+        }
+    }
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentAdminHomeBinding.inflate(inflater, container, false)
-        val repository = AdminDashboardRepository()
-        val factory = AdminDashboardViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, factory)[AdminDashboardViewmodel::class.java] // ✅ Proper assignment
-
-
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.progressBar.visibility = View.VISIBLE
 
-
+        // Setup Pie Chart and observe ViewModel
         viewModel.dashboardStats.observe(viewLifecycleOwner) { stats ->
             binding.progressBar.visibility = View.GONE
 
             // Donut chart update
             setupDonutChart(binding.donutChart, stats.alumniCount, stats.studentCount)
             Log.d("AdminHome", "Received stats: $stats")
+
+            // Animate counters
             animateCount(binding.postsCount, stats.postCount)
             animateCount(binding.newsCount, stats.newsCount)
             animateCount(binding.jobsCount, stats.jobCount)
 
-
-            // Update Stat Cards
+            // Update stat cards
             binding.postsCount.text = stats.postCount.toString()
             binding.newsCount.text = stats.newsCount.toString()
             binding.jobsCount.text = stats.jobCount.toString()
         }
 
-        viewModel.fetchDashboardStats() // Trigger fetching
+        // Setup RecyclerViews for Alumni and Students
+        alumniAdapter = AlumniAdapter(emptyList())
+        studentAdapter = StudentAdapter(emptyList())
+        binding.alumniRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.studentRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.alumniRecyclerView.adapter = alumniAdapter
+        binding.studentRecyclerView.adapter = studentAdapter
+
+// Initial data loading
+        viewModel.loadAlumni()
+        viewModel.loadStudent()
+
+// Observe Alumni list
+        lifecycleScope.launchWhenStarted {
+            viewModel.alumniList.collect { list ->
+                if (list.isEmpty()) {
+                    Log.e("AdminHome", "Alumni list is empty or null")
+                    return@collect
+                }
+
+                // Show all alumni without "View More" functionality
+                alumniAdapter.updateList(list)
+            }
+        }
+
+// Observe Student list
+        lifecycleScope.launchWhenStarted {
+            viewModel.studentList.collect { list ->
+                if (list.isEmpty()) {
+                    Log.e("AdminHome", "Student list is empty or null")
+                    return@collect
+                }
+
+                // Show all students without "View More" functionality
+                studentAdapter.updateStudentList(list)
+            }
+        }
+
+
+
+
+        // Trigger fetching of dashboard stats
+        viewModel.fetchDashboardStats()
     }
+
     private fun setupDonutChart(pieChart: PieChart, alumniCount: Int, studentCount: Int) {
         if (alumniCount == 0 && studentCount == 0) {
             pieChart.clear()
@@ -122,7 +188,8 @@ class AdminHome : Fragment() {
         animator.start()
     }
 
-
-
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

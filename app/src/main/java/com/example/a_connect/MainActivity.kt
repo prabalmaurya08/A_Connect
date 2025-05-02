@@ -10,6 +10,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 
 import com.example.a_connect.admin.adminCollegeProfile.AdminCollegeProfile
+import com.example.a_connect.admin.adminHome.AdminHome
 import com.example.a_connect.admin.adminJob.AdminJob
 import com.example.a_connect.admin.adminJob.ExpiredJob
 import com.example.a_connect.admin.adminJob.OngoingJob
@@ -30,7 +31,7 @@ import com.example.a_connect.student.studentMainPage.StudentMainPageDirections
 import com.example.a_connect.student.studentProfile.StudentProfile
 
 class MainActivity : AppCompatActivity() , AlumniHomePage.OnItemClickedInsideViewPager, AlumniLogin.OnAlumniScreenClicked,StudentLogin.OnStudentScreenClicked,OngoingJob.OnAdminJobClickListener
-,ExpiredJob.OnJobClickListener,AdminNewsAnnouncement.OnAdminNewsClicked, StudentHomePage.OnStudentHomePageItemClicked,AdminCollegeProfile.OnGoToEditProfileClickListener, AlumniJob.OnAlumniJobClickListener,StudentJob.OnStudentJobClickListener,AlumniProfile.OnAlumniProfileItemClicked,AdminJob.OnGoToCreateJobClickListener,AlumniHomePage.VoiceInputListener
+,ExpiredJob.OnJobClickListener, AdminHome.ViewMoreListener,AdminNewsAnnouncement.OnAdminNewsClicked, StudentHomePage.OnStudentHomePageItemClicked,AdminCollegeProfile.OnGoToEditProfileClickListener, AlumniJob.OnAlumniJobClickListener,StudentJob.OnStudentJobClickListener,AlumniProfile.OnAlumniProfileItemClicked,AdminJob.OnGoToCreateJobClickListener,AlumniHomePage.VoiceInputListener
 
 , StudentProfile.OnStudentProfileItemClicked{
 
@@ -140,6 +141,14 @@ class MainActivity : AppCompatActivity() , AlumniHomePage.OnItemClickedInsideVie
         TODO("Not yet implemented")
     }
 
+    override fun onAddAlumniMilestone() {
+        findNavController(R.id.fragment).navigate(R.id.action_aluminiMainPage_to_alumniAddMilestone)
+    }
+
+    override fun onAddMilestoneClicked() {
+        findNavController(R.id.fragment).navigate(R.id.action_studentMainPage_to_addMilestone)
+    }
+
     override fun onGoToCreateJobClicked() {
        findNavController(R.id.fragment).navigate(R.id.action_adminMainPage_to_adminAddJob)
     }
@@ -179,6 +188,10 @@ class MainActivity : AppCompatActivity() , AlumniHomePage.OnItemClickedInsideVie
     override fun onStudentSearchClicked() {
         findNavController(R.id.fragment).navigate(R.id.action_studentMainPage_to_alumniSearchScreen)
 
+
+    }
+
+    override fun onViewMoreClicked(section: String) {
 
     }
 }

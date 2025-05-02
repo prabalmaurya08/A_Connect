@@ -1,5 +1,6 @@
 package com.example.a_connect.login
 
+import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.example.a_connect.R
 import com.example.a_connect.UserSessionManager
 import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileRepository
 import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileViewModel
@@ -25,7 +27,7 @@ class StudentLogin : Fragment() {
     private lateinit var sessionManager: UserSessionManager
 
     private lateinit var binding: FragmentStudentLoginBinding
-
+    private lateinit var loadingDialog: Dialog
     private var listener: OnStudentScreenClicked? = null
     private val repository = CollegeProfileRepository()
     private val viewModel: CollegeProfileViewModel by viewModels {
@@ -57,6 +59,7 @@ class StudentLogin : Fragment() {
 
         // Inflate the layout for this fragment
         binding=FragmentStudentLoginBinding.inflate(layoutInflater)
+        initLoadingDialog()
 
         // Initialize Spinners and ProgressBar
         graduationYearsSpinner = binding.studentLoginGraduationYear
@@ -94,6 +97,14 @@ class StudentLogin : Fragment() {
 
         sessionManager = UserSessionManager(requireContext())
     }
+    // Initialize the loading dialog with Lottie animation
+    private fun initLoadingDialog() {
+        loadingDialog = Dialog(requireContext())
+        loadingDialog.setContentView(R.layout.dialog_loading)
+        loadingDialog.setCancelable(false)  // Prevent user interaction during loading
+    }
+
+
 
     private fun authentication() {
 
@@ -107,6 +118,7 @@ class StudentLogin : Fragment() {
 
             // Show progress bar while authenticating
            // progressBar.visibility = View.VISIBLE
+            loadingDialog.show()
 
             // Call alumniLogin
             loginViewModel.studentLogin(email, graduationYear, collegeName)
@@ -128,9 +140,11 @@ class StudentLogin : Fragment() {
                 listener?.onStudentSubmitClicked()
                 // Navigate to home screen on successful login
                 showToast("Login Successful")
+                loadingDialog.dismiss()
             } else {
                 // Show error message
                 showToast(message ?: "Login Failed")
+                loadingDialog.dismiss()
             }
         })
     }

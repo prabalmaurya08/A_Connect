@@ -58,6 +58,9 @@
             app:destination="@id/mainLogin"
             app:popUpTo="@id/mainLogin"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_aluminiMainPage_to_alumniAddMilestone"
+            app:destination="@id/alumniAddMilestone" />
     </fragment>
     <fragment
         android:id="@+id/aluminiChat"
@@ -179,6 +182,9 @@
         <action
             android:id="@+id/action_studentMainPage_to_alumniSearchScreen"
             app:destination="@id/alumniSearchScreen" />
+        <action
+            android:id="@+id/action_studentMainPage_to_addMilestone"
+            app:destination="@id/addMilestone" />
 
     </fragment>
 
@@ -264,6 +270,12 @@
                 android:name="newsId"
                 app:argType="string" />
         </action>
+
+        <action
+            android:id="@+id/action_adminMainPage_to_mainLogin"
+            app:destination="@id/mainLogin"
+            app:popUpTo="@id/mainLogin"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <!-- Admin College Profile Fragment -->
@@ -479,11 +491,22 @@
     <fragment
         android:id="@+id/studentEditProfile"
         android:name="com.example.a_connect.student.studentProfile.StudentEditProfile"
-        android:label="StudentEditProfile" />
+        android:label="StudentEditProfile"
+        tools:layout="@layout/fragment_student_edit_profile"/>
     <fragment
         android:id="@+id/alumniProfileDetail"
         android:name="com.example.a_connect.alumni.alumniProfile.AlumniProfileDetail"
         android:label="fragment_alumni_profile_detail"
         tools:layout="@layout/fragment_alumni_profile_detail" />
+    <fragment
+        android:id="@+id/addMilestone"
+        android:name="com.example.a_connect.student.studentProfile.milestone.AddMilestone"
+        android:label="fragment_add_milestone"
+        tools:layout="@layout/fragment_add_milestone" />
+    <fragment
+        android:id="@+id/alumniAddMilestone"
+        android:name="com.example.a_connect.alumni.alumniProfile.milestone.AlumniAddMilestone"
+        android:label="fragment_alumni_add_milestone"
+        tools:layout="@layout/fragment_alumni_add_milestone" />
 </navigation>
 
