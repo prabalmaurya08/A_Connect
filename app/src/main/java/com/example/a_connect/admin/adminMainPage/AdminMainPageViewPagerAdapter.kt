@@ -9,15 +9,15 @@ import com.example.a_connect.admin.adminJob.AdminJob
 import com.example.a_connect.admin.adminNews.AdminNewsAnnouncement
 
 class AdminMainPageViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-    override fun getItemCount(): Int = 5
+    override fun getItemCount(): Int = 4
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> AdminHome()
             1 -> AdminNewsAnnouncement()
-            2 -> AdminEvent()
-            3 -> AdminJob()
-            4 -> AdminCollegeProfile()
+
+            2 -> AdminJob()
+            3 -> AdminCollegeProfile()
             else -> throw IllegalStateException("Unexpected position $position")
         }
     }

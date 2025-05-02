@@ -6,33 +6,80 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".alumni.alumniCommunity.AlumniCommunityPage">
+    tools:context=".alumni.alumniCommunity.AlumniCommunityPage"
+    >
+
+    <com.google.android.material.appbar.AppBarLayout
+
+        android:id="@+id/communityAppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:liftOnScroll="true"
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/communityToolBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:title="@string/community"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:textSize="24sp"
+            >
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@id/communityAppBarLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
 
     <!-- ✅ SwipeRefreshLayout for pull-to-refresh -->
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingHorizontal="16dp">
 
         <androidx.recyclerview.widget.RecyclerView
+
             android:id="@+id/recyclerView"
+
+            android:contentDescription="@string/community_posts"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
+
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:scrollbars="vertical" />
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <TextView
         android:id="@+id/emptyTextView"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:visibility="gone"
-        android:text="Nothing to Show"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/nothing_to_show"
+
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/communityAppBarLayout"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    </TextView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MyCustomFabStyle" parent="Widget.MaterialComponents.FloatingActionButton">
+
+        <item name="android:backgroundTint">@color/blue1</item>
+        <item name="tint">@color/white</item>
+        <item name="fabSize">normal</item>
+        <item name="elevation">8dp</item>
+        <item name="rippleColor">@color/blue3</item>
+
+        <item name="shapeAppearanceOverlay">@style/MyCustomFabShape</item>
+    </style>
+
+    <style name="MyCustomFabShape" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+</resources>

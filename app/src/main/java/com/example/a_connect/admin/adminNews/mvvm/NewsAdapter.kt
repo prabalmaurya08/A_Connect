@@ -1,9 +1,6 @@
 package com.example.a_connect.admin.adminNews.mvvm
 
-
-
-
-
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +25,9 @@ class NewsAdapter(
             binding.newsDetail.text = news.description
             binding.time.text = formatTime(news.createdAt)
             binding.Date.text = formatDate(news.createdAt)
+            Log.d("NewsAdapter", "Loading image: ${news.headlinePhotoUrl}")
+
+
 
             Glide.with(binding.universityImage.context)
                 .load(news.headlinePhotoUrl)

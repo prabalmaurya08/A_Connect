@@ -54,6 +54,15 @@ class NewsRepository {
             throw e
         }
     }
+    suspend fun getNewsById(newsId: String): NewsDataClass? {
+        return try {
+            val snapshot = newsCollection.document(newsId).get().await()
+            snapshot.toObject(NewsDataClass::class.java)
+        } catch (e: Exception) {
+            Log.e("NewsRepository", "Error fetching news by ID", e)
+            null
+        }
+    }
 
     // Retrieve News List
     suspend fun getAllNews(): List<NewsDataClass> {

@@ -2,32 +2,37 @@ package com.example.a_connect.alumni.alumniHome
 
 import android.Manifest
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.transition.TransitionManager
 import android.util.Log
-
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresPermission
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.view.MenuHost
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.a_connect.R
 import com.example.a_connect.SharedPreferencesHelper
-import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileRepository
-import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileViewModel
-import com.example.a_connect.admin.adminCollegeProfile.mvvm.EditProfileViewModelFactory
+import com.example.a_connect.admin.adminNews.mvvm.NewsRepository
+import com.example.a_connect.admin.adminNews.mvvm.NewsViewModel
+import com.example.a_connect.admin.adminNews.mvvm.NewsViewModelFactory
 import com.example.a_connect.alumni.alumniHome.mvvm.AlumniHomeViewModel
 import com.example.a_connect.databinding.FragmentAlumniHomePageBinding
+import com.example.a_connect.student.studentHomePage.SecondNewsAdapter
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -36,11 +41,12 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.firebase.firestore.FirebaseFirestore
-
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 class AlumniHomePage : Fragment(), OnMapReadyCallback {
+
+    private var searchMenuItem: MenuItem? = null
 
     private lateinit var googleMap: GoogleMap
     private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -49,7 +55,9 @@ class AlumniHomePage : Fragment(), OnMapReadyCallback {
     private val binding get() = _binding!!
 
     private lateinit var alumniHomeViewModel: AlumniHomeViewModel
-
+    private val repository = NewsRepository()
+    private val viewModel: NewsViewModel by viewModels { NewsViewModelFactory(repository) }
+    private lateinit var adapter: SecondNewsAdapter
 
     private var listener: OnItemClickedInsideViewPager? = null
 
@@ -58,6 +66,7 @@ class AlumniHomePage : Fragment(), OnMapReadyCallback {
     }
 
     interface OnItemClickedInsideViewPager {
+        fun onNewsClicked(newsId: String)
         fun onChatButtonClicked()
         fun onNotificationButtonClicked()
         fun onMapClick()
@@ -80,34 +89,82 @@ class AlumniHomePage : Fragment(), OnMapReadyCallback {
         fun onSearchCommandReceived()
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentAlumniHomePageBinding.inflate(inflater, container, false)
         alumniHomeViewModel = ViewModelProvider(this)[AlumniHomeViewModel::class.java]
 
 
+        // toolbar setup
+        val toolbar = binding.alumniHomepageToolBar
+
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+
+        if(SharedPreferencesHelper.getCurrentUserName().isNullOrEmpty()){
+
+            toolbar.title="Welcome, Alumni"
+        }
+        else{
+
+            toolbar.title ="Hi ,"+SharedPreferencesHelper.getCurrentUserName() +"👋"
+
+        }
+
+        val menuHost: MenuHost = requireActivity()
+
+        menuHost.addMenuProvider(object : androidx.core.view.MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.alumni_home_top_menu, menu)
+                searchMenuItem = menu.findItem(R.id.search_bar)
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+
+                return when (menuItem.itemId) {
+                    R.id.search_bar -> {
+                        toggleSearchBarVisibilityInit()
+
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
+        binding.alumniHomePageSearchBar.visibility = View.GONE
 
         // Request permissions before starting voice input
         checkPermissions()
-        binding.userName.text="Hi ,"+SharedPreferencesHelper.getCurrentUserName()
 
         // Set up UI elements and actions
         drawerSetUp()
+
         setupFAB()
 
         loadImage()
 
-
         // Handle Search Bar click
-        binding.aluminiHomePageSearchBar.setOnClickListener {
+        binding.alumniHomePageSearchBar.setOnClickListener {
             listener?.onSearchClicked()
         }
 
         return binding.root
     }
+
+    private fun toggleSearchBarVisibilityInit() {
+
+        val parentLayout = binding.root as ViewGroup
+
+        TransitionManager.beginDelayedTransition(parentLayout)
+
+        binding.alumniHomePageSearchBar.visibility = View.VISIBLE
+        searchMenuItem?.isVisible = false
+    }
+
+    //private functions
+
     private fun loadImage(){
         val collegeId = "collegeId123"
 
@@ -155,14 +212,14 @@ class AlumniHomePage : Fragment(), OnMapReadyCallback {
     }
 
     private fun drawerSetUp() {
-        binding.aluminiHomePageChat.setOnClickListener {
-            listener?.onChatButtonClicked()
-        }
-        /*binding.aluminiHomePageNotification.setOnClickListener {
-            listener?.onNotificationButtonClicked()
-        }
-
-         */
+//        binding.aluminiHomePageChat.setOnClickListener {
+//            listener?.onChatButtonClicked()
+//        }
+//        binding.aluminiHomePageNotification.setOnClickListener {
+//            listener?.onNotificationButtonClicked()
+//        }
+//
+//
     }
 
     private fun setupFAB() {
@@ -173,6 +230,53 @@ class AlumniHomePage : Fragment(), OnMapReadyCallback {
         }
     }
 
+    private fun setupRecyclerView() {
+        adapter = SecondNewsAdapter(
+            emptyList(),
+            onItemClick = {newsId ->
+
+                listener?.onNewsClicked(newsId.newsId)
+            },
+            )
+
+        binding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = this@AlumniHomePage.adapter
+        }
+    }
+
+    private fun observeViewModel() {
+        lifecycleScope.launch {
+            viewModel.newsList.collectLatest { newsList ->
+                Log.d("NewsAdapter", "Recyclerview size : $newsList")
+
+                adapter.updateNewsList(newsList)
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.loadingState.collectLatest {
+                if(it){
+                    binding.shimmerLayout.visibility = View.VISIBLE
+                    binding.shimmerLayout.startShimmer()
+                }else{
+                    binding.shimmerLayout.stopShimmer()
+                    binding.shimmerLayout.visibility = View.GONE
+                }
+
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.errorState.collectLatest { errorMessage ->
+                errorMessage?.let {
+                    Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+                    viewModel.clearError()
+                }
+            }
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -180,6 +284,15 @@ class AlumniHomePage : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupRecyclerView()
+        observeViewModel()
+        viewModel.loadNews()
+
+        // Load news initially
+        viewModel.apply {
+            clearError()
+            // deleteNews("") // Optional: Remove if not needed for initial state
+        }
 
         val mapFragment = childFragmentManager.findFragmentById(R.id.mapPreviewContainer) as? SupportMapFragment
             ?: SupportMapFragment.newInstance().also {
@@ -212,6 +325,4 @@ class AlumniHomePage : Fragment(), OnMapReadyCallback {
             }
         }
     }
-
-
 }

@@ -7,12 +7,12 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class AlumniProfileViewPagerAdapter (fragment: FragmentActivity) : FragmentStateAdapter(fragment) {
 
-    override fun getItemCount(): Int = 2
+    override fun getItemCount(): Int = 1
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0->AlumniProfilePost()
-            1 -> AlumniProfilePost()
+
             else -> throw IllegalArgumentException("Invalid position")
         }
     }

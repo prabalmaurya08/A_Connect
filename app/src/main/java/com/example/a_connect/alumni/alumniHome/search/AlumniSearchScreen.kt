@@ -2,6 +2,7 @@ package com.example.a_connect.alumni.alumniHome.search
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +13,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.appcompat.widget.SearchView
+import androidx.navigation.fragment.findNavController
+import com.example.a_connect.R
 import com.example.a_connect.databinding.FragmentAlumniSearchScreenBinding
 
+
+
+
+
 class AlumniSearchScreen : Fragment() {
+
     private lateinit var binding: FragmentAlumniSearchScreenBinding
+
     private lateinit var searchView: SearchView
+
     private lateinit var searchViewModel: AlumniSearchViewModel
     private lateinit var alumniAdapter: AlumniSearchAdapter
 
@@ -37,23 +47,29 @@ class AlumniSearchScreen : Fragment() {
         binding.resultsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.resultsRecyclerView.adapter = alumniAdapter
 
-        // Observe ViewModel data
-        searchViewModel.alumniList.observe(viewLifecycleOwner, Observer { alumni ->
-            alumniAdapter.submitList(alumni) // Efficiently update the list
-        })
-
-        // Automatically open SearchView and show keyboard when fragment starts
+        // Expand search view and show keyboard initially
         binding.root.post {
-            // Focus SearchView and show the keyboard immediately after the fragment is created
+            searchView.isIconified = false
             searchView.requestFocus()
             showKeyboard(searchView)
         }
 
-        // Listen to user input and trigger search immediately
+        // Observe alumni list
+        searchViewModel.alumniList.observe(viewLifecycleOwner, Observer { alumni ->
+            if (alumni.isEmpty()) {
+                showEmptyState()
+            } else {
+                showResults()
+                alumniAdapter.submitList(alumni)
+            }
+        })
+
+        // SearchView listeners
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
-                    searchViewModel.searchAlumni(it) // Trigger search when submitting query
+                    startLoading()
+                    searchViewModel.searchAlumni(it)
                 }
                 return false
             }
@@ -61,11 +77,11 @@ class AlumniSearchScreen : Fragment() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {
                     if (it.trim().isEmpty()) {
-                        // If the query is empty, clear the list (show no results)
-                        searchViewModel.clearAlumniList() // Function to clear the list
+                        searchViewModel.clearAlumniList()
+                        hideResults()
                     } else {
-                        // Trigger search only when query is non-empty
-                        searchViewModel.searchAlumni(it.trim()) // Trigger search on text change
+                        startLoading()
+                        searchViewModel.searchAlumni(it.trim())
                     }
                 }
                 return true
@@ -76,10 +92,16 @@ class AlumniSearchScreen : Fragment() {
     }
 
     private fun openAlumniProfile(alumni: AlumniSearchDataClass) {
-        // Implement navigation to Alumni Profile Fragment
+        // Log email before passing to the next screen
+        Log.d("AlumniSearchScreen", "Sending email: ${alumni.email}")
+
+        val bundle = Bundle().apply {
+            putString("email", alumni.email)
+        }
+        findNavController().navigate(R.id.alumniProfileDetail, bundle)
     }
 
-    // Function to show keyboard when the SearchView is focused
+
     private fun showKeyboard(view: View) {
         view.post {
             val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -91,4 +113,38 @@ class AlumniSearchScreen : Fragment() {
         val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        hideKeyboard()
+    }
+
+    /** --- Additional functions to handle shimmer --- **/
+
+    private fun startLoading() {
+        binding.shimmerLayout.visibility = View.VISIBLE
+        binding.shimmerLayout.startShimmer()
+        binding.resultsRecyclerView.visibility = View.GONE
+    }
+
+    private fun showResults() {
+        binding.shimmerLayout.stopShimmer()
+        binding.shimmerLayout.visibility = View.GONE
+        binding.resultsRecyclerView.visibility = View.VISIBLE
+    }
+
+    private fun hideResults() {
+        binding.resultsRecyclerView.visibility = View.GONE
+        binding.shimmerLayout.stopShimmer()
+        binding.shimmerLayout.visibility = View.GONE
+    }
+
+    private fun showEmptyState() {
+        binding.shimmerLayout.stopShimmer()
+        binding.shimmerLayout.visibility = View.GONE
+        binding.resultsRecyclerView.visibility = View.GONE
+        // You can show a "no alumni found" message here if you want
+    }
+
 }
+

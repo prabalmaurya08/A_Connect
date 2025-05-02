@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    >
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.a_connect.alumni.alumniJob.AlumniJobDetail">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
+
         <com.google.android.material.appbar.MaterialToolbar
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:title="Job Description"
@@ -36,7 +40,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="16dp"
             android:orientation="vertical">
 
 
@@ -45,6 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:contentDescription="@string/todo"
                 android:src="@drawable/google" />
 
 
@@ -53,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Software Developer 1"
+                android:text="@string/software_developer_1"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -62,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Google"
+                android:text="@string/google"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -78,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
                     android:gravity="center"
-                    android:text="On Site"
+                    android:text="@string/on_site"
                     android:textSize="18sp" />
 
 
@@ -88,6 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="5dp"
+                    android:contentDescription="@string/icon"
                     android:src="@drawable/location" />
 
                 <TextView
@@ -95,7 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Noida, Delhi"
+                    android:text="@string/noida_delhi"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -111,6 +117,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:contentDescription="@string/icon"
                     android:src="@drawable/clock" />
 
                 <TextView
@@ -119,8 +126,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
                     android:gravity="center"
-                    android:text="Two Days Ago"
-                    android:textSize="18dp" />
+                    android:text="@string/two_days_ago"
+                    android:textSize="18sp" />
 
 
                 <ImageView
@@ -129,6 +136,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="5dp"
+                    android:contentDescription="@string/icon"
                     android:src="@drawable/calender" />
 
                 <TextView
@@ -136,7 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="January,5 2025"
+                    android:text="@string/january_5_2025"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -145,9 +153,10 @@
                 android:id="@+id/Apply_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5sp"
+                android:layout_margin="5dp"
+                android:layout_marginVertical="16dp"
                 android:backgroundTint="#246BFD"
-                android:text="Apply" />
+                android:text="@string/apply" />
 
             <TextView
                 android:id="@+id/About_Jobcompany"
@@ -155,7 +164,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="About Company"
+                android:text="@string/about_company"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -165,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="Paragraph about the company Paragraph about the company Paragraph about the company Paragraph about the company Paragraph about the company Paragraph about the company."
+                android:text="@string/paragraph_about_the_company"
                 android:textSize="16sp" />
 
             <TextView
@@ -175,7 +184,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="Company Website"
+                android:text="@string/company_website"
                 android:textColor="@color/blue1" />
 
             <TextView
@@ -184,7 +193,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="DeadLine For Registration"
+                android:text="@string/deadline_for_registration"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -194,7 +203,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="dd/mm/yyyy till 5 p.m. "
+                android:text="@string/dd_mm_yyyy_till_5_p_m"
                 android:textSize="16sp" />
 
             <TextView
@@ -202,7 +211,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="Eligible Course and Branch"
+                android:text="@string/eligible_course_and_branch"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -212,7 +221,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="B.tech(CS/IT/EC)"
+                android:text="@string/b_tech_cs_it_ec"
                 android:textSize="16sp" />
 
             <TextView
@@ -220,7 +229,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="Eligible Batch"
+                android:text="@string/eligible_batch"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -230,7 +239,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="2025 Pass outs"
+                android:text="@string/_2025_pass_outs"
                 android:textSize="16sp" />
 
             <TextView
@@ -238,7 +247,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="Roles And Responsibilities"
+                android:text="@string/roles_and_responsibilities"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -248,12 +257,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="bla bla bla
-bla bla bla
-bla bla bla
-bla bla bla
-bla bla bla
-bla bla bla"
+                android:text="@string/text"
                 android:textSize="16sp" />
 
             <TextView
@@ -261,7 +265,7 @@ bla bla bla"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="Specific Requirements"
+                android:text="@string/specific_requirements"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -271,9 +275,7 @@ bla bla bla"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="bla bla bla
-bla bla bla
-bla bla bla"
+                android:text="@string/text"
                 android:textSize="16sp" />
 
             <TextView
@@ -281,7 +283,7 @@ bla bla bla"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="Selection Process"
+                android:text="@string/selection_process"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -291,7 +293,7 @@ bla bla bla"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="Three Round of Interview"
+                android:text="@string/three_round_of_interview"
                 android:textSize="16sp" />
 
             <TextView
@@ -299,7 +301,7 @@ bla bla bla"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="Campus Interview"
+                android:text="@string/campus_interview"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -309,7 +311,7 @@ bla bla bla"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="will be informed"
+                android:text="@string/will_be_informed"
                 android:textSize="16sp" />
 
             <TextView
@@ -317,7 +319,7 @@ bla bla bla"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="Tentative Joining Date"
+                android:text="@string/tentative_joining_date"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -327,7 +329,7 @@ bla bla bla"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="will be informed"
+                android:text="@string/will_be_informed"
                 android:textSize="16sp" />
 
             <TextView
@@ -335,7 +337,7 @@ bla bla bla"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="Bond to be signed"
+                android:text="@string/bond_to_be_signed"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -345,12 +347,11 @@ bla bla bla"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:text="N/A"
+                android:text="@string/n_a"
                 android:textSize="16sp" />
-
 
         </LinearLayout>
 
-
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

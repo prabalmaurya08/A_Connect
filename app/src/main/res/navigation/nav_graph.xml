@@ -52,6 +52,12 @@
         <action
             android:id="@+id/action_aluminiMainPage_to_alumniMap"
             app:destination="@id/alumniMap" />
+
+        <action
+            android:id="@+id/action_aluminiMainPage_to_mainLogin"
+            app:destination="@id/mainLogin"
+            app:popUpTo="@id/mainLogin"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/aluminiChat"
@@ -60,7 +66,7 @@
         tools:layout="@layout/fragment_alumni_chat" />
     <fragment
         android:id="@+id/aluminiHomePage"
-        android:name="com.example.a_connect.alumni.alumniHome.AluminiHomePage"
+        android:name="com.example.a_connect.alumni.alumniHome.AlumniHomePage"
         android:label="fragment_alumini_home_page"
         tools:layout="@layout/fragment_alumni_home_page" >
         <action
@@ -161,6 +167,19 @@
                 android:name="jobId"
                 app:argType="string" />
         </action>
+
+        <action
+            android:id="@+id/action_studentMainPage_to_mainLogin"
+            app:destination="@id/mainLogin"
+            app:popUpTo="@id/mainLogin"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_studentMainPage_to_studentEditProfile"
+            app:destination="@id/studentEditProfile" />
+        <action
+            android:id="@+id/action_studentMainPage_to_alumniSearchScreen"
+            app:destination="@id/alumniSearchScreen" />
+
     </fragment>
 
     <!-- Student Home Page Fragment -->
@@ -442,8 +461,29 @@
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
         <action
-            android:id="@+id/action_splashScreenFragment_to_adminLogin"
-            app:destination="@id/adminLogin" />
+            android:id="@+id/action_splashScreenFragment_to_mainLogin"
+            app:destination="@id/mainLogin" />
+
+        <action
+            android:id="@+id/action_splashScreenFragment_to_aluminiMainPage"
+            app:destination="@id/aluminiMainPage" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_adminMainPage"
+            app:destination="@id/adminMainPage" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_studentMainPage"
+            app:destination="@id/studentMainPage" />
+
+
     </fragment>
+    <fragment
+        android:id="@+id/studentEditProfile"
+        android:name="com.example.a_connect.student.studentProfile.StudentEditProfile"
+        android:label="StudentEditProfile" />
+    <fragment
+        android:id="@+id/alumniProfileDetail"
+        android:name="com.example.a_connect.alumni.alumniProfile.AlumniProfileDetail"
+        android:label="fragment_alumni_profile_detail"
+        tools:layout="@layout/fragment_alumni_profile_detail" />
 </navigation>
 

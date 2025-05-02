@@ -2,6 +2,7 @@ package com.example.a_connect
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.content.edit
 
 object SharedPreferencesHelper {
 
@@ -17,14 +18,22 @@ object SharedPreferencesHelper {
 
     // Save current user's email
     fun saveCurrentUserEmail(email: String) {
-        val editor = sharedPreferences.edit()
-        editor.putString("current_user_email", email)
-        editor.apply()
+        sharedPreferences.edit() {
+            putString("current_user_email", email)
+        }
+    }
+    fun saveStudentName(name:String){
+        sharedPreferences.edit() {
+            putString("current_student_name", name)
+        }
+    }
+    fun getStudentName(): String? {
+        return sharedPreferences.getString("current_student_name", null)
     }
     fun saveCurrentUserName(name: String) {
-        val editor = sharedPreferences.edit()
-        editor.putString("current_user_name", name)
-        editor.apply()
+        sharedPreferences.edit() {
+            putString("current_user_name", name)
+        }
     }
 
     // Retrieve current user's email

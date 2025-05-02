@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/prabalmaurya08/A_Connect/blob/main/app/src/main/res/drawable/app%20icon.svg" alt="A connect App Icon" width="100">
+  <img src="https://github.com/prabalmaurya08/A_Connect/blob/main/app/src/main/res/drawable/app_icon_pngformat.png" alt="A connect App Icon" width="100">
 </p>
 
 # A connect

@@ -18,7 +18,7 @@ import java.util.Date
 
 class StudentJob : Fragment() {
     private lateinit var binding: FragmentStudentJobBinding
-    private lateinit var adapter: AlumniJobAdapter
+
     private lateinit var viewmodel: AlumniJobViewModel
     private lateinit var adapterClass: StudentJobAdapterClass
     private lateinit var listener: OnStudentJobClickListener

@@ -100,6 +100,10 @@ dependencies {
 
         implementation(libs.play.services.maps) // Use the latest version
         implementation(libs.play.services.location) // use the latest version
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+
 
 
 

@@ -1,576 +1,614 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
             name="viewModel"
             type="com.example.a_connect.alumni.alumniProfile.mvvm.AlumniProfileViewModel" />
     </data>
-    <ScrollView
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
         tools:context=".alumni.alumniProfile.AlumniEditProfile">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/back_button_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+         />
+
+        <TextView
+            android:id="@+id/profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sf_pro_display_bold"
+            android:paddingTop="10dp"
+            android:text="Edit Profile"
+
+
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/back_button"
+            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.core.widget.NestedScrollView
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
+            app:layout_constraintTop_toBottomOf="@id/profile"
 
-            <!-- Profile image and statistics -->
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/edit_profile_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_card"
-                android:padding="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
-                android:elevation="10dp"
-                >
-                <!-- Circle ImageView -->
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/edit_profile_circleImageView"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/alumni_profile_photo"
-                    app:civ_border_color="@color/white"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="ImageContrastCheck" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <!-- University Name -->
-            <TextView
-                android:id="@+id/alumni_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/alumni_edit_profile_name"
-                android:textSize="16sp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/sf_pro_display"
-                android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <EditText
-                android:id="@+id/edit_alumni_name"
-                android:text="@={viewModel.name}"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/edit_area_box"
-                android:hint="@string/alumni_edit_profile_name"
-                android:fontFamily="@font/sf_pro_display"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:padding="10dp"
-
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:ignore="DuplicateSpeakableTextCheck" />
-
-            <!-- Bio -->
-            <TextView
-                android:id="@+id/alumni_bio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/bio"
-                android:textSize="16sp"
-                android:fontFamily="@font/sf_pro_display"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/edit_university_name"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <EditText
-                android:id="@+id/edit_alumni_bio"
-                android:text="@={viewModel.bio}"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/edit_area_box"
-                android:hint="@string/write_something_about_yourself1"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:padding="16dp"
-
-                android:fontFamily="@font/sf_pro_display"
-                app:layout_constraintTop_toBottomOf="@id/bio"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <!-- College Email -->
-
-            <TextView
-                android:id="@+id/alumni_dateOfBirth"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/sf_pro_display"
-                android:text="Industry"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edit_bio" />
-
-            <EditText
-                android:id="@+id/alumni_industry"
-                android:text="@={viewModel.industryName}"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/edit_area_box"
-                android:importantForAutofill="no"
-
-                android:fontFamily="@font/sf_pro_display"
-                android:padding="10dp"
-                android:hint="Ex. Software Development"
-                app:layout_constraintTop_toBottomOf="@id/collage_mail_address"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:ignore="TextFields" />
-
+           >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
 
-                <!-- Label -->
-                <TextView
-                    android:id="@+id/alumni_gender_lable"
+               >
+
+                <!-- Profile image and statistics -->
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/edit_profile_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/alumini_gender"
+                    android:background="@drawable/shape_card"
+                    android:padding="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:elevation="10dp"
+                    >
+                    <!-- Circle ImageView -->
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/edit_profile_circleImageView"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/alumni_profile_photo"
+                        app:civ_border_color="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ImageContrastCheck" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- University Name -->
+                <TextView
+                    android:id="@+id/alumni_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alumni_edit_profile_name"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <EditText
+                    android:id="@+id/edit_alumni_name"
+                    android:text="@={viewModel.name}"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_area_box"
+                    android:hint="@string/alumni_edit_profile_name"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:padding="10dp"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+
+                <!-- Bio -->
+                <TextView
+                    android:id="@+id/alumni_bio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bio"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/edit_university_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <EditText
+                    android:id="@+id/edit_alumni_bio"
+                    android:text="@={viewModel.bio}"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_area_box"
+                    android:hint="@string/write_something_about_yourself1"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:padding="16dp"
+
+                    android:fontFamily="@font/sf_pro_display"
+                    app:layout_constraintTop_toBottomOf="@id/bio"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!-- College Email -->
+
+                <TextView
+                    android:id="@+id/alumni_dateOfBirth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:text="Industry"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/edit_bio" />
+
+                <EditText
+                    android:id="@+id/alumni_industry"
+                    android:text="@={viewModel.industryName}"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_area_box"
+                    android:importantForAutofill="no"
+
+                    android:fontFamily="@font/sf_pro_display"
+                    android:padding="10dp"
+                    android:hint="Ex. Software Development"
+                    app:layout_constraintTop_toBottomOf="@id/collage_mail_address"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="TextFields" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Label -->
+                    <TextView
+                        android:id="@+id/alumni_gender_lable"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/alumini_gender"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:textStyle="bold"
+                        app:layout_constraintTop_toBottomOf="@id/alumni_industry"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <!-- Gender Selection -->
+                    <RadioGroup
+                        android:id="@+id/genderRadioGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginTop="8dp">
+
+                        <!-- Male Option -->
+                        <RadioButton
+                            android:id="@+id/rbMale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="7dp"
+
+                            android:background="@drawable/radio_button_selector"
+                            android:button="@android:color/transparent"
+                            android:paddingHorizontal="35dp"
+                            android:paddingVertical="8dp"
+                            android:text="@string/male_txt"
+                            android:fontFamily="@font/sf_pro_display"
+                            android:textColor="@color/black1"
+                            android:textSize="14sp"
+                            android:gravity="center" />
+
+                        <!-- Female Option -->
+                        <RadioButton
+                            android:id="@+id/rbFemale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="7dp"
+                            android:background="@drawable/radio_button_selector"
+                            android:button="@android:color/transparent"
+                            android:paddingHorizontal="35dp"
+                            android:paddingVertical="8dp"
+                            android:text="@string/female_txt"
+                            android:fontFamily="@font/sf_pro_display"
+                            android:textColor="@color/black1"
+                            android:textSize="14sp"
+                            android:gravity="center" />
+
+                        <!-- Others Option -->
+                        <RadioButton
+                            android:id="@+id/rbOthers"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="7dp"
+                            android:background="@drawable/radio_button_selector"
+                            android:button="@android:color/transparent"
+                            android:paddingHorizontal="35dp"
+                            android:paddingVertical="8dp"
+                            android:text="@string/others__txt"
+                            android:fontFamily="@font/sf_pro_display"
+                            android:textColor="@color/black1"
+                            android:textSize="14sp"
+                            android:gravity="center" />
+                    </RadioGroup>
+                </LinearLayout>
+
+
+                <!-- College Email -->
+                <TextView
+                    android:id="@+id/collage_mail_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Headline"
                     android:layout_marginTop="10dp"
                     android:textSize="16sp"
                     android:fontFamily="@font/sf_pro_display"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@id/alumni_industry"
+                    app:layout_constraintTop_toBottomOf="@id/edit_bio"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />
 
-                <!-- Gender Selection -->
-                <RadioGroup
-                    android:id="@+id/genderRadioGroup"
+                <EditText
+                    android:id="@+id/alumni_Headline"
+                    android:text="@={viewModel.headline}"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_area_box"
+                    android:importantForAutofill="no"
+
+                    android:fontFamily="@font/sf_pro_display"
+                    android:padding="10dp"
+                    android:hint=""
+                    app:layout_constraintTop_toBottomOf="@id/collage_mail_address"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+                <!-- Phone Number -->
+                <TextView
+                    android:id="@+id/alumni_tv_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Location"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/alumni_Headline"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <EditText
+                    android:id="@+id/alumni_location"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/edit_area_box"
+                    android:importantForAutofill="no"
+
+                    android:fontFamily="@font/sf_pro_display"
+                    android:padding="10dp"
+                    android:hint="Location"
+                    app:layout_constraintTop_toBottomOf="@id/alumni_tv_location"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <TextView
+                    android:id="@+id/alumni_chooseLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Use Current Location"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    android:clickable="true"
+                    android:textColor="@color/blue1"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/alumni_location"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+
+                <!--Collage Name-->
+
+                <TextView
+                    android:id="@+id/alumni_collage_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Website Link"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/alumni_chooseLocation"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+
+                <EditText
+                    android:id="@+id/alumni_websiteLink"
+                    android:text="@={viewModel.websiteLink}"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+
+                    android:background="@drawable/edit_area_box"
+                    android:importantForAutofill="no"
+
+                    android:fontFamily="@font/sf_pro_display"
+                    android:padding="10dp"
+                    android:hint=""
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/alumni_collage_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!--Graduation Year-->
+
+                <TextView
+                    android:id="@+id/alumni_tv_phoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Phone Number(Optional)"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/alumni_websiteLink"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+                <EditText
+                    android:id="@+id/alumni_phoneNumber"
+
+                    android:text="@={viewModel.phoneNumber}"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+
+                    android:background="@drawable/edit_area_box"
+                    android:importantForAutofill="no"
+
+                    android:fontFamily="@font/sf_pro_display"
+                    android:padding="10dp"
+                    android:hint=""
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/alumni_tv_phoneNumber"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!--Degree Obtained-->
+
+                <TextView
+                    android:id="@+id/alumni_degree_obtained"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/degree_obtained_txt"
+                    android:layout_marginTop="10dp"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toBottomOf="@id/alumni_phoneNumber"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+                <Spinner
+                    android:id="@+id/alumni_degree_obtain_input"
+                    android:layout_width="match_parent"
+                    android:padding="15dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_spinner_bg"
+
+                    app:layout_constraintTop_toBottomOf="@id/alumni_degree_obtained"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+                <!-- Social Links -->
+                <TextView
+                    android:id="@+id/social_links"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/social_links"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/sf_pro_display"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toBottomOf="@id/alumni_degree_obtain_input"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!-- LinkedIn -->
+                <LinearLayout
+                    android:id="@+id/ll1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center"
-                    android:layout_marginTop="8dp">
+                    android:background="@drawable/edit_area_box"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/social_links">
 
-                    <!-- Male Option -->
-                    <RadioButton
-                        android:id="@+id/rbMale"
-                        android:layout_width="wrap_content"
+                    <ImageView
+                        android:id="@+id/linkedin_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/social_icon_linkdin"
+                        android:contentDescription="@string/linkedin_icon"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <EditText
+                        android:id="@+id/linkedin_input"
+                        android:text="@={viewModel.linkedinUrl}"
+
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="7dp"
-
-                        android:background="@drawable/radio_button_selector"
-                        android:button="@android:color/transparent"
-                        android:paddingHorizontal="35dp"
-                        android:paddingVertical="8dp"
-                        android:text="@string/male_txt"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/insert_your_link_here"
+                        android:importantForAutofill="no"
+                        android:inputType="textUri"
                         android:fontFamily="@font/sf_pro_display"
-                        android:textColor="@color/black1"
-                        android:textSize="14sp"
-                        android:gravity="center" />
+                        android:textColor="#000000"
+                        android:textColorHint="#A6A6A6"
+                        tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+                </LinearLayout>
 
-                    <!-- Female Option -->
-                    <RadioButton
-                        android:id="@+id/rbFemale"
-                        android:layout_width="wrap_content"
+                <!-- Instagram -->
+                <LinearLayout
+                    android:id="@+id/ll2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/edit_area_box"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/ll1">
+
+                    <ImageView
+                        android:id="@+id/instagram_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/social_icon_instagram"
+                        android:contentDescription="@string/instagram_icon"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <EditText
+                        android:id="@+id/instagram_input"
+
+                        android:text="@={viewModel.instagramUrl}"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="7dp"
-                        android:background="@drawable/radio_button_selector"
-                        android:button="@android:color/transparent"
-                        android:paddingHorizontal="35dp"
-                        android:paddingVertical="8dp"
-                        android:text="@string/female_txt"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/insert_your_link_here"
+                        android:importantForAutofill="no"
+                        android:inputType="textUri"
+                        android:textColor="#000000"
                         android:fontFamily="@font/sf_pro_display"
-                        android:textColor="@color/black1"
-                        android:textSize="14sp"
-                        android:gravity="center" />
+                        android:textColorHint="#A6A6A6"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </LinearLayout>
 
-                    <!-- Others Option -->
-                    <RadioButton
-                        android:id="@+id/rbOthers"
-                        android:layout_width="wrap_content"
+                <!-- Gmail -->
+                <LinearLayout
+                    android:id="@+id/ll3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/edit_area_box"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/ll2">
+
+                    <ImageView
+                        android:id="@+id/gmail_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/social_icon_gmail"
+                        android:contentDescription="@string/gmail_icon1"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="8dp" />
+
+                    <EditText
+                        android:id="@+id/gmail_input"
+                        android:text="@={viewModel.gmailUrl}"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="7dp"
-                        android:background="@drawable/radio_button_selector"
-                        android:button="@android:color/transparent"
-                        android:paddingHorizontal="35dp"
-                        android:paddingVertical="8dp"
-                        android:text="@string/others__txt"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/insert_your_link_here"
                         android:fontFamily="@font/sf_pro_display"
-                        android:textColor="@color/black1"
-                        android:textSize="14sp"
-                        android:gravity="center" />
-                </RadioGroup>
-            </LinearLayout>
+                        android:importantForAutofill="no"
+                        android:inputType="textUri"
+                        android:textColor="#000000"
+                        android:textColorHint="#A6A6A6"
+                        />
+                </LinearLayout>
 
-
-            <!-- College Email -->
-            <TextView
-                android:id="@+id/collage_mail_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Headline"
-                android:layout_marginTop="10dp"
-                android:textSize="16sp"
-                android:fontFamily="@font/sf_pro_display"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/edit_bio"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <EditText
-                android:id="@+id/alumni_Headline"
-                android:text="@={viewModel.headline}"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/edit_area_box"
-                android:importantForAutofill="no"
-
-                android:fontFamily="@font/sf_pro_display"
-                android:padding="10dp"
-                android:hint=""
-                app:layout_constraintTop_toBottomOf="@id/collage_mail_address"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-
-
-            <!-- Phone Number -->
-            <TextView
-                android:id="@+id/alumni_tv_location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Location"
-                android:layout_marginTop="10dp"
-                android:textSize="16sp"
-                android:fontFamily="@font/sf_pro_display"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/alumni_Headline"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <EditText
-                android:id="@+id/alumni_location"
-              
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/edit_area_box"
-                android:importantForAutofill="no"
-
-                android:fontFamily="@font/sf_pro_display"
-                android:padding="10dp"
-                android:hint="Location"
-                app:layout_constraintTop_toBottomOf="@id/alumni_tv_location"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <TextView
-                android:id="@+id/alumni_chooseLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Use Current Location"
-                android:layout_marginTop="10dp"
-                android:textSize="16sp"
-                android:clickable="true"
-                android:textColor="@color/blue1"
-                android:fontFamily="@font/sf_pro_display"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/alumni_location"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-
-
-
-            <!--Collage Name-->
-
-            <TextView
-                android:id="@+id/alumni_collage_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Website Link"
-                android:layout_marginTop="10dp"
-                android:textSize="16sp"
-                android:fontFamily="@font/sf_pro_display"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/alumni_chooseLocation"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-
-            <EditText
-                android:id="@+id/alumni_websiteLink"
-                android:text="@={viewModel.websiteLink}"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-
-                android:background="@drawable/edit_area_box"
-                android:importantForAutofill="no"
-
-                android:fontFamily="@font/sf_pro_display"
-                android:padding="10dp"
-                android:hint=""
-                android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/alumni_collage_name"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <!--Graduation Year-->
-
-            <TextView
-                android:id="@+id/alumni_tv_phoneNumber"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Phone Number(Optional)"
-                android:layout_marginTop="10dp"
-                android:textSize="16sp"
-                android:fontFamily="@font/sf_pro_display"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/alumni_websiteLink"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-
-
-            <EditText
-                android:id="@+id/alumni_phoneNumber"
-
-                android:text="@={viewModel.phoneNumber}"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-
-                android:background="@drawable/edit_area_box"
-                android:importantForAutofill="no"
-
-                android:fontFamily="@font/sf_pro_display"
-                android:padding="10dp"
-                android:hint=""
-                android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/alumni_tv_phoneNumber"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <!--Degree Obtained-->
-
-            <TextView
-                android:id="@+id/alumni_degree_obtained"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/degree_obtained_txt"
-                android:layout_marginTop="10dp"
-                android:textSize="16sp"
-                android:fontFamily="@font/sf_pro_display"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/alumni_phoneNumber"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-
-
-            <Spinner
-                android:id="@+id/alumni_degree_obtain_input"
-                android:layout_width="match_parent"
-                android:padding="15dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_spinner_bg"
-
-                app:layout_constraintTop_toBottomOf="@id/alumni_degree_obtained"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
-
-            <!-- Social Links -->
-            <TextView
-                android:id="@+id/social_links"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/social_links"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/sf_pro_display"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@id/alumni_degree_obtain_input"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <!-- LinkedIn -->
-            <LinearLayout
-                android:id="@+id/ll1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/edit_area_box"
-                android:layout_marginTop="10dp"
-                android:padding="10dp"
-                app:layout_constraintTop_toBottomOf="@id/social_links">
-
-                <ImageView
-                    android:id="@+id/linkedin_icon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/social_icon_linkdin"
-                    android:contentDescription="@string/linkedin_icon"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp" />
-
-                <EditText
-                    android:id="@+id/linkedin_input"
-                    android:text="@={viewModel.linkedinUrl}"
-
-                    android:layout_width="0dp"
+                <!-- Threads -->
+                <LinearLayout
+                    android:id="@+id/ll4"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/insert_your_link_here"
-                    android:importantForAutofill="no"
-                    android:inputType="textUri"
-                    android:fontFamily="@font/sf_pro_display"
-                    android:textColor="#000000"
-                    android:textColorHint="#A6A6A6"
-                    tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+                    android:orientation="horizontal"
+                    android:background="@drawable/edit_area_box"
+                    android:layout_marginTop="10dp"
+                    android:padding="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/ll3">
+
+                    <ImageView
+                        android:id="@+id/treads_icon"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/social_icon_thread"
+                        android:layout_marginTop="4dp"
+                        android:contentDescription="@string/thread_icon"
+                        android:layout_marginEnd="8dp" />
+
+                    <EditText
+                        android:id="@+id/threads_input"
+
+                        android:text="@={viewModel.threadsUrl}"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/insert_your_link_here"
+                        android:fontFamily="@font/sf_pro_display"
+                        android:importantForAutofill="no"
+                        android:inputType="textUri"
+                        android:textColor="#000000"
+                        android:textColorHint="#A6A6A6"
+                  />
+                </LinearLayout>
+
+
+
+
             </LinearLayout>
 
-            <!-- Instagram -->
-            <LinearLayout
-                android:id="@+id/ll2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/edit_area_box"
-                android:layout_marginTop="10dp"
-                android:padding="10dp"
-                app:layout_constraintTop_toBottomOf="@id/ll1">
-
-                <ImageView
-                    android:id="@+id/instagram_icon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/social_icon_instagram"
-                    android:contentDescription="@string/instagram_icon"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp" />
-
-                <EditText
-                    android:id="@+id/instagram_input"
-
-                    android:text="@={viewModel.instagramUrl}"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/insert_your_link_here"
-                    android:importantForAutofill="no"
-                    android:inputType="textUri"
-                    android:textColor="#000000"
-                    android:fontFamily="@font/sf_pro_display"
-                    android:textColorHint="#A6A6A6"
-                    tools:ignore="TouchTargetSizeCheck" />
-            </LinearLayout>
-
-            <!-- Gmail -->
-            <LinearLayout
-                android:id="@+id/ll3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/edit_area_box"
-                android:layout_marginTop="10dp"
-                android:padding="10dp"
-                app:layout_constraintTop_toBottomOf="@id/ll2">
-
-                <ImageView
-                    android:id="@+id/gmail_icon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/social_icon_gmail"
-                    android:contentDescription="@string/gmail_icon1"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="8dp" />
-
-                <EditText
-                    android:id="@+id/gmail_input"
-                    android:text="@={viewModel.gmailUrl}"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/insert_your_link_here"
-                    android:fontFamily="@font/sf_pro_display"
-                    android:importantForAutofill="no"
-                    android:inputType="textUri"
-                    android:textColor="#000000"
-                    android:textColorHint="#A6A6A6"
-                    tools:ignore="TouchTargetSizeCheck" />
-            </LinearLayout>
-
-            <!-- Threads -->
-            <LinearLayout
-                android:id="@+id/ll4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@drawable/edit_area_box"
-                android:layout_marginTop="10dp"
-                android:padding="10dp"
-                app:layout_constraintTop_toBottomOf="@id/ll3">
-
-                <ImageView
-                    android:id="@+id/treads_icon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/social_icon_thread"
-                    android:layout_marginTop="4dp"
-                    android:contentDescription="@string/thread_icon"
-                    android:layout_marginEnd="8dp" />
-
-                <EditText
-                    android:id="@+id/threads_input"
-
-                    android:text="@={viewModel.threadsUrl}"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/insert_your_link_here"
-                    android:fontFamily="@font/sf_pro_display"
-                    android:importantForAutofill="no"
-                    android:inputType="textUri"
-                    android:textColor="#000000"
-                    android:textColorHint="#A6A6A6"
-                    tools:ignore="TouchTargetSizeCheck" />
-            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/Save"
+           app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/blue1"
+            android:layout_marginTop="10dp"
+            app:cornerRadius="12dp"
+            android:padding="10dp"
+            android:fontFamily="@font/sf_pro_display"
+            android:text="Save" />
 
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/Save"
-                app:layout_constraintTop_toBottomOf="@id/ll4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/blue1"
-                android:layout_marginTop="10dp"
-                app:cornerRadius="12dp"
-                android:padding="10dp"
-                android:fontFamily="@font/sf_pro_display"
-                android:text="@string/submit" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
-
-    </ScrollView>
 </layout>
