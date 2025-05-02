@@ -80,7 +80,7 @@
                     android:id="@+id/student_profile_circleImageView"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/alumni_profile_photo"
+                    android:src="@drawable/user"
                     app:civ_border_color="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -145,6 +145,19 @@
 
                     />
 
+                <TextView
+                    android:id="@+id/headlineText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="30dp"
+                    android:text="@={viewModel.headline}"
+                    android:textColor="#616161"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/userName" />
+
                 <!-- Bio -->
                 <TextView
                     android:id="@+id/bio_text"
@@ -157,7 +170,7 @@
                     android:textColor="#616161"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/userName" />
+                    app:layout_constraintTop_toBottomOf="@id/headlineText" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- Unique ID button -->

@@ -114,7 +114,7 @@ class AlumniProfile : Fragment() {
 
         userSessionManager = UserSessionManager(requireContext())
 
-        setupLogoutButton()
+       // setupLogoutButton()
     }
 
     override fun onDestroyView() {
@@ -125,23 +125,23 @@ class AlumniProfile : Fragment() {
 
     //private functions
 
-    private fun setupLogoutButton() {
-        binding.btnLogout.setOnClickListener {
-
-            userSessionManager.logout()
-
-            Toast.makeText(requireContext(), "Logged out successfully", Toast.LENGTH_SHORT).show()
-
-            findNavController().navigate(
-                R.id.action_aluminiMainPage_to_mainLogin,
-                null,
-
-                NavOptions.Builder()
-                    .setPopUpTo(R.id.mainLogin, true)
-                    .build()
-            )
-        }
-    }
+//    private fun setupLogoutButton() {
+//        binding.btnLogout.setOnClickListener {
+//
+//            userSessionManager.logout()
+//
+//            Toast.makeText(requireContext(), "Logged out successfully", Toast.LENGTH_SHORT).show()
+//
+//            findNavController().navigate(
+//                R.id.action_aluminiMainPage_to_mainLogin,
+//                null,
+//
+//                NavOptions.Builder()
+//                    .setPopUpTo(R.id.mainLogin, true)
+//                    .build()
+//            )
+//        }
+//    }
 
     private fun setUpViewPagerAdapter() {
         val adapter = AlumniProfileViewPagerAdapter(requireActivity())
