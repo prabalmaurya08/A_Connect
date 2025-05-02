@@ -80,7 +80,7 @@ class StudentHomePage : Fragment() {
 
         sessionManager = UserSessionManager(requireContext())
         currentUserEmail = sessionManager.getCurrentUserEmail().toString()
-        binding.userName.text = "Hi ," + SharedPreferencesHelper.getStudentName()
+        binding.userName.text = "Hi ,Student"
         return binding.root
     }
 

@@ -94,6 +94,9 @@ class AlumniProfile : Fragment() {
             listener?.onEditProfileClicked()
         }
        setUpViewPagerAdapter()
+        binding.addAlumniMilestone.setOnClickListener {
+            listener?.onAddAlumniMilestone()
+        }
 
         //for data to load
         binding.viewModel = viewModel
@@ -177,7 +180,8 @@ class AlumniProfile : Fragment() {
         TabLayoutMediator(binding.alumniProfileTabLayout, binding.alumniProfileViewPager) { tab, position ->
             tab.text = when (position) {
 
-                0-> "Posts"
+                0-> "Milestones"
+                1->"Post"
                 else -> null
             }
         }.attach()
@@ -187,6 +191,7 @@ class AlumniProfile : Fragment() {
         fun onEditProfileClicked()
         fun onUniqueIdClicked()
         fun onShareProfileClicked()
+        fun onAddAlumniMilestone()
 
     }
 

@@ -1,5 +1,6 @@
 package com.example.a_connect.login
 
+import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.example.a_connect.R
 import com.example.a_connect.UserSessionManager
 
 import com.example.a_connect.admin.adminCollegeProfile.mvvm.CollegeProfileRepository
@@ -26,7 +28,7 @@ class AlumniLogin : Fragment() {
     private lateinit var sessionManager: UserSessionManager
 
     private lateinit var binding: FragmentAlumniLoginBinding
-
+    private lateinit var loadingDialog: Dialog
     private var listener: OnAlumniScreenClicked? = null
     private val repository = CollegeProfileRepository()
     private val viewModel: CollegeProfileViewModel by viewModels {
@@ -59,6 +61,7 @@ class AlumniLogin : Fragment() {
     ): View {
 
         binding = FragmentAlumniLoginBinding.inflate(layoutInflater)
+        initLoadingDialog()
 
         // Initialize Spinners and ProgressBar
         graduationYearsSpinner = binding.aluminiLoginGraduationYear
@@ -100,6 +103,7 @@ class AlumniLogin : Fragment() {
 
         // Handle login button clicks
         binding.submitButton.setOnClickListener {
+            loadingDialog.show()
 
             val email = binding.aluminiLoginEmailAddress.text.toString()
             val graduationYear = graduationYearsSpinner.selectedItem.toString().toInt()
@@ -116,8 +120,7 @@ class AlumniLogin : Fragment() {
         // Observe alumni login result
         loginViewModel.alumniLoginResult.observe(viewLifecycleOwner, Observer { result ->
             val (success, message) = result
-            // Hide progress bar after operation
-            progressBar.visibility = View.GONE
+           loadingDialog.dismiss()
 
             if (success) {
                 // Save user credentials to SharedPreferences
@@ -131,12 +134,22 @@ class AlumniLogin : Fragment() {
                 listener?.onAlumniSubmitClicked()
                 // Navigate to home screen on successful login
                 showToast("Login Successful")
+                loadingDialog.dismiss()
             } else {
                 // Show error message
                 showToast(message ?: "Login Failed")
+                loadingDialog.dismiss()
             }
         })
     }
+    // Initialize the loading dialog with Lottie animation
+    private fun initLoadingDialog() {
+        loadingDialog = Dialog(requireContext())
+        loadingDialog.setContentView(R.layout.dialog_loading)
+        loadingDialog.setCancelable(false)  // Prevent user interaction during loading
+    }
+
+
 
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()

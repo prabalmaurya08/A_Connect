@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class AdminDashboardViewmodel(
@@ -39,6 +41,39 @@ class AdminDashboardViewmodel(
             }
         }
     }
+    private val _alumniList = MutableStateFlow<List<AlumniItem>>(emptyList())
+    val alumniList: StateFlow<List<AlumniItem>> = _alumniList
+
+    private val _showAll = MutableStateFlow(false)
+    val showAll: StateFlow<Boolean> = _showAll
+    fun loadAlumni() {
+        viewModelScope.launch {
+            val list = repository.getAllAlumni()
+            _alumniList.value = list
+        }
+    }
+
+    fun toggleShowAll() {
+        _showAll.value = !_showAll.value
+    }
+
+
+
+    // Corrected student section
+    private val _studentList = MutableStateFlow<List<StudentItem>>(emptyList())
+    val studentList: StateFlow<List<StudentItem>> = _studentList
+
+    fun loadStudent() {
+        viewModelScope.launch {
+            // Get student data from the repository
+            val list1 = repository.getAllStudent()
+            _studentList.value = list1 // Assign the data to _studentList
+
+           // _studentList.value = list // Assign the data to _studentList
+        }
+    }
+
+
 }
 class AdminDashboardViewModelFactory(
     private val repository: AdminDashboardRepository

@@ -7,3 +7,15 @@ data class AdminDashboardDataClass(
     val newsCount: Int = 0,
     val jobCount: Int = 0
 )
+
+data class AlumniItem(
+    val email: String = "",
+    val college: String = "",
+
+)
+
+data class StudentItem(
+    val email: String = "",
+    val college: String = "",
+
+    )

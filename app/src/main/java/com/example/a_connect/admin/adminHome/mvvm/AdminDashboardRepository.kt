@@ -26,4 +26,23 @@ class AdminDashboardRepository(
     suspend fun getJobCount(): Int {
         return firestore.collection("Jobs").get().await().size()
     }
+    suspend fun getAllAlumni(): List<AlumniItem> {
+        val snapshot = firestore.collection("Alumni").get().await()
+
+        return snapshot.documents.mapNotNull { doc ->
+            val college = doc.getString("collegeName") ?: return@mapNotNull null
+            val email = doc.id // stored as document ID
+            AlumniItem(email = email, college = college)
+        }
+    }
+    suspend fun getAllStudent(): List<StudentItem> {
+        val snapshot = firestore.collection("Students").get().await()
+
+        return snapshot.documents.mapNotNull { doc ->
+            val college = doc.getString("collegeName") ?: return@mapNotNull null
+            val email = doc.id // stored as document ID
+            StudentItem(email = email, college = college)
+        }
+    }
+
 }
