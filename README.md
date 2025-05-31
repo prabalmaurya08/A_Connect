@@ -87,7 +87,7 @@ The project scope outlines the key features available for each user role:
 This repository hosts the code for "A connect" and provides the ready-to-install Android Application Package (APK) file for users. Since you are downloading the app directly from GitHub and not the Google Play Store, you will need to follow these steps to install it on your Android device:
 
 1.  **Download the APK:**
-    * Go to the [Releases tab](YOUR_RELEASE_PAGE_LINK_HERE - *You will need to add the actual link*) of this GitHub repository.
+    * Go to the [Releases tab](https://github.com/prabalmaurya08/A_Connect/releases) of this GitHub repository.
     * Download the latest APK file available for the app.
 
 2.  **Enable Installation from Unknown Sources:**
